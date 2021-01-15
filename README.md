@@ -1,2 +1,2 @@
 # lantash-repo
-Repozytorium wtyczek lantash
+Wtyczka do strony Dramaqueen.pl
