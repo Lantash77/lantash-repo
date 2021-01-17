@@ -5,7 +5,7 @@ import xbmc
 import xbmcgui
 import xbmcplugin
 from resources.libs.debug import log_exception
-from common import PlayFromHost
+#from common import PlayFromHost
 
 reload(sys)
 sys.setdefaultencoding('UTF8')
@@ -89,6 +89,67 @@ def PlayMedia(link, direct=False):
         pDialog.close()
         xbmcgui.Dialog().ok('Error', 'Błąd otwarcia linku! %s' % e)
         log_exception()
+
+def PlayFromHost(url, mode, title):
+        
+#    title = addpr('title', '')
+    
+    if 'google' in url:
+        url = url.replace('preview', 'view')
+    import resolveurl
+    try:
+        if ('youtube' in url):
+            if mode == 'play':
+                li = xbmcgui.ListItem(title, path=url)
+                li.setInfo(type='video')
+                li.setProperty('IsPlayable', 'true')
+                xbmcplugin.setResolvedUrl(handle=int(sys.argv[1]), succeeded=True, listitem=li)
+            elif mode == 'download':
+                import downloader
+                dest = addst("download.path")
+                downloader.download(title, 'image', url, dest)
+        else:
+            try:
+                stream_url = resolveurl.resolve(url)
+                xbmc.log('DramaQueen.pl | wynik z resolve  : %s' % stream_url, xbmc.LOGNOTICE)
+                
+                if mode == 'play':
+                    li = xbmcgui.ListItem(title, path=stream_url)
+                #    li.setInfo(type='video')
+                #    li.setProperty('IsPlayable', 'true')
+                    xbmcplugin.setResolvedUrl(handle=int(sys.argv[1]), succeeded=True, listitem=li)
+                elif mode == 'download':
+                    import downloader
+                    dest = addst("download.path")
+                    downloader.download(title, 'image', stream_url, dest)
+            except:
+                if 'vidloxxx' in url:
+                    stream_url = vidlox(url)
+                elif 'rapidvideo' in url:
+                    stream_url = rapidvideo(url)
+                elif 'mp4upload' in url:
+                    stream_url = mp4upload(url, page)
+                elif 'bitporno.com' in url:
+                    stream_url = bitporno(url)
+                elif 'cloudvideo' in url:
+                    stream_url = cloudvideo(url)
+                elif 'sibnet' in url:
+                    stream_url = sibnet(url)
+                    stream_url = stream_url + "|Referer=https://video.sibnet.ru"
+                if mode == 'play':
+                    li = xbmcgui.ListItem(title, path=stream_url)
+                    li.setInfo(type='video')
+                    li.setProperty('IsPlayable', 'true')
+                    xbmcplugin.setResolvedUrl(handle=int(sys.argv[1]), succeeded=True, listitem=li)
+                elif mode == 'download':
+                    import downloader
+                    dest = addst("download.path")
+                    downloader.download(title, 'image', stream_url, dest)
+    except:
+        #myNote("Nie udało się niestety :( BUUUUU")
+        print 'Brak linku'
+
+
 
 def SourceSelect(players, links, title):
     if len(players) > 0:
