@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-#####Python3.6
+#####Python2.7
 import importlib
 import re
 import os
@@ -65,7 +65,7 @@ def CATEGORIES():
 
 #    Logowanie()
   
-    addon.addDir('Drama Koreańska',
+    addon.addDir('Drama Koreanska',
                 'https://www.dramaqueen.pl/drama/koreanska/',
                  mode=1, fanart=korea_background)
     addon.addDir('Drama Japonska',
