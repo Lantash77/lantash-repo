@@ -514,48 +514,108 @@ def cloudvideo(url):
         return
 
 
-def PlayFromHost(url, mode, page=''):
-    infoLabels = {"Studio": addpr('studio', ''), "ShowTitle": addpr('showtitle', ''), "Title": addpr('title', '')}
-    title = addpr('title', '')
-    if mode == 'download'and (addst("download.path") == ''):
-            dialog = xbmcgui.Dialog()
-            dialog.notification('Download', 'Download patch is empty', xbmcgui.NOTIFICATION_INFO, 5000)
-            return
+#def PlayFromHost(url, mode, page=''):
+#    infoLabels = {"Studio": addpr('studio', ''), "ShowTitle": addpr('showtitle', ''), "Title": addpr('title', '')}
+#    title = addpr('title', '')
+#    if mode == 'download'and (addst("download.path") == ''):
+#            dialog = xbmcgui.Dialog()
+#            dialog.notification('Download', 'Download patch is empty', xbmcgui.NOTIFICATION_INFO, 5000)
+#            return
+#    if 'google' in url:
+#        url = url.replace('preview', 'view')
+#    import resolveurl
+#    #infoLabels = {"Studio": addpr('studio', ''), "ShowTitle": addpr('showtitle', ''), "Title": addpr('title', '')}
+#    try:
+#        if ('youtube' in url):
+#            if mode == 'play':
+#                li = xbmcgui.ListItem(addpr('title', ''), iconImage=addpr('img', ''), thumbnailImage=addpr('img', ''), path=url)
+#                li.setInfo(type='video', infoLabels=infoLabels)
+#                li.setProperty('IsPlayable', 'true')
+#                xbmcplugin.setResolvedUrl(handle=int(sys.argv[1]), succeeded=True, listitem=li)
+#            elif mode == 'download':
+#                import downloader
+#                dest = addst("download.path")
+#                downloader.download(title, 'image', url, dest)
+#        elif 'anime-centrum' in url:
+#            stream_url = url + "|Referer=http://anime-centrum.pl/"
+#            li = xbmcgui.ListItem(addpr('title', ''), iconImage=addpr('img', ''), thumbnailImage=addpr('img', ''), path=stream_url)
+#            li.setInfo(type='video', infoLabels=infoLabels)
+#            li.setProperty('IsPlayable', 'true')
+#            xbmcplugin.setResolvedUrl(handle=int(sys.argv[1]), succeeded=True, listitem=li)
+#        else:
+#            try:
+#                stream_url = resolveurl.resolve(url)
+#                if mode == 'play':
+#                    li = xbmcgui.ListItem(addpr('title', ''), iconImage=addpr('img', ''), thumbnailImage=addpr('img', ''), path=stream_url)
+#                    li.setInfo(type='video', infoLabels=infoLabels)
+#                    li.setProperty('IsPlayable', 'true')
+#                    xbmcplugin.setResolvedUrl(handle=int(sys.argv[1]), succeeded=True, listitem=li)
+#                elif mode == 'download':
+#                    import downloader
+#                    dest = addst("download.path")
+#                    downloader.download(title, 'image', stream_url, dest)
+#            except:
+#                if 'vidlox' in url:
+#                    stream_url = vidlox(url)
+#                elif 'rapidvideo' in url:
+#                    stream_url = rapidvideo(url)
+#                elif 'mp4upload' in url:
+#                    stream_url = mp4upload(url, page)
+#                elif 'bitporno.com' in url:
+#                    stream_url = bitporno(url)
+#                elif 'cloudvideo' in url:
+#                    stream_url = cloudvideo(url)
+#                elif 'sibnet' in url:
+#                    stream_url = sibnet(url)
+#                    stream_url = stream_url + "|Referer=https://video.sibnet.ru"
+#                if mode == 'play':
+#                    li = xbmcgui.ListItem(addpr('title', ''), iconImage=addpr('img', ''), thumbnailImage=addpr('img', ''), path=stream_url)
+#                    li.setInfo(type='video', infoLabels=infoLabels)
+#                    li.setProperty('IsPlayable', 'true')
+#                    xbmcplugin.setResolvedUrl(handle=int(sys.argv[1]), succeeded=True, listitem=li)
+#                elif mode == 'download':
+#                    import downloader
+#                    dest = addst("download.path")
+#                    downloader.download(title, 'image', stream_url, dest)
+#    except:
+#        #myNote("Nie udało się niestety :( BUUUUU")
+#        print 'Brak linku'
+#
+#
+def PlayFromHost(url, mode, title):
+        
+#    title = addpr('title', '')
+    
     if 'google' in url:
         url = url.replace('preview', 'view')
     import resolveurl
-    #infoLabels = {"Studio": addpr('studio', ''), "ShowTitle": addpr('showtitle', ''), "Title": addpr('title', '')}
     try:
         if ('youtube' in url):
             if mode == 'play':
-                li = xbmcgui.ListItem(addpr('title', ''), iconImage=addpr('img', ''), thumbnailImage=addpr('img', ''), path=url)
-                li.setInfo(type='video', infoLabels=infoLabels)
+                li = xbmcgui.ListItem(title, path=url)
+                li.setInfo(type='video')
                 li.setProperty('IsPlayable', 'true')
                 xbmcplugin.setResolvedUrl(handle=int(sys.argv[1]), succeeded=True, listitem=li)
             elif mode == 'download':
                 import downloader
                 dest = addst("download.path")
                 downloader.download(title, 'image', url, dest)
-        elif 'anime-centrum' in url:
-            stream_url = url + "|Referer=http://anime-centrum.pl/"
-            li = xbmcgui.ListItem(addpr('title', ''), iconImage=addpr('img', ''), thumbnailImage=addpr('img', ''), path=stream_url)
-            li.setInfo(type='video', infoLabels=infoLabels)
-            li.setProperty('IsPlayable', 'true')
-            xbmcplugin.setResolvedUrl(handle=int(sys.argv[1]), succeeded=True, listitem=li)
         else:
             try:
                 stream_url = resolveurl.resolve(url)
+                xbmc.log('DramaQueen.pl | wynik z resolve  : %s' % stream_url, xbmc.LOGNOTICE)
+                
                 if mode == 'play':
-                    li = xbmcgui.ListItem(addpr('title', ''), iconImage=addpr('img', ''), thumbnailImage=addpr('img', ''), path=stream_url)
-                    li.setInfo(type='video', infoLabels=infoLabels)
-                    li.setProperty('IsPlayable', 'true')
+                    li = xbmcgui.ListItem(title, path=stream_url)
+                #    li.setInfo(type='video')
+                #    li.setProperty('IsPlayable', 'true')
                     xbmcplugin.setResolvedUrl(handle=int(sys.argv[1]), succeeded=True, listitem=li)
                 elif mode == 'download':
                     import downloader
                     dest = addst("download.path")
                     downloader.download(title, 'image', stream_url, dest)
             except:
-                if 'vidlox' in url:
+                if 'vidloxxx' in url:
                     stream_url = vidlox(url)
                 elif 'rapidvideo' in url:
                     stream_url = rapidvideo(url)
@@ -569,8 +629,8 @@ def PlayFromHost(url, mode, page=''):
                     stream_url = sibnet(url)
                     stream_url = stream_url + "|Referer=https://video.sibnet.ru"
                 if mode == 'play':
-                    li = xbmcgui.ListItem(addpr('title', ''), iconImage=addpr('img', ''), thumbnailImage=addpr('img', ''), path=stream_url)
-                    li.setInfo(type='video', infoLabels=infoLabels)
+                    li = xbmcgui.ListItem(title, path=stream_url)
+                    li.setInfo(type='video')
                     li.setProperty('IsPlayable', 'true')
                     xbmcplugin.setResolvedUrl(handle=int(sys.argv[1]), succeeded=True, listitem=li)
                 elif mode == 'download':
@@ -580,6 +640,7 @@ def PlayFromHost(url, mode, page=''):
     except:
         #myNote("Nie udało się niestety :( BUUUUU")
         print 'Brak linku'
+
 
 
 def GetDataBeetwenMarkers(data, marker1, marker2, withMarkers=True, caseSensitive=True):

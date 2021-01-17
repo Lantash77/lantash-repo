@@ -1,10 +1,11 @@
 # -*- coding: UTF-8 -*-
 import sys
 import urllib
-
+import xbmc
 import xbmcgui
 import xbmcplugin
 from resources.libs.debug import log_exception
+from common import PlayFromHost
 
 reload(sys)
 sys.setdefaultencoding('UTF8')
@@ -29,7 +30,7 @@ def addDir(name, url, mode='', icon='', thumb='', fanart='', poster='', banner='
         'clearart': clearart,
         'clearlogo': clearlogo,
     })
-    liz.setInfo("Video", {
+    liz.setInfo('Video', {
          'title': name, 
          'genre': genre, 
          'year': year, 
@@ -44,7 +45,7 @@ def addLink(name, url, mode='', icon='', thumb='', fanart='', poster='', banner=
             year='', rating='', dateadded='', plot='', isFolder=False, total=1, type='video'):
     u = sys.argv[0] + '?url=' + urllib.quote_plus(url) + '&mode=' + str(mode) + '&name=' + urllib.quote_plus(name) + '&img=' + urllib.quote_plus(thumb)
     liz = xbmcgui.ListItem(name)
-    liz.setProperty("IsPlayable", 'true')
+    liz.setProperty('IsPlayable', 'true')
     liz.setInfo(type, {
         'title': name,
         'plot': plot
@@ -89,13 +90,15 @@ def PlayMedia(link, direct=False):
         xbmcgui.Dialog().ok('Error', 'Błąd otwarcia linku! %s' % e)
         log_exception()
 
-def SourceSelect(items):
-    if len(items) > 0:
+def SourceSelect(players, links, title):
+    if len(players) > 0:
         d = xbmcgui.Dialog()
-        select = d.select('Wybór playera', [x.get('name') for x in items])
+        select = d.select('Wybór playera', players)
         if select > -1:
-            link = items[select].get('href')
-            PlayMedia(link)
+            link = links[select]
+            xbmc.log('DramaQueen.pl | Proba z : %s' % players[select] + '   ' + link + '  ', xbmc.LOGNOTICE)
+            PlayFromHost(link, mode='play', title=title)
+
         else:
             exit()
     else:

@@ -227,10 +227,10 @@ def WyswietlanieLinkow():
         'Cache-Control': 'max-age=0',
         'Cookie': cookie,
     }
-
+    from common import PlayFromHost
     url = params.get('url')
     name = params.get('name')
-        
+#    xbmc.log('DramaQueen.pl | Listuje wynik: %s' % poster + '  ', xbmc.LOGNOTICE)
     if name.startswith('Odcinek '):
         index = int(re.findall('\d+', name)[0])
         rEL = requests.get(url, headers=headersget, timeout=15).content
@@ -241,15 +241,27 @@ def WyswietlanieLinkow():
         results = [item for item in parseDOM(rEL, 'section') if 'https://www.dramaqueen.pl/player.html' in item]
         avDlinks = [parseDOM(item, 'a', ret='href')for item in results][index - 1]
         avDplayers = [parseDOM(item, 'button')for item in results][index - 1]
-                        
-        d = xbmcgui.Dialog()
-        item = d.select("Wybór playera", avDplayers)
-        if item != -1:
-            from common import PlayFromHost
-            for item in avDlinks:
-                print item
-                print 'dupa'
-                PlayFromHost(item, 'play')
+        
+        addon.SourceSelect(players=avDplayers, links=avDlinks, title=name)        
+#        d = xbmcgui.Dialog()
+#        select = d.select("Wybór playera", avDplayers)
+#        if select > -1:
+#            link = avDlinks[select]
+#            xbmc.log('DramaQueen.pl | Proba z : %s' % avDplayers[select] + '   ' + link + '  ', xbmc.LOGNOTICE)
+#            PlayFromHost(link, mode='play', title=name)
+#        else:
+#            exit()        
+#        
+        
+        
+        
+        
+#        
+#        if item != -1:
+#            
+#            for item in avDlinks:
+#                
+#                PlayFromHost(item, title=name, mode='play')
     else:
         rML = requests.get(url, headers=headersget, timeout=15).content
 
@@ -262,14 +274,23 @@ def WyswietlanieLinkow():
         avMplayers = [parseDOM(item, 'button') for item in results2][0]
      
         d = xbmcgui.Dialog()
-        item = d.select("Wybór playera", avMplayers)
-        if item != -1:
-            from common import PlayFromHost
-            for item in avMlinks:
-                print item
-                print 'dupa'
-                PlayFromHost(item, 'play')
-       
+        select = d.select("Wybór playera", avMplayers)
+        if select > -1:
+            link = avMlinks[select]
+            xbmc.log('DramaQueen.pl | Proba z : %s' % avMplayers[select] + '   ' + link + '  ', xbmc.LOGNOTICE)
+            PlayFromHost(link, mode='play', title=name)
+        else:
+            exit()
+        
+        
+        
+#        if item != -1:
+#            
+#            for item in avMlinks:
+#                
+#                PlayFromHost(item, title=name, mode='play')
+#        else:
+#            exit()
 
 
 
@@ -280,9 +301,12 @@ def WyswietlanieLinkow():
 # =#########################################################################################################
 
 params = addon.get_params()
+#poster = xbmcgui.ListItem.getArt('fanart')
+
 url = params.get('url')
 name = params.get('name')
 img = params.get('img')
+
 try:
     mode = int(params.get('mode'))
 except:
