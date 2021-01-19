@@ -31,9 +31,7 @@ my_addon_id = my_addon.getAddonInfo('id')
 setting = my_addon.getSetting
 PATH = my_addon.getAddonInfo('path')
 MEDIA = xbmc.translatePath('special://home/addons/' + my_addon_id + '/media/')
-korea_background = MEDIA + "Korea.jpg"
-japan_background = MEDIA + "Japan.jpg"
-china_background = MEDIA + "China.jpg"
+
 base_link = "https://dramaqueen.pl"
 setting = xbmcaddon.Addon().getSetting
 
@@ -52,8 +50,12 @@ headersget = {
 ############################################################################################################
 #                                                   MEDIA                                                  #
 ############################################################################################################
-
-
+korea_background = MEDIA + 'Korea.jpg'
+japan_background = MEDIA + 'Japan.jpg'
+china_background = MEDIA + 'China.jpg'
+korea_thumb = MEDIA + 'koreathumb.png'
+japan_thumb = MEDIA + 'japoniathumb.png'
+inne_thumb = MEDIA + 'innethumb.png'
 
 
 ############################################################################################################
@@ -66,22 +68,22 @@ def CATEGORIES():
   
     addon.addDir('Drama Koreanska',
                 'https://www.dramaqueen.pl/drama/koreanska/',
-                 mode=1, fanart=korea_background)
+                 mode=1, fanart=korea_background, thumb=korea_thumb)
     addon.addDir('Drama Japonska',
                  'https://www.dramaqueen.pl/drama/japonska/',
-                 mode=1, fanart=japan_background)
+                 mode=1, fanart=japan_background, thumb=japan_thumb)
     addon.addDir('Dramy Inne',
                  'https://www.dramaqueen.pl/drama/pozostale/',
-                 mode=1, fanart=china_background)
+                 mode=1, fanart=china_background, thumb=inne_thumb)
     addon.addDir('Film Korea',
                  'https://www.dramaqueen.pl/film/koreanski/',
-                 mode=2, fanart=korea_background)
+                 mode=2, fanart=korea_background, thumb=korea_thumb)
     addon.addDir('Film Japonia',
                  'https://www.dramaqueen.pl/film/japonski/',
-                 mode=2, fanart=japan_background)
+                 mode=2, fanart=japan_background, thumb=japan_thumb)
     addon.addDir('Filmy Pozosta\xc5\x82e',
                  'https://www.dramaqueen.pl/film/pozostale/',
-                 mode=2, fanart=china_background)
+                 mode=2, fanart=china_background, thumb=inne_thumb)
 #   addon.addDir("Szukaj po nazwie", '', mode=1, fanart=_default_background)
 #   addon.addDir("Filtruj", '', mode=2, fanart=_default_background)
 #   addon.addDir("Alfabetycznie", '', mode=10, fanart=_default_background)
