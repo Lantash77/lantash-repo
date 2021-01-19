@@ -45,7 +45,7 @@ headersget = {
     'Upgrade-Insecure-Requests': '1',
     'Pragma': 'no-cache',
     'Cache-Control': 'max-age=0',
-#   'Cookie': cookie,
+
 }
 
 ############################################################################################################
@@ -63,7 +63,6 @@ headersget = {
 
 def CATEGORIES():
 
-#    Logowanie()
   
     addon.addDir('Drama Koreanska',
                 'https://www.dramaqueen.pl/drama/koreanska/',
@@ -144,7 +143,6 @@ def LoginCheck(url):
 
     if len(re.findall('Witaj, ', url, re.IGNORECASE)) == 0:
         xbmcgui.Dialog().ok('Blad logowania', 'Zaloguj się')
-        print 'błąd logowania'
         exit()
  
     
@@ -208,6 +206,7 @@ def ListMovies():
     url = params['url']
     rM = str(requests.get(url, headers=headersget, timeout=15).content)
     LoginCheck(rM)
+    
     rM = str.replace(rM, '&#8211;', '-')
     rM = str.replace(rM, '<br />\n', ' ')
     rM = str.replace(rM, '&#038;', '&')
@@ -231,7 +230,6 @@ def WyswietlanieLinkow():
     cookie = cache.cache_get('dramaqueen_cookie')['value']
     headersget.update({'Cookie': cookie})    
     
-#    from common import PlayFromHost
     url = params.get('url')
     name = params.get('name')
 
@@ -270,7 +268,6 @@ def WyswietlanieLinkow():
 # =#########################################################################################################
 
 params = addon.get_params()
-#poster = xbmcgui.ListItem.getArt('fanart')
 
 url = params.get('url')
 name = params.get('name')
