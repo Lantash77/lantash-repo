@@ -21,6 +21,15 @@ def addDir(name, url, mode='', icon='', thumb='', fanart='', poster='', banner='
            year='', rating='', dateadded='', plot='', isFolder=True, total=1):
     u = sys.argv[0] + '?url=' + urllib.quote_plus(url) + '&mode=' + str(mode) + '&name=' + urllib.quote_plus(name) + '&img=' + urllib.quote_plus(thumb)
     liz = xbmcgui.ListItem(name)
+    info = {
+        'title': name, 
+         'genre': genre, 
+         'year': year, 
+         'rating': rating, 
+         'dateadded': dateadded, 
+         'plot': plot,
+    }
+    liz.setInfo( type='video', infoLabels = info)
     liz.setArt({
         'thumb': thumb,
         'icon': icon,
@@ -30,14 +39,6 @@ def addDir(name, url, mode='', icon='', thumb='', fanart='', poster='', banner='
         'clearart': clearart,
         'clearlogo': clearlogo,
     })
-    liz.setInfo('Video', {
-         'title': name, 
-         'genre': genre, 
-         'year': year, 
-         'rating': rating, 
-         'dateadded': dateadded, 
-         'plot': plot
-    })
     xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url=u, listitem=liz, isFolder=isFolder, totalItems=total)
 
 
@@ -45,11 +46,16 @@ def addLink(name, url, mode='', icon='', thumb='', fanart='', poster='', banner=
             year='', rating='', dateadded='', plot='', isFolder=False, total=1, type='video'):
     u = sys.argv[0] + '?url=' + urllib.quote_plus(url) + '&mode=' + str(mode) + '&name=' + urllib.quote_plus(name) + '&img=' + urllib.quote_plus(thumb)
     liz = xbmcgui.ListItem(name)
-    liz.setProperty('IsPlayable', 'true')
-    liz.setInfo(type, {
+    contextmenu = []
+    contextmenu.append(('Informacja', 'XBMC.Action(Info)'),)
+    info = {
         'title': name,
-        'plot': plot
-    })
+        'plot': plot,
+        'code': 'Test',
+        'studio': 'test studio',
+    }
+    liz.setProperty('IsPlayable', 'true')
+    liz.setInfo( type, infoLabels = info)
     liz.setArt({
         'thumb': thumb,
         'icon': icon,
@@ -59,8 +65,10 @@ def addLink(name, url, mode='', icon='', thumb='', fanart='', poster='', banner=
         'clearart': clearart,
         'clearlogo': clearlogo
     })
-    xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url=u, listitem=liz, isFolder=isFolder, totalItems=total)
-
+    
+    liz.addContextMenuItems(contextmenu)
+    ok = xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url=u, listitem=liz, isFolder=isFolder, totalItems=total)
+    return ok
 
 def get_params():
     paramstring = sys.argv[2]
@@ -115,8 +123,7 @@ def PlayFromHost(url, mode, title):
                 
                 if mode == 'play':
                     li = xbmcgui.ListItem(title, path=stream_url)
-                #    li.setInfo(type='video')
-                #    li.setProperty('IsPlayable', 'true')
+                
                     xbmcplugin.setResolvedUrl(handle=int(sys.argv[1]), succeeded=True, listitem=li)
                 elif mode == 'download':
                     import downloader

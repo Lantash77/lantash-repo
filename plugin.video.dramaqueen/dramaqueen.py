@@ -15,15 +15,13 @@ import xbmcaddon
 reload(sys)
 sys.setdefaultencoding('UTF8')
 
-from common import parseDOM
-from resources.libs import cache, client
+from CommonFunctions import parseDOM
+
+
+
+from resources.libs import cache
 from resources.libs import addon_tools as addon
 
-try:
-    import HTMLParser
-    from HTMLParser import HTMLParser
-except:
-    from html.parser import HTMLParser
 
 my_addon = xbmcaddon.Addon()
 my_addon_id = my_addon.getAddonInfo('id')
@@ -46,6 +44,9 @@ headersget = {
 
 }
 
+DKorea = u'Drama Koreańska'
+DJapan = u'Drama Japońska'
+
 ############################################################################################################
 ############################################################################################################
 #                                                   MEDIA                                                  #
@@ -65,11 +66,13 @@ inne_thumb = MEDIA + 'innethumb.png'
 
 def CATEGORIES():
 
-  
-    addon.addDir('Drama Koreanska',
+    addon.addDir('[COLOR=%s]Gatunki[/COLOR]' % 'yellow',
+                 'https://www.dramaqueen.pl/#gatunki/',
+                 mode=6, fanart=korea_background)  
+    addon.addDir(str(DKorea),
                 'https://www.dramaqueen.pl/drama/koreanska/',
                  mode=1, fanart=korea_background, thumb=korea_thumb)
-    addon.addDir('Drama Japonska',
+    addon.addDir(str(DJapan),
                  'https://www.dramaqueen.pl/drama/japonska/',
                  mode=1, fanart=japan_background, thumb=japan_thumb)
     addon.addDir('Dramy Inne',
@@ -148,13 +151,69 @@ def LoginCheck(url):
         exit()
  
     
+def Kategorie():
+
+    cookie = cache.cache_get('dramaqueen_cookie')['value']
+    headersget.update({'Cookie': cookie})
+
+    url = params['url']
+    rG = requests.get(url, headers=headersget, timeout=15).content
+
+    LoginCheck(url=rG)
+    result = parseDOM(rG, 'div', attrs={'class': 'tagcloud'})[0]
+    links = parseDOM(result, 'a', ret='href')
+    label = parseDOM(result, 'a')
+
+    count = [re.findall('\d+', i)[0] for i in parseDOM(result, 'a', ret='aria-label')]
+
+    for item in zip(label, links, count):
+ 
+        addon.addDir(str(item[0]) + '   ' +'[COLOR %s]%s[/COLOR]' % ('green', str(item[2]) + ' pozycji'), str(item[1]), mode=7,
+              fanart='', plot='', thumb='')
+
+
+ 
+
+def KategorieLista():
+
+    cookie = cache.cache_get('dramaqueen_cookie')['value']
+    headersget.update({'Cookie': cookie})
+
+
+
+    url = params['url']
+    rG = requests.get(url, headers=headersget, timeout=15).content
+    rG = str.replace(rG, '&#8211;', '-')
+    rG = str.replace(rG, '<br />\n', ' ')
+    rG = str.replace(rG, '&#038;', '&')
+    rG = str.replace(rG, '[&#8230;', '[...]')
+    rG = str.replace(rG, '&#8217;', '\'')
+    rG = str.replace(rG, u'\u2019', '\'')
+
+    LoginCheck(url=rG)
+
+    result = parseDOM(rG, 'div', attrs={'class': 'avia-content-slider-inner'})[0]
+    label = [parseDOM(i, 'a', ret= 'title')[0] for i in parseDOM(result, 'h3')]
+    obraz = parseDOM(result, 'img', ret= 'src')
+    links = [parseDOM(i, 'a', ret='href')[0] for i in parseDOM(result, 'h3')]
+
+    for item in zip(label, links, obraz):
+       if str(item[1]).__contains__('/drama/'):
+           addon.addDir(str(item[0]) + '   ' +'[COLOR %s]Drama[/COLOR]' % 'green', str(item[1]), mode=4, fanart=str(item[2]), thumb=str(item[2]))
+           
+       elif str(item[1]).__contains__('/film/'):
+           addon.addLink(str(item[0]) + '   ' +'[COLOR %s]Film[/COLOR]' % 'green', str(item[1]), mode=5, fanart=str(item[2]), thumb=str(item[2]))
+      
+
+
+
 def ListDramas():
 
     url = params['url']
     rT = requests.get(url, timeout=15).content
     rT = str.replace(rT, '&#8211;', '-')
     rT = str.replace(rT, '<br />\n', ' ')
-    rT = str.replace(rT, '[&#8230;', '[...]')
+    rT = str.replace(rT, '&#8230;', '…')
     rT = str.replace(rT, '&#8217;', '\'')
     rT = str.replace(rT, '&#038;', '&')
     rT = str.replace(rT, u'\u2019', '\'')
@@ -212,7 +271,7 @@ def ListMovies():
     rM = str.replace(rM, '&#8211;', '-')
     rM = str.replace(rM, '<br />\n', ' ')
     rM = str.replace(rM, '&#038;', '&')
-    rM = str.replace(rM, '[&#8230;', '[...]')
+    rM = str.replace(rM, '&#8230;', '…')  
     rM = str.replace(rM, '&#8217;', '\'')
     rM = str.replace(rM, u'\u2019', '\'')
 
@@ -253,15 +312,18 @@ def WyswietlanieLinkow():
         results2 = [item for item in parseDOM(rML, 'section', attrs={'class': 'av_toggle_section'})]
         avMlinks = [parseDOM(item, 'a', ret='href') for item in results2][0]
         avMplayers = [parseDOM(item, 'button') for item in results2][0]
+        
+        
+        addon.SourceSelect(players=avMplayers, links=avMlinks, title=name)  
      
-        d = xbmcgui.Dialog()
-        select = d.select("Wybór playera", avMplayers)
-        if select > -1:
-            link = avMlinks[select]
-            xbmc.log('DramaQueen.pl | Proba z : %s' % avMplayers[select] + '   ' + link + '  ', xbmc.LOGNOTICE)
-            PlayFromHost(link, mode='play', title=name)
-        else:
-            exit()
+ #       d = xbmcgui.Dialog()
+ #       select = d.select("Wybór playera", avMplayers)
+ #       if select > -1:
+ #           link = avMlinks[select]
+ #           xbmc.log('DramaQueen.pl | Proba z : %s' % avMplayers[select] + '   ' + link + '  ', xbmc.LOGNOTICE)
+ #           PlayFromHost(link, mode='play', title=name)
+ #       else:
+ #           exit()
 
 
 ############################################################################################################
@@ -316,8 +378,15 @@ elif mode == 5:
     xbmcplugin.setContent(int(sys.argv[1]), 'movies')
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
-#elif mode == 6:
-#    OdpalanieLinku()
+elif mode == 6:
+    Kategorie()
+    xbmcplugin.setContent(int(sys.argv[1]), 'movies')
+    xbmcplugin.endOfDirectory(int(sys.argv[1]))
+    
+elif mode == 7:
+    KategorieLista()
+    xbmcplugin.setContent(int(sys.argv[1]), 'movies')
+    xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 #elif mode == 10:
 #    Alfabetycznie()

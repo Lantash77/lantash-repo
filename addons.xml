@@ -2,7 +2,7 @@
 <addons>
 <addon
   id="plugin.video.dramaqueen"
-  version="0.0.4"
+  version="0.0.5"
   name="Drama Queen"
   provider-name="Lantash">
   <requires>
@@ -12,8 +12,9 @@
 	<import addon="script.module.pyxbmct"/>
   	<import addon="script.module.addon.common" version="2.0.0"/>
     <import addon="script.common.plugin.cache"/>
+    <import addon="script.module.parsedom"/>
     <import addon="script.xbmcbackup"/>
-  </requires>
+ </requires>
   <extension point="xbmc.python.pluginsource"
              library="dramaqueen.py">
     <provides>video</provides>

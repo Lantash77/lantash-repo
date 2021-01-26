@@ -9,7 +9,6 @@ import xbmcplugin
 import xbmcgui
 import xbmcaddon
 import xbmcvfs
-from resources.libs import dom_parser
 from resources.libs.addon_comm import Addon  # może trzeba więcej
 
 try:
@@ -38,15 +37,6 @@ dataPath = xbmc.translatePath(xbmcaddon.Addon().getAddonInfo('profile')).decode(
 
 
 ######code from lambda's Exodus addon######
-
-def parseDOM(html, name='', attrs=None, ret=False):
-    if attrs: attrs = dict((key, re.compile(value + ('$' if value else ''))) for key, value in attrs.iteritems())
-    results = dom_parser.parse_dom(html, name, attrs, ret)
-    if ret:
-        results = [result.attrs[ret.lower()] for result in results]
-    else:
-        results = [result.content for result in results]
-    return results
 
 
 def addView(content):

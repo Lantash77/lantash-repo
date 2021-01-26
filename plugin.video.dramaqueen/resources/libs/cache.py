@@ -18,8 +18,13 @@
 import ast
 import hashlib
 import re
+import os
 import time
-from resources.libs import control
+import xbmcaddon
+import xbmcvfs
+import xbmc
+import xbmcgui
+#from resources.libs import control
 
 try:
     from sqlite3 import dbapi2 as db, OperationalError
@@ -31,6 +36,31 @@ This module is used to get/set cache for every action done in the system
 """
 
 cache_table = 'cache'
+
+my_addon = xbmcaddon.Addon()
+my_addon_id = my_addon.getAddonInfo('id')
+addonInfo = xbmcaddon.Addon().getAddonInfo
+my_addon_ver = my_addon.getAddonInfo('version')
+makeFile = xbmcvfs.mkdir
+dataPath = xbmc.translatePath(addonInfo('profile'))
+dialog = xbmcgui.Dialog()
+cacheFile = os.path.join(dataPath, 'cache.db')
+metacacheFile = os.path.join(dataPath, 'meta.5.db')
+providercacheFile = os.path.join(dataPath, 'providers.13.db')
+searchFile = os.path.join(dataPath, 'search.1.db')
+lang = xbmcaddon.Addon().getLocalizedString
+
+def infoDialog(message, heading=addonInfo('name'), icon='', time=3000, sound=False):
+    if icon == '':
+        icon = 'icon.png'
+    elif icon == 'INFO':
+        icon = xbmcgui.NOTIFICATION_INFO
+    elif icon == 'WARNING':
+        icon = xbmcgui.NOTIFICATION_WARNING
+    elif icon == 'ERROR':
+        icon = xbmcgui.NOTIFICATION_ERROR
+    dialog.notification(heading, message, icon, time, sound=sound)
+
 
 def get(function, duration, *args):
     # type: (function, int, object) -> object or None
@@ -88,8 +118,8 @@ def bennu_download_get(function, timeout, *args, **table):
         table = 'rel_list'
 
     try:
-        control.makeFile(control.dataPath)
-        dbcon = db.connect(control.cacheFile)
+        makeFile(dataPath)
+        dbcon = db.connect(cacheFile)
         dbcur = dbcon.cursor()
         dbcur.execute("SELECT * FROM %s WHERE func = '%s' AND args = '%s'" % (table, f, a))
         match = dbcur.fetchone()
@@ -224,8 +254,8 @@ def _get_connection_cursor():
     return conn.cursor()
 
 def _get_connection():
-    control.makeFile(control.dataPath)
-    conn = db.connect(control.cacheFile)
+    makeFile(dataPath)
+    conn = db.connect(cacheFile)
     conn.row_factory = _dict_factory
     return conn
 
@@ -234,8 +264,8 @@ def _get_connection_cursor_meta():
     return conn.cursor()
 
 def _get_connection_meta():
-    control.makeFile(control.dataPath)
-    conn = db.connect(control.metacacheFile)
+    makeFile(dataPath)
+    conn = db.connect(metacacheFile)
     conn.row_factory = _dict_factory
     return conn
 
@@ -244,8 +274,8 @@ def _get_connection_cursor_providers():
     return conn.cursor()
 
 def _get_connection_providers():
-    control.makeFile(control.dataPath)
-    conn = db.connect(control.providercacheFile)
+    makeFile(dataPath)
+    conn = db.connect(providercacheFile)
     conn.row_factory = _dict_factory
     return conn
     
@@ -254,8 +284,8 @@ def _get_connection_cursor_search():
     return conn.cursor()
 
 def _get_connection_search():
-    control.makeFile(control.dataPath)
-    conn = db.connect(control.searchFile)
+    makeFile(dataPath)
+    conn = db.connect(searchFile)
     conn.row_factory = _dict_factory
     return conn
 
@@ -289,17 +319,18 @@ def cache_version_check():
 
     if _find_cache_version():
         cache_clear(); cache_clear_meta(); cache_clear_providers()
-        control.infoDialog(control.lang(32057).encode('utf-8'), sound=True, icon='INFO')
+        infoDialog(lang(32057).encode('utf-8'), sound=True, icon='INFO')
         
 def _find_cache_version():
 
     import os
-    versionFile = os.path.join(control.dataPath, 'cache.v')
+    versionFile = os.path.join(dataPath, 'cache.v')
     try: 
         with open(versionFile, 'rb') as fh: oldVersion = fh.read()
     except: oldVersion = '0'
     try:
-        curVersion = control.addon('plugin.video.fanfilm').getAddonInfo('version')
+
+        curVersion = my_addon.getAddonInfo('version')
         if oldVersion != curVersion: 
             with open(versionFile, 'wb') as fh: fh.write(curVersion)
             return True
