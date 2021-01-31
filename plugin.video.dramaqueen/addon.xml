@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon
   id="plugin.video.dramaqueen"
-  version="0.0.5"
+  version="0.0.6"
   name="Drama Queen"
   provider-name="Lantash">
   <requires>
@@ -22,6 +22,7 @@
     <summary>drama</summary>
     <summary lang="pl">Przeglądanie i odtwarzanie zawartości strony DramaQueen.</summary>
     <description lang="pl">Wtyczka powstała w celach edukacyjnych. </description>
+    <disclaimer lang="en_GB">Wszelkie treści multimedialne są własnością Shinden. Wtyczka tworzona na potrzeby prywatne.</disclaimer>
     <license>GNUv3</license>
     <platform>all</platform>
   </extension>

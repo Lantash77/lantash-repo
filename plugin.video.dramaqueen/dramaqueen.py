@@ -4,23 +4,17 @@ import importlib
 import re
 import os
 import sys
-
 import requests
 import xbmc
 import xbmcgui
 import xbmcplugin
 import xbmcaddon
-
+from CommonFunctions import parseDOM
+from resources.libs import cache
+from resources.libs import addon_tools as addon
 
 reload(sys)
 sys.setdefaultencoding('UTF8')
-
-from CommonFunctions import parseDOM
-
-
-
-from resources.libs import cache
-from resources.libs import addon_tools as addon
 
 
 my_addon = xbmcaddon.Addon()
@@ -88,19 +82,12 @@ def CATEGORIES():
                  'https://www.dramaqueen.pl/film/pozostale/',
                  mode=2, fanart=china_background, thumb=inne_thumb)
 #   addon.addDir("Szukaj po nazwie", '', mode=1, fanart=_default_background)
-#   addon.addDir("Filtruj", '', mode=2, fanart=_default_background)
-#   addon.addDir("Alfabetycznie", '', mode=10, fanart=_default_background)
-#   addon.addDir("Ranking najlepiej ocenianych",
-#                'https://link cwiczebny/',
-#                mode=3, fanart=_default_background)
 
     Logowanie()
 ############################################################################################################
 #=##########################################################################################################
 #                                                 FUNCTIONS                                                #
 #=##########################################################################################################
-
-
 
 def Logowanie():
    
@@ -141,7 +128,6 @@ def Logowanie():
         if ret:
             my_addon.openSettings()
             xbmc.executebuiltin('Container.Refresh')
-
         
 
 def LoginCheck(url):
@@ -149,7 +135,6 @@ def LoginCheck(url):
     if len(re.findall('Witaj, ', url, re.IGNORECASE)) == 0:
         xbmcgui.Dialog().ok('Blad logowania', 'Zaloguj się')
         exit()
- 
     
 def Kategorie():
 
@@ -172,14 +157,10 @@ def Kategorie():
               fanart='', plot='', thumb='')
 
 
- 
-
 def KategorieLista():
 
     cookie = cache.cache_get('dramaqueen_cookie')['value']
     headersget.update({'Cookie': cookie})
-
-
 
     url = params['url']
     rG = requests.get(url, headers=headersget, timeout=15).content
@@ -203,9 +184,6 @@ def KategorieLista():
            
        elif str(item[1]).__contains__('/film/'):
            addon.addLink(str(item[0]) + '   ' +'[COLOR %s]Film[/COLOR]' % 'green', str(item[1]), mode=5, fanart=str(item[2]), thumb=str(item[2]))
-      
-
-
 
 def ListDramas():
 
@@ -232,7 +210,7 @@ def ListEpisodes():
 
     cookie = cache.cache_get('dramaqueen_cookie')['value']
     headersget.update({'Cookie': cookie})    
-    xbmc.log('DramaQueen.pl | Listuje wynik: %s' % headersget + '  ', xbmc.LOGNOTICE)
+    
     name = params['name']
     thumb = img
     url = params['url']
@@ -313,17 +291,8 @@ def WyswietlanieLinkow():
         avMlinks = [parseDOM(item, 'a', ret='href') for item in results2][0]
         avMplayers = [parseDOM(item, 'button') for item in results2][0]
         
-        
         addon.SourceSelect(players=avMplayers, links=avMlinks, title=name)  
      
- #       d = xbmcgui.Dialog()
- #       select = d.select("Wybór playera", avMplayers)
- #       if select > -1:
- #           link = avMlinks[select]
- #           xbmc.log('DramaQueen.pl | Proba z : %s' % avMplayers[select] + '   ' + link + '  ', xbmc.LOGNOTICE)
- #           PlayFromHost(link, mode='play', title=name)
- #       else:
- #           exit()
 
 
 ############################################################################################################
