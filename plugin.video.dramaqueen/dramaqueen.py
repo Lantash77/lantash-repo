@@ -24,7 +24,7 @@ setting = my_addon.getSetting
 PATH = my_addon.getAddonInfo('path')
 MEDIA = xbmc.translatePath('special://home/addons/' + my_addon_id + '/media/')
 
-base_link = "https://dramaqueen.pl"
+base_link = "https://dramaqueen.pl/"
 setting = xbmcaddon.Addon().getSetting
 
 headersget = {
@@ -61,25 +61,25 @@ inne_thumb = MEDIA + 'innethumb.png'
 def CATEGORIES():
 
     addon.addDir('[COLOR=%s]Gatunki[/COLOR]' % 'yellow',
-                 'https://www.dramaqueen.pl/#gatunki/',
+                 base_link + '#gatunki/',
                  mode=6, fanart=korea_background)  
     addon.addDir(str(DKorea),
-                'https://www.dramaqueen.pl/drama/koreanska/',
+                 base_link + 'drama/koreanska/',
                  mode=1, fanart=korea_background, thumb=korea_thumb)
     addon.addDir(str(DJapan),
-                 'https://www.dramaqueen.pl/drama/japonska/',
+                 base_link + 'drama/japonska/',
                  mode=1, fanart=japan_background, thumb=japan_thumb)
     addon.addDir('Dramy Inne',
-                 'https://www.dramaqueen.pl/drama/pozostale/',
+                 base_link + 'drama/pozostale/',
                  mode=1, fanart=china_background, thumb=inne_thumb)
     addon.addDir('Film Korea',
-                 'https://www.dramaqueen.pl/film/koreanski/',
+                 base_link + 'film/koreanski/',
                  mode=2, fanart=korea_background, thumb=korea_thumb)
     addon.addDir('Film Japonia',
-                 'https://www.dramaqueen.pl/film/japonski/',
+                 base_link + 'film/japonski/',
                  mode=2, fanart=japan_background, thumb=japan_thumb)
     addon.addDir('Filmy Pozosta\xc5\x82e',
-                 'https://www.dramaqueen.pl/film/pozostale/',
+                 base_link + 'film/pozostale/',
                  mode=2, fanart=china_background, thumb=inne_thumb)
 #   addon.addDir("Szukaj po nazwie", '', mode=1, fanart=_default_background)
 
@@ -111,28 +111,38 @@ def Logowanie():
         'upme-login': 'Log In',
     }
     sess = requests.session()
-    GetLogin = sess.post('https://www.dramaqueen.pl/login/', headers=headers, data=data)
+    GetLogin = sess.post(base_link + 'login/', headers=headers, data=data)
+    response = GetLogin.status_code
     GetLogin = GetLogin.content
     kuki = sess.cookies.items()
     cookie = "; ".join([str(x) + "=" + str(y) for x, y in kuki])
     cache.cache_insert('dramaqueen_cookie', cookie)
-    
-    if len(re.findall('Witaj, ', GetLogin, re.IGNORECASE)) == 1:
-        dialog = xbmcgui.Dialog()
-        dialog.notification('dramaqueen.pl ', 'Zalogowano pomyślnie.', xbmcgui.NOTIFICATION_INFO, 5000)
-    
+
+###LoginCheck - server error handling    
+    if response == 200:
+        if len(re.findall('Witaj, ', GetLogin, re.IGNORECASE)) == 1:
+
+            dialog = xbmcgui.Dialog()
+            dialog.notification('dramaqueen.pl ', 'Zalogowano pomyślnie.', xbmcgui.NOTIFICATION_INFO, 5000)
+            
+        else:
+            dialog = xbmcgui.Dialog()
+            ret = dialog.yesno('Nie jesteś zalogowany', 'Zarejestruj się na dramaqueen.pl ',
+                               'Wprowadź dane logowania w ustawieniach', 'Otworzyć ustawienia wtyczki?')
+            if ret:
+                my_addon.openSettings()
+                xbmc.executebuiltin('Container.Refresh')
     else:
-        dialog = xbmcgui.Dialog()
-        ret = dialog.yesno('Nie jesteś zalogowany', 'Zarejestruj się na dramaqueen.pl ',
-                       'Wprowadź dane logowania w ustawieniach', 'Otworzyć ustawienia wtyczki?')
-        if ret:
-            my_addon.openSettings()
-            xbmc.executebuiltin('Container.Refresh')
-        
+        d = xbmcgui.Dialog()
+        d.notification('dramaqueen.pl ',
+                       '[COLOR red]%s[/COLOR]' % ('Problem  -  Błąd serwera -' + str(response)),
+                       xbmcgui.NOTIFICATION_INFO, 5000)
+        exit()
+       
 
 def LoginCheck(url):
 
-    if len(re.findall('Witaj, ', url, re.IGNORECASE)) == 0:
+    if len(re.findall('Witaj,', url, re.IGNORECASE)) == 0:
         xbmcgui.Dialog().ok('Blad logowania', 'Zaloguj się')
         exit()
     
@@ -144,7 +154,7 @@ def Kategorie():
     url = params['url']
     rG = requests.get(url, headers=headersget, timeout=15).content
 
-    LoginCheck(url=rG)
+#    LoginCheck(url=rG)
     result = parseDOM(rG, 'div', attrs={'class': 'tagcloud'})[0]
     links = parseDOM(result, 'a', ret='href')
     label = parseDOM(result, 'a')
@@ -164,14 +174,9 @@ def KategorieLista():
 
     url = params['url']
     rG = requests.get(url, headers=headersget, timeout=15).content
-    rG = str.replace(rG, '&#8211;', '-')
-    rG = str.replace(rG, '<br />\n', ' ')
-    rG = str.replace(rG, '&#038;', '&')
-    rG = str.replace(rG, '[&#8230;', '[...]')
-    rG = str.replace(rG, '&#8217;', '\'')
-    rG = str.replace(rG, u'\u2019', '\'')
+    rG = CleanHTML(rG)
 
-    LoginCheck(url=rG)
+#    LoginCheck(url=rG)
 
     result = parseDOM(rG, 'div', attrs={'class': 'avia-content-slider-inner'})[0]
     label = [parseDOM(i, 'a', ret= 'title')[0] for i in parseDOM(result, 'h3')]
@@ -180,21 +185,20 @@ def KategorieLista():
 
     for item in zip(label, links, obraz):
        if str(item[1]).__contains__('/drama/'):
-           addon.addDir(str(item[0]) + '   ' +'[COLOR %s]Drama[/COLOR]' % 'green', str(item[1]), mode=4, fanart=str(item[2]), thumb=str(item[2]))
+           addon.addDir(str(item[0]) + '   ' +'[COLOR %s]Drama[/COLOR]' % 'green', str(item[1]), 
+           mode=4, fanart=str(item[2]), thumb=str(item[2]))
            
        elif str(item[1]).__contains__('/film/'):
-           addon.addLink(str(item[0]) + '   ' +'[COLOR %s]Film[/COLOR]' % 'green', str(item[1]), mode=5, fanart=str(item[2]), thumb=str(item[2]))
+           addon.addLink(str(item[0]) + '   ' +'[COLOR %s]Film[/COLOR]' % 'green', str(item[1]), 
+           mode=5, fanart=str(item[2]), thumb=str(item[2]))
 
 def ListDramas():
 
     url = params['url']
     rT = requests.get(url, timeout=15).content
-    rT = str.replace(rT, '&#8211;', '-')
-    rT = str.replace(rT, '<br />\n', ' ')
-    rT = str.replace(rT, '&#8230;', '…')
-    rT = str.replace(rT, '&#8217;', '\'')
-    rT = str.replace(rT, '&#038;', '&')
-    rT = str.replace(rT, u'\u2019', '\'')
+    
+    rT = CleanHTML(rT)
+
     result = parseDOM(rT, 'div', attrs={'id': 'av_section_1'})[0]
     results = re.findall('flex_column av_one_fourth(.+?)</div></div></div>', result)
 
@@ -204,17 +208,21 @@ def ListDramas():
     linki = [item for item in parseDOM(results, 'a', ret='href')]
     
     for item in zip(linki, Titles, obrazy, Plot):
-        addon.addDir(str(item[1]), str(item[0]), mode=4, plot=(str(item[3])), fanart=(str(item[2])), isFolder=True, thumb=(str(item[2])))
-
+        addon.addDir(str(item[1]), str(item[0]), mode=4, plot=(str(item[3])), 
+            fanart=(str(item[2])), isFolder=True, thumb=(str(item[2])), section='')
+    
+    
+        
 def ListEpisodes():
 
     cookie = cache.cache_get('dramaqueen_cookie')['value']
     headersget.update({'Cookie': cookie})    
     
     name = params['name']
-    thumb = img
+    thumb = params['img']
     url = params['url']
     
+
     rE = str(requests.get(url, headers=headersget, timeout=15).content)
     LoginCheck(rE)
     
@@ -222,7 +230,9 @@ def ListEpisodes():
     result = parseDOM(rE, 'div', attrs={'class': 'container'})[1]
     results = re.findall('av_toggle_section(.+?)<span', result)
     episodes = [parseDOM(item, 'p') for item in results]
+    
     plot = parseDOM(rE, 'em')[0]
+    plot = CleanHTML(plot)
 
     fanartlook = str.replace(rE, 'background-image: url(', 'fanart ')
     fanart = re.findall('fanart (.+?)\)', fanartlook)[1]
@@ -244,14 +254,8 @@ def ListMovies():
     
     url = params['url']
     rM = str(requests.get(url, headers=headersget, timeout=15).content)
-    LoginCheck(rM)
-    
-    rM = str.replace(rM, '&#8211;', '-')
-    rM = str.replace(rM, '<br />\n', ' ')
-    rM = str.replace(rM, '&#038;', '&')
-    rM = str.replace(rM, '&#8230;', '…')  
-    rM = str.replace(rM, '&#8217;', '\'')
-    rM = str.replace(rM, u'\u2019', '\'')
+    rM = CleanHTML(rM)    
+
 
     result = parseDOM(rM, 'div', attrs={'id': 'av_section_1'})[0]
     results = re.findall('flex_column av_one_fourth(.+?)</div></div></div>', result)
@@ -269,8 +273,9 @@ def WyswietlanieLinkow():
     cookie = cache.cache_get('dramaqueen_cookie')['value']
     headersget.update({'Cookie': cookie})    
     
-    url = params.get('url')
-    name = params.get('name')
+    
+    url = params['url']
+    name = params['name']
 
     if name.startswith('Odcinek '):
         index = int(re.findall('\d+', name)[0])
@@ -292,8 +297,37 @@ def WyswietlanieLinkow():
         avMplayers = [parseDOM(item, 'button') for item in results2][0]
         
         addon.SourceSelect(players=avMplayers, links=avMlinks, title=name)  
-     
 
+
+###Tekstowe###
+     
+def CleanHTML(html):
+    if ("&amp;" in html):
+        html = html.replace('&amp;', '&')
+    if ("&nbsp;" in html):
+        html = html.replace('&nbsp;', '')
+    if ('&#' in html) and (';' in html):
+        if ("&#8211;" in html):
+            html = html.replace("&#8211;", "-")
+        if ("&#8216;" in html):
+            html = html.replace("&#8216;", "'")
+        if ("&#8217;" in html):
+            html = html.replace("&#8217;", "'")
+        if ("&#8220;" in html):
+            html = html.replace('&#8220;', '"')
+        if ("&#8221;" in html):
+            html = html.replace('&#8221;', '"')
+        if ("&#0421;" in html):
+            html = html.replace('&#0421;', "")
+        if (u'\u2019' in html):
+            html = html.replace(u'\u2019', '\'')
+        if ("&#038;" in html):
+            html = html.replace('&#038;', "&")
+        if ('&#8230;' in html):
+            html = html.replace('&#8230;', '[…]')
+        if ('<br />\n' in html):
+            html = html.replace('<br />\n', ' ')
+    return html
 
 ############################################################################################################
 # =#########################################################################################################
@@ -305,12 +339,13 @@ params = addon.get_params()
 url = params.get('url')
 name = params.get('name')
 img = params.get('img')
+section = params.get('section')
 
 try:
     mode = int(params.get('mode'))
 except:
     mode = None
-iconimage = params.get('iconimage')
+
 
 ############################################################################################################
 ############################################################################################################

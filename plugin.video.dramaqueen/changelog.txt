@@ -1,3 +1,9 @@
 version="0.0.1" init
 
-version="0.0.3" -  player selection fixed - login error handle 
+version="0.0.3" -  player selection fixed - login error handle
+
+version="0.0.5" -  listowanie kategorii
+
+version="0.0.7" -  http - server error 
+
+version="0.0.8" -  znaki w opisach i tytu³ach

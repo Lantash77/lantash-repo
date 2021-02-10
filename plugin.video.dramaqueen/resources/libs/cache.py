@@ -24,7 +24,7 @@ import xbmcaddon
 import xbmcvfs
 import xbmc
 import xbmcgui
-#from resources.libs import control
+
 
 try:
     from sqlite3 import dbapi2 as db, OperationalError
