@@ -239,11 +239,13 @@ def ListEpisodes():
     fanart = re.findall('background-image: url\((.+?)\);', rE)[1]
     
     inprogress = '[COLOR=red][I]  w tłumaczeniu[/COLOR][/I]'
-
+    incorrection =  '[COLOR=red][I]  korekta[/COLOR][/I]'
 
     for item in episodes:
         if 'tłumaczenie' in item:
             addon.addLink(str(inprogress), url, mode=5, fanart=(str(fanart)), plot=(str(plot)), thumb=(str(fanart)))
+        elif 'korekta' in item:
+            addon.addLink(str(incorrection), url, mode=5, fanart=(str(fanart)), plot=(str(plot)), thumb=(str(fanart)))
         else:
             addon.addLink(str(item), url, mode=5, fanart=(str(fanart)), plot=(str(plot)), thumb=(str(fanart)))
 
@@ -289,6 +291,8 @@ def WyswietlanieLinkow():
         
         addon.SourceSelect(players=avDplayers, links=avDlinks, title=name)        
     elif 'tłumaczeni' in name:
+        pass
+    elif 'korekta' in name:
         pass
     else:
         rML = requests.get(url, headers=headersget, timeout=15).content
