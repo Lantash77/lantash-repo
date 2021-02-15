@@ -2,7 +2,7 @@
 <addons>
 <addon
   id="plugin.video.dramaqueen"
-  version="0.0.8"
+  version="0.0.9"
   name="Drama Queen"
   provider-name="Lantash">
   <requires>

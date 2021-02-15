@@ -51,14 +51,14 @@ china_background = MEDIA + 'China.jpg'
 korea_thumb = MEDIA + 'koreathumb.png'
 japan_thumb = MEDIA + 'japoniathumb.png'
 inne_thumb = MEDIA + 'innethumb.png'
-
+default_background = MEDIA + 'search.jpg'
 
 ############################################################################################################
 ############################################################################################################
 #                                                   MENU                                                   #
 ############################################################################################################
 
-def CATEGORIES():
+def CATEGORIES(login):
 
     addon.addDir('[COLOR=%s]Gatunki[/COLOR]' % 'yellow',
                  base_link + '#gatunki/',
@@ -81,9 +81,10 @@ def CATEGORIES():
     addon.addDir('Filmy Pozosta\xc5\x82e',
                  base_link + 'film/pozostale/',
                  mode=2, fanart=china_background, thumb=inne_thumb)
-#   addon.addDir("Szukaj po nazwie", '', mode=1, fanart=_default_background)
-
-    Logowanie()
+    addon.addDir("Wyszukiwanie", 'https://www.dramaqueen.pl/?s=',
+                 mode=8, fanart=default_background)
+    if login == True:
+       Logowanie()
 ############################################################################################################
 #=##########################################################################################################
 #                                                 FUNCTIONS                                                #
@@ -227,25 +228,25 @@ def ListEpisodes():
     LoginCheck(rE)
     
     rE = str.replace(rE, '&#8211;', '-')
+    rE = rE.replace('&nbsp;', ' ')
     result = parseDOM(rE, 'div', attrs={'class': 'container'})[1]
     results = re.findall('av_toggle_section(.+?)<span', result)
-    episodes = [parseDOM(item, 'p') for item in results]
+    episodes = [item for item in parseDOM(results, 'p')]
     
     plot = parseDOM(rE, 'em')[0]
     plot = CleanHTML(plot)
 
-    fanartlook = str.replace(rE, 'background-image: url(', 'fanart ')
-    fanart = re.findall('fanart (.+?)\)', fanartlook)[1]
+    fanart = re.findall('background-image: url\((.+?)\);', rE)[1]
     
-    episodecounter = 1
+    inprogress = '[COLOR=red][I]  w tłumaczeniu[/COLOR][/I]'
+
+
     for item in episodes:
-        if episodecounter < len(episodes):
-            episode = 'Odcinek ' + str(episodecounter)
-            addon.addLink(episode, url, mode=5, fanart=(str(fanart)), plot=plot, thumb=(str(thumb)))
-            episodecounter = episodecounter + 1
+        if 'tłumaczenie' in item:
+            addon.addLink(str(inprogress), url, mode=5, fanart=(str(fanart)), plot=(str(plot)), thumb=(str(fanart)))
         else:
-            episode = 'Odcinek ' + str(episodecounter) + ' Fina\xc5\x82'
-            addon.addLink(episode, url, mode=5, fanart=(str(fanart)), plot=plot, thumb=(str(thumb)))
+            addon.addLink(str(item), url, mode=5, fanart=(str(fanart)), plot=(str(plot)), thumb=(str(fanart)))
+
     
 def ListMovies():
 
@@ -287,7 +288,8 @@ def WyswietlanieLinkow():
         avDplayers = [parseDOM(item, 'button')for item in results][index - 1]
         
         addon.SourceSelect(players=avDplayers, links=avDlinks, title=name)        
-
+    elif 'tłumaczeni' in name:
+        pass
     else:
         rML = requests.get(url, headers=headersget, timeout=15).content
         LoginCheck(rML)
@@ -297,6 +299,52 @@ def WyswietlanieLinkow():
         avMplayers = [parseDOM(item, 'button') for item in results2][0]
         
         addon.SourceSelect(players=avMplayers, links=avMlinks, title=name)  
+
+
+def Szukaj():
+
+    url = params['url']
+
+
+
+
+    keyb = xbmc.Keyboard('', "Wyszukiwarka")
+    keyb.doModal()
+
+    if keyb.isConfirmed() and len(keyb.getText().strip()) > 0:
+        search = keyb.getText()
+        url = url + '%s' % search.replace(" ", "+")
+    else:
+        
+        CATEGORIES(False)
+
+        
+
+    html = requests.get(url, timeout=15).content
+    result = str(parseDOM(html, 'main', attrs={'role': 'main'})[0])
+    results = [CleanHTML(item) for item in parseDOM(result, 'h2')]
+    for item in results:
+
+        if 'Japońsk'  in item:
+            continue
+        elif 'Koreańsk' in item:
+            continue
+        elif '/drama/' in item:
+           title = parseDOM(item, 'a')[0]
+           link = parseDOM(item, 'a', ret='href')[0]
+           addon.addDir(str(title) + '[COLOR=green]   drama[/COLOR]', str(link), mode=4, 
+                        fanart=default_background, thumb=korea_thumb)
+        elif '/film/' in item:
+            title = parseDOM(item, 'a')[0]
+            link = parseDOM(item, 'a', ret='href')[0]
+            addon.addDir(str(title) + '[COLOR=green]   film[/COLOR]', link, mode=5, 
+                         fanart=default_background, thumb=korea_thumb)
+
+
+        else:
+            continue
+
+
 
 
 ###Tekstowe###
@@ -353,7 +401,7 @@ except:
 ############################################################################################################
 
 if mode == None:
-    CATEGORIES()
+    CATEGORIES(True)
     xbmcplugin.setContent(int(sys.argv[1]), 'movies')
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
@@ -392,6 +440,10 @@ elif mode == 7:
     xbmcplugin.setContent(int(sys.argv[1]), 'movies')
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
+elif mode == 8:
+    Szukaj()
+    xbmcplugin.setContent(int(sys.argv[1]), 'movies')
+    xbmcplugin.endOfDirectory(int(sys.argv[1]))
 #elif mode == 10:
 #    Alfabetycznie()
 #    xbmcplugin.setContent(int(sys.argv[1]), 'movies')
