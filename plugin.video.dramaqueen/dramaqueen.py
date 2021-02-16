@@ -52,6 +52,7 @@ korea_thumb = MEDIA + 'koreathumb.png'
 japan_thumb = MEDIA + 'japoniathumb.png'
 inne_thumb = MEDIA + 'innethumb.png'
 default_background = MEDIA + 'search.jpg'
+search_icon = MEDIA + 'search.png'
 
 ############################################################################################################
 ############################################################################################################
@@ -82,7 +83,7 @@ def CATEGORIES(login):
                  base_link + 'film/pozostale/',
                  mode=2, fanart=china_background, thumb=inne_thumb)
     addon.addDir("Wyszukiwanie", 'https://www.dramaqueen.pl/?s=',
-                 mode=8, fanart=default_background)
+                 mode=8, fanart=default_background, thumb=search_icon)
     if login == True:
        Logowanie()
 ############################################################################################################
@@ -334,15 +335,30 @@ def Szukaj():
         elif 'Koreańsk' in item:
             continue
         elif '/drama/' in item:
-           title = parseDOM(item, 'a')[0]
-           link = parseDOM(item, 'a', ret='href')[0]
-           addon.addDir(str(title) + '[COLOR=green]   drama[/COLOR]', str(link), mode=4, 
-                        fanart=default_background, thumb=korea_thumb)
+            title = parseDOM(item, 'a')[0]
+            link = parseDOM(item, 'a', ret='href')[0]
+            data = requests.get(link, timeout=10).content
+            fanart = re.findall('background-image: url\((.+?)\);', data)[1]
+            poster = parseDOM(data, 'img', attrs={'itemprop':'thumbnailUrl'}, ret='src')[0]
+            plot = parseDOM(data, 'em')[0]
+            plot = CleanHTML(plot)
+           
+            addon.addLink(str(title) + '[COLOR=green]   drama[/COLOR]', str(link), mode=4, 
+                        fanart=str(poster), thumb=str(poster), poster=str(poster),
+                        plot=str(plot))
         elif '/film/' in item:
             title = parseDOM(item, 'a')[0]
             link = parseDOM(item, 'a', ret='href')[0]
-            addon.addDir(str(title) + '[COLOR=green]   film[/COLOR]', link, mode=5, 
-                         fanart=default_background, thumb=korea_thumb)
+            result = requests.get(link, timeout=10).content
+            data = requests.get(link, timeout=10).content
+            fanart = re.findall('background-image: url\((.+?)\);', data)[1]
+            poster = parseDOM(data, 'img', attrs={'itemprop': 'thumbnailUrl'}, ret='src')[0]
+            plot = parseDOM(data, 'em')[0]
+            plot = CleanHTML(plot)
+            
+            addon.addLink(str(title) + '[COLOR=green]   film[/COLOR]', link, mode=5, 
+                         fanart=str(poster), thumb=str(poster), poster=str(poster),
+                         plot=str(plot))
 
 
         else:
