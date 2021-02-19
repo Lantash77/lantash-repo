@@ -309,10 +309,7 @@ def WyswietlanieLinkow():
 def Szukaj():
 
     url = params['url']
-
-
-
-
+    
     keyb = xbmc.Keyboard('', "Wyszukiwarka")
     keyb.doModal()
 
@@ -322,9 +319,6 @@ def Szukaj():
     else:
         
         CATEGORIES(False)
-
-        
-
     html = requests.get(url, timeout=15).content
     result = str(parseDOM(html, 'main', attrs={'role': 'main'})[0])
     results = [CleanHTML(item) for item in parseDOM(result, 'h2')]
@@ -343,9 +337,10 @@ def Szukaj():
             plot = parseDOM(data, 'em')[0]
             plot = CleanHTML(plot)
            
-            addon.addLink(str(title) + '[COLOR=green]   drama[/COLOR]', str(link), mode=4, 
+            addon.addDir(str(title) + '[COLOR=green]   drama[/COLOR]', str(link), mode=4, 
                         fanart=str(poster), thumb=str(poster), poster=str(poster),
                         plot=str(plot))
+                        
         elif '/film/' in item:
             title = parseDOM(item, 'a')[0]
             link = parseDOM(item, 'a', ret='href')[0]
@@ -356,7 +351,7 @@ def Szukaj():
             plot = parseDOM(data, 'em')[0]
             plot = CleanHTML(plot)
             
-            addon.addLink(str(title) + '[COLOR=green]   film[/COLOR]', link, mode=5, 
+            addon.addLink(str(title) + '[COLOR=green]   film[/COLOR]', str(link), mode=5, 
                          fanart=str(poster), thumb=str(poster), poster=str(poster),
                          plot=str(plot))
 
