@@ -1,0 +1,54 @@
+<settings>
+	<category label="Strony / Konta">
+	<setting visible="true" id="Wbijam" type="bool" label="Wbijam.pl" default="true" />
+	<setting visible="true" id="AnimeOdcinki" type="bool" label="AnimeOdcinki" default="true" />
+	<setting visible="true" id="Shinden" type="bool" label="Shinden.pl" default="false" />
+    <setting label="Username" type="text"   id="usershinden" default="" visible="!eq(-1,false)"/>
+	<setting label="Password" type="text"   id="passshinden" option="hidden" default="" visible="!eq(-2,false)"/>
+	<setting visible="true" id="AnimeZone" type="bool" label="Animezone.pl" default="false" />
+	<setting label="Username" type="text"   id="useranimezone" default="" visible="!eq(-1,false)"/>
+	<setting label="Password" type="text"   id="passanimezone" option="hidden" default="" visible="!eq(-2,false)"/>	
+	<setting visible="true" id="Dragonball" type="bool" label="Dragonball" default="false" />
+	<setting label="Username" type="text"   id="userdb" default="" visible="!eq(-1,false)"/>
+	<setting label="Password" type="text"   id="passdb" option="hidden" default="" visible="!eq(-2,false)"/>	
+	<setting visible="true" id="AnimeOn" type="bool" label="Animeon.pl" default="false" />
+	<setting label="Username" type="text"   id="useranimeon" default="" visible="!eq(-1,false)"/>
+	<setting label="Password" type="text"   id="passanimeon" option="hidden" default="" visible="!eq(-2,false)"/>	
+    <setting visible="true" id="Kreskoweczki" type="bool" label="Kreskoweczki" default="false" />
+	<setting label="Username" type="text"   id="userkreskoweczki" default="" visible="!eq(-1,false)"/>
+	<setting label="Password" type="text"   id="passkreskoweczki" option="hidden" default="" visible="!eq(-2,false)"/>	
+	</category>
+	
+	<category label="General">
+	<setting visible="true" id="auto-view" type="bool"   label="Enable Automatic View" default="true"/>
+	</category>
+	
+	<category label="Favorites">
+		<setting visible="true" type="text" default="W trakcie."   id="fav.tv.1.name"  label="Favourites  1: Watching" />
+		<setting visible="true" type="text" default="W planach."  id="fav.tv.2.name"  label="Favourites  2: In plans" />
+		<setting visible="true" type="text" default="Ukończone."  id="fav.tv.3.name"  label="Favourites  3: Completed" />
+		<setting visible="true" type="text" default="Porzucone."  id="fav.tv.4.name"  label="Favourites  4: Abandoned" />
+	</category>
+	
+	<category label="Thumbnails">
+		<setting visible="true" id="acentr-thumbs" type="bool"   label="Anime-centrum -- Enable thumbnails skan." default="true"/>
+		<setting visible="true" id="aodc-thumbs" type="bool"   label="Anime-odcinki -- Enable thumbnails skan." default="true"/>
+		<setting visible="true" id="ajoy-thumbs" type="bool"   label="Anime-joy -- Enable thumbnails skan." default="true"/>
+		<setting visible="true" id="wbij-thumbs" type="bool"   label="Wbijam.pl -- Enable thumbnails skan." default="true"/>
+		<setting visible="true" id="zone-thumbs" type="bool"   label="AnimeZone -- Enable thumbnails skan." default="true"/>
+		<setting visible="true" id="kresk-thumbs" type="bool"   label="Kreskoweczki -- Enable thumbnails skan." default="true"/>
+		<setting visible="true" id="senpai-thumbs" type="bool"   label="Senpai -- Enable thumbnails skan." default="true"/>
+		<setting id="reset_db" type="action" label="[COLOR red]Reset thumbnails[/COLOR]" enable="true" action="RunPlugin(plugin://plugin.video.anime-iptv/?mode=delete_table)"/>
+	</category>
+	
+
+	
+	<category label="Backup">
+	<setting id="backup" type="action" label="[COLOR red]Backup[/COLOR]" enable="true" action="RunScript(script.xbmcbackup)"/>
+	</category>
+	
+	<category label="Download">
+	<setting visible="true" id="download.opp" type="bool" label="Download" default="false" />
+	<setting id="download.path" type="folder" label="Download path" enable="!eq(-1,false)" default="" />
+	</category>
+</settings>

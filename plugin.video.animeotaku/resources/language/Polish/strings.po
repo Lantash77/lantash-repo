@@ -1,0 +1,37 @@
+# Addon Name: anime-iptv
+# Addon id: plugin.video.anime-iptv
+# Addon Provider: anime-iptv
+msgid ""
+msgstr ""
+"Project-Id-Version: anime-iptv\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pl\n"
+
+msgctxt "#30001"
+msgid "Favourites: "
+msgstr "Ulubione: "
+
+msgctxt "#30002"
+msgid "Added to Favourites."
+msgstr "Dodano do ulubionych."
+
+msgctxt "#30003"
+msgid "Removed from Favourites."
+msgstr "Usunięto z ulubionych."
+
+msgctxt "#30004"
+msgid "Not found in your Favourites."
+msgstr "Nie znaleziono w ulubionych."
+
+msgctxt "#30005"
+msgid "Already in your Favourites."
+msgstr "Jest już w ulubioncyh."
+
+msgctxt "#30006"
+msgid "Remove: "
+msgstr "Usuń z: "
+
+msgctxt "#30007"
+msgid "None Found."
+msgstr "Nie znaleziono."
