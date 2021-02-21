@@ -35,6 +35,7 @@ default_background = MEDIA + "fanart.jpg"
 custom_background = MEDIA + "sunset.jpg"
 fanart = MEDIA + 'fanart.jpg'
 nexticon = MEDIA + 'next.png'
+searchicon = MEDIA + 'search.png'
 fanartAshinden = MEDIA + 'animeshinden.jpg'
 host = 'AnimeShinden'
 
@@ -43,21 +44,34 @@ Alfabet.append('#')
 Letters = [(LETTERS + item + '.png') for item in Alfabet]
 Letter = dict(zip(Alfabet, Letters))
 
+#Url HEADER
+headersget = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.75 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'pl,en-US;q=0.7,en;q=0.3',
+        'Connection': 'keep-alive',
+        'Upgrade-Insecure-Requests': '1',
+        'Pragma': 'no-cache',
+        'Cache-Control': 'no-cache',
+        'TE': 'Trailers',     
+    }
+
 ### ##########################################################################
 ### ##########################################################################
 
-def PageAnimeShinden(url):
-
+def PageAnimeShinden():
 
    addon.addDir("[Anime] Alfabetycznie", mainLink + 'series',
                 mode='SHAlfabetycznie', fanart=default_background, section='Alfabetycznie')
    addon.addDir("[Anime] Wszystkie", mainLink + 'series',
                 mode='SHListTitles', fanart=default_background, section='All')
    addon.addDir("Wyszukiwarka", mainLink + 'series?search=', mode='SHSearch',
-                fanart=default_background, section='search')
-   addon.addDir("Gatunki", mainLink + 'gatunki', mode='SHGatunki',
-                fanart=default_background, section='gatunki')
-   addon.addDir("[Anime] Emitowane", mainLink + 'anime',
+                fanart=default_background, section='search',
+                thumb=searchicon)
+   addon.addDir("Gatunki", mainLink + 'series?', mode='SHGatunki',
+                fanart=default_background, section='gatunki',
+                thumb=searchicon)
+   addon.addDir("[Anime] Emitowane", mainLink + 'series?series_status[0]=Currently+Airing',
                 mode='SHListTitles', fanart=default_background, section='Aired')
 
 def Logowanie():
@@ -74,7 +88,6 @@ def Logowanie():
         'referer': 'https://shinden.pl/',
         'accept-language': 'pl-PL,pl;q=0.9,en-US;q=0.8,en;q=0.7',
     }
-
     data = {
         'username': Getsetting('usershinden'),
         'password': Getsetting('passshinden'),
@@ -86,7 +99,7 @@ def Logowanie():
     cookie = "; ".join([str(x) + "=" + str(y) for x, y in kuki])
     cache.cache_insert('shinden_cookie', cookie)
 
-def Alfabetyczna(url):
+def Alfabetyczna():
 
     name = params['name']
     url = params['url']
@@ -95,7 +108,6 @@ def Alfabetyczna(url):
     html = CleanHTML(html)
     result = parseDOM(html, 'ul', attrs={'class': 'letter-list' + r'.+?'})[0]
     letterlink = [str(item).replace('r307=1&', '') for item in parseDOM(result, 'a', ret='href')]
-
     letter = parseDOM(result, 'a')
 
     for i in zip(letter, letterlink):
@@ -154,6 +166,7 @@ def Search():
             search = keyb.getText()
             url = url + '%s' % search.replace(" ", "+")
         else:
+            PageAnimeShinden()
             return
 
     elif section == 'nextpage':
@@ -202,7 +215,14 @@ def ListEpisodes():
     thumb = params['img']
     xbmc.log('Anime Otaki | Shinden wynik url: %s' % url + '  ', xbmc.LOGNOTICE)
     
-    html = requests.get(url, timeout=15).content
+    Logowanie()
+    cookie = cache.cache_get('shinden_cookie')['value']
+    headersget.update({'Cookie': cookie})
+    headers = headersget
+    
+    
+    html = requests.get(url, headers=headers, timeout=15).content    
+    
     result = parseDOM(html, 'tbody', attrs={'class': 'list-episode-checkboxes'})[0]
     results = parseDOM(result, 'tr')
     epNo = [parseDOM(item, 'td')[0] for item in results]
@@ -216,24 +236,14 @@ def ListEpisodes():
         addon.addLink(title, str(ep[3]), mode='SHListLinks', fanart=str(thumb), thumb=str(thumb))
 
 def ListLinks():
-    Logowanie()
-        
+            
     name = params['name']
     url = params['url']
-        
+    
+    Logowanie()
     cookie = cache.cache_get('shinden_cookie')['value']
-
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.75 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        'Accept-Language': 'pl,en-US;q=0.7,en;q=0.3',
-        'Connection': 'keep-alive',
-        'Upgrade-Insecure-Requests': '1',
-        'Pragma': 'no-cache',
-        'Cache-Control': 'no-cache',
-        'TE': 'Trailers',
-        'Cookie': cookie
-    }
+    headersget.update({'Cookie': cookie})
+    headers = headersget
     
     html = requests.get(url, headers=headers, timeout=15).content
     result = [item for item in parseDOM(html, 'tbody') if 'player' in item]
@@ -255,7 +265,76 @@ def ListLinks():
         playerlink.append(link)
 
     addon.SourceSelect(player, playerlink, name)
+
+
+def Gatunki():
     
+    section = params['section']
+    name = params['name']
+    url = params['url']
+    
+
+
+    if section == 'gatunki':
+        html = requests.get(url, timeout=10).content
+        tagname = [re.sub('<i(.+?)</i>', '', item) for item in parseDOM(html, 'a', attrs={'class' : 'genre-item'})]
+        tagcode = ['i' + item for item in parseDOM(html, 'a', attrs={'class' : 'genre-item'} , ret= 'data-id')]
+        taglink = []
+
+
+        d = xbmcgui.Dialog()
+        select = d.multiselect('Wybór Gatunku', tagname)
+        seltags = []
+        if select == None:
+            PageAnimeShinden()
+            return
+        for idx in select:
+            seltags.append(tagcode[idx])
+        sep = ';'
+        url = url + 'genres-type=all&genres=' + sep.join(seltags)
+
+    elif section == 'nextpage':
+        url = url
+
+    html = requests.get(url, timeout=15).content
+    result = str(parseDOM(html, 'section', attrs={'class': 'anime-list box'})[0])
+    results = [item for item in parseDOM(result, 'ul', attrs={'class': 'div-row'}) if 'h3' in item]
+    for item in results:
+        link = mainLink + re.sub('/series/', 'series/', parseDOM(item, 'a', ret='href')[1])
+        obraz = mainLink + re.sub('/res/', 'res/', parseDOM(item, 'a', ret='href')[0])
+        title = parseDOM(item, 'a')[1]
+        title = title.replace('<em>', '[I]')
+        title = title.replace('</em>', '[/I]')
+        
+
+        addon.addDir(str(title) , link, mode='SHListEpisodes', section='episodes',
+                     thumb=str(obraz), fanart=custom_background,)
+    try:
+        next = parseDOM(html, 'a', attrs={'rel': 'next'}, ret='href')[0]
+        if len(next) > 0:
+
+            nextpage = mainLink + re.sub('/', '', next)
+            nextpage = CleanHTML(nextpage)
+            if '&r307=1' in nextpage:
+                nextpage = str(nextpage).replace('&r307=1', '')
+            elif 'r307=1' in nextpage:
+                nextpage = str(nextpage).replace('r307=1', '')
+            addon.addDir('[I]następna strona[/I]', str(nextpage), mode='SHListTitles', section='nextpage',
+                         thumb=str(nexticon), fanart=custom_background, )
+
+            xbmc.log('Anime Otaku | Shinden wynik nextpage: %s' % str(nextpage) + '  ', xbmc.LOGNOTICE)
+            
+    except:
+        pass
+
+
+
+
+    
+    
+    print ''
+
+   
 def ShindenGetVideoLink(url):
 
     headers = {

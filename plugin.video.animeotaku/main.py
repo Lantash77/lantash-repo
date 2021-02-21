@@ -73,7 +73,7 @@ def MainMenu():
     if setting('AnimeOdcinki') == 'true':
         addon.addDir('[COLOR=%s]Anime Odcinki[/COLOR]' % 'blue', 
                      'https://anime-odcinki.pl/', mode='AnimeOdcinki',
-                     fanart=default_background, thumb=iconWbijam, isFolder=True)
+                     fanart=default_background, thumb=iconOdcinki, isFolder=True)
 ###Shinden.pl###
     if setting('Shinden') == 'true':
         addon.addDir('[COLOR=%s]Shinden.pl[/COLOR]' % 'blue', 
@@ -171,12 +171,11 @@ def AnimeOdcinki(mode, url):
 def AnimeShinden(mode, url):
     from hosts import hostanimeshinden
     if mode == "Shinden":
-        url = params['url']
-        hostanimeshinden.PageAnimeShinden(url)
+        
+        hostanimeshinden.PageAnimeShinden()
         addon.endOfDir()
     elif mode == "SHAlfabetycznie":
-        url = params['url']
-        hostanimeshinden.Alfabetyczna(url)
+        hostanimeshinden.Alfabetyczna()
         addon.endOfDir()
     elif mode == "SHListTitles":
         hostanimeshinden.ListTitles()

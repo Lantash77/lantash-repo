@@ -43,6 +43,7 @@ custom_background = MEDIA + "sunset.jpg"
 fanart = MEDIA + 'fanart.jpg'
 nexticon = MEDIA + 'next.png'
 fanartAodc = MEDIA + 'animeodcinki.jpg'
+searchicon = MEDIA + 'search.png'
 
 Alfabet = list(map(chr, range(65, 91)))
 Alfabet.insert(0, '#')
@@ -70,9 +71,11 @@ def PageAnimeOdcinki(url):
     addon.addDir("[Filmy] Wszystkie", mainLink + 'filmy', 
                  mode='ListTitles', fanart=default_background, section='All')
     addon.addDir("Gatunki", mainLink + 'gatunki', mode='AOGatunki', 
-                 fanart=default_background, section='gatunki')
+                 fanart=default_background, section='gatunki',
+                 thumb=searchicon)
     addon.addDir("Wyszukiwarka", mainLink + 'szukaj/', mode='AOSearch', 
-                 fanart=default_background, section='search')
+                 fanart=default_background, section='search',
+                 thumb=searchicon)
 
     
 
@@ -232,6 +235,9 @@ def Gatunki():
                 
         d = xbmcgui.Dialog()
         select = d.multiselect('Wybór Gatunku', tagname)
+        if select == None:
+            PageAnimeOdcinki(mainLink)
+            return
         seltags = []
         for idx in select:
             seltags.append(taglink[idx])

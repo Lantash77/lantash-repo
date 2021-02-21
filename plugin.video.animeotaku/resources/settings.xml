@@ -1,24 +1,47 @@
 <settings>
-	<category label="Strony / Konta">
+	<category label="Strony">
 	<setting visible="true" id="Wbijam" type="bool" label="Wbijam.pl" default="true" />
 	<setting visible="true" id="AnimeOdcinki" type="bool" label="AnimeOdcinki" default="true" />
 	<setting visible="true" id="Shinden" type="bool" label="Shinden.pl" default="false" />
-    <setting label="Username" type="text"   id="usershinden" default="" visible="!eq(-1,false)"/>
-	<setting label="Password" type="text"   id="passshinden" option="hidden" default="" visible="!eq(-2,false)"/>
-	<setting visible="true" id="AnimeZone" type="bool" label="Animezone.pl" default="false" />
-	<setting label="Username" type="text"   id="useranimezone" default="" visible="!eq(-1,false)"/>
-	<setting label="Password" type="text"   id="passanimezone" option="hidden" default="" visible="!eq(-2,false)"/>	
-	<setting visible="true" id="Dragonball" type="bool" label="Dragonball" default="false" />
-	<setting label="Username" type="text"   id="userdb" default="" visible="!eq(-1,false)"/>
-	<setting label="Password" type="text"   id="passdb" option="hidden" default="" visible="!eq(-2,false)"/>	
-	<setting visible="true" id="AnimeOn" type="bool" label="Animeon.pl" default="false" />
-	<setting label="Username" type="text"   id="useranimeon" default="" visible="!eq(-1,false)"/>
-	<setting label="Password" type="text"   id="passanimeon" option="hidden" default="" visible="!eq(-2,false)"/>	
-    <setting visible="true" id="Kreskoweczki" type="bool" label="Kreskoweczki" default="false" />
-	<setting label="Username" type="text"   id="userkreskoweczki" default="" visible="!eq(-1,false)"/>
-	<setting label="Password" type="text"   id="passkreskoweczki" option="hidden" default="" visible="!eq(-2,false)"/>	
-	</category>
+
+	<setting visible="true" id="AnimeZone" type="bool" label="Animezone.pl" default="false" enable="false" />
+
+	<setting visible="true" id="Dragonball" type="bool" label="Dragonball" default="false" enable="false" />
+
+	<setting visible="true" id="AnimeOn" type="bool" label="Animeon.pl" default="false"  enable="false"/>
 	
+    <setting visible="true" id="Kreskoweczki" type="bool" label="Kreskoweczki" default="false" enable="false" />
+
+	</category>
+	<category label="Konta">
+	<setting type="sep" />
+	<setting type="lsep" label="Shinden.pl"/>
+	<setting label="Username" type="text"   id="usershinden" default="" visible="true"/>
+	<setting label="Password" type="text"   id="passshinden" option="hidden" default="" visible="true"/>
+	<setting type="sep" />
+	<setting type="lsep" label="AnimeZone"/>	
+	<setting label="Username" type="text"   id="useranimezone" default="" visible="true"/>
+	<setting label="Password" type="text"   id="passanimezone" option="hidden" default="" visible="true"/>	
+	<setting type="sep" />
+	<setting type="lsep" label="DragonBall"/>	
+	<setting label="Username" type="text"   id="userdb" default="" visible="true"/>
+	<setting label="Password" type="text"   id="passdb" option="hidden" default="" visible="true"/>	
+	<setting type="sep" />
+	<setting type="lsep" label="AnimeOn"/>	
+	
+	<setting label="Username" type="text"   id="useranimeon" default="" visible="true"/>
+	<setting label="Password" type="text"   id="passanimeon" option="hidden" default="" visible="true"/>
+	<setting type="sep" />
+	<setting type="lsep" label="Kreskóweczki"/>	
+	<setting label="Username" type="text"   id="userkreskoweczki" default="" visible="true"/>
+	<setting label="Password" type="text"   id="passkreskoweczki" option="hidden" default="" visible="true"/>	
+	
+	
+	
+	
+	
+	
+	</category>
 	<category label="General">
 	<setting visible="true" id="auto-view" type="bool"   label="Enable Automatic View" default="true"/>
 	</category>
