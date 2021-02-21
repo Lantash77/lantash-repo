@@ -36,7 +36,6 @@ LETTERS = xbmc.translatePath('special://home/addons/' + my_addon_id + '/art/')
 Getsetting = my_addon.getSetting
 params = addon.get_params()
 
-
 #media#
 default_background = MEDIA + "fanart.jpg"
 custom_background = MEDIA + "sunset.jpg"
@@ -49,10 +48,7 @@ Alfabet = list(map(chr, range(65, 91)))
 Alfabet.insert(0, '#')
 Letters = [(LETTERS + item + '.png') for item in Alfabet]
 Letter = dict(zip(Alfabet, Letters))
-####################################################
-# Api keys
-####################################################
-youtube_api_key = 'AIzaSyBbDY0UzvF5Es77M7S1UChMzNp0KsbaDPI'
+
 ### ##########################################################################
 ### ##########################################################################
 
@@ -77,11 +73,7 @@ def PageAnimeOdcinki(url):
                  fanart=default_background, section='search',
                  thumb=searchicon)
 
-    
-
 def Alfabetyczna(url):
-
-#    name = 'anime'
 
     name = params['name']
     url = params['url']
@@ -102,7 +94,6 @@ def Alfabetyczna(url):
                          thumb=str(Letter[str(litera[0])[0:1]]), fanart=custom_background)
 
 def ListTitles():
-
 
     section = params['section']
     name = params['name']
@@ -132,7 +123,6 @@ def ListTitles():
         addon.addDir(str(i[0]), str(i[1]), mode='AOListEpisodes', section=section,
                      thumb=str(fanartAodc), fanart=custom_background)
 
-
 def ListEpisodes():
     
     section = params['section']
@@ -151,9 +141,6 @@ def ListEpisodes():
     except:
         plot = ''
         pass
-
-
-
     
     for i in zip(title, link):
             
@@ -165,7 +152,6 @@ def ListLinks():
     section = params['section']
     name = params['name']
     url = params['url']
-
 
     result = requests.get(url, timeout=15).content
     result = parseDOM(result, 'div', attrs={'id': 'video-player-control'})[0]
@@ -216,8 +202,7 @@ def Gatunki():
 
     section = params['section']
     name = params['name']
-    url = params['url']
-    
+    url = params['url']    
     
     if section == 'gatunki':
     
@@ -265,10 +250,7 @@ def Gatunki():
         addon.addDir('[I]następna strona[/I]', nextpage, mode='AOGatunki', thumb=nexticon,
                      fanart=custom_background, section='nextpage')
 
-
-
 #####Helpers####
-
 
 def encryptPlayerUrl(data):
 
@@ -295,11 +277,6 @@ def encryptPlayerUrl(data):
         decrypted = ''
     return decrypted
 
-
-
-
-
-
 def byteify(input):
     if isinstance(input, dict):
         return dict([(byteify(key), byteify(value)) for key, value in input.iteritems()])
@@ -309,10 +286,6 @@ def byteify(input):
         return input.encode('utf-8')
     else:
         return input
-
-
-
-
 
 def CleanHTML(html):
     if ("&amp;" in html):
@@ -344,7 +317,6 @@ def CleanHTML(html):
             html = html.replace('[&hellip;]', '[…]')
         if ('<br />\n' in html):
             html = html.replace('<br />\n', ' ')
-
         if (u'\u2661' in html):
             html = html.replace(u'\u2661', ' ')
         if (u'\u222c' in html):
