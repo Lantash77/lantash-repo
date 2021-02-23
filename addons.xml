@@ -2,7 +2,7 @@
 <addons>
 <addon
   id="plugin.video.animeotaku"
-  version="0.0.2"
+  version="0.0.3"
   name="Anime Otaku"
   provider-name="Lantash">
   <requires>
@@ -10,7 +10,6 @@
   	<import addon="script.module.requests" version="2.12.4"/>
 	<import addon="script.module.resolveurl"/>
 	<import addon="script.module.parsedom"/>
-  	<import addon="script.common.plugin.cache" version="2.5.2"/>
   </requires>
   <extension point="xbmc.python.pluginsource"
              library="main.py">

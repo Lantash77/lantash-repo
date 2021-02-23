@@ -13,14 +13,14 @@ import urllib
 from resources.libs import addon_tools as addon
 from CommonFunctions import parseDOM
 
-from common import GetDataBeetwenMarkers
+#from common import GetDataBeetwenMarkers
 
 
 my_addon = xbmcaddon.Addon()
 my_addon_id = my_addon.getAddonInfo('id')
 PATH = my_addon.getAddonInfo('path')
 MEDIA = xbmc.translatePath('special://home/addons/' + my_addon_id + '/art/japan/')
-#Getsetting = my_addon.getSetting
+
 params = addon.get_params()
 mainLink = 'https://inne.wbijam.pl/'
 #media#
@@ -247,3 +247,22 @@ def List_Links():
         
         addon.SourceSelect(players=player, links=link, title=title)  
 
+
+def GetDataBeetwenMarkers(data, marker1, marker2, withMarkers=True, caseSensitive=True):
+    if caseSensitive:
+        idx1 = data.find(marker1)
+    else:
+        idx1 = data.lower().find(marker1.lower())
+    if -1 == idx1:
+        return False, ''
+    if caseSensitive:
+        idx2 = data.find(marker2, idx1 + len(marker1))
+    else:
+        idx2 = data.lower().find(marker2.lower(), idx1 + len(marker1))
+    if -1 == idx2:
+        return False, ''
+    if withMarkers:
+        idx2 = idx2 + len(marker2)
+    else:
+        idx1 = idx1 + len(marker1)
+    return True, data[idx1:idx2]
