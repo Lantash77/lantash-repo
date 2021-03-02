@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addons>
+<addon
+  id="plugin.video.animeotaku"
+  version="0.1.0"
+  name="Anime Otaku"
+  provider-name="Lantash">
+  <requires>
+  	<import addon="xbmc.python" version="3.0.0"/>
+  	<import addon="script.module.requests"/>
+	<import addon="script.module.resolveurl"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+             library="main.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>anime</summary>
+	<summary lang="pl">Przeglądanie i odtwarzanie zawartości stron anime.</summary>
+    <description lang="pl">Wtyczka powstała w celach edukacyjnych. Stworzona przez modyfikację dodatku Anime-IPTV stworzonego przez Huball. Testowana na Windows 10 i na RPI z OSMC. Niektóre jej składniki mogą nie działać lub działać nie poprawnie. Nie biorę odpowiedzialności za problemy związane z użytkowaniem tego dodatku. Some parts of this addon may not be legal in your country of residence - please check with your local laws before installing!</description>
+    <license>GNUv3</license>
+    <platform>all</platform>
+	<assets>
+        <icon>icon.png</icon>
+        <fanart>fanart.jpg</fanart>
+        <banner></banner> <!-- optional -->
+    </assets>
+  </extension>
+</addon>
+
+<addon
+  id="plugin.video.dramaqueen"
+  version="0.1.1"
+  name="Drama Queen"
+  provider-name="Lantash">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0"/>
+    <import addon="script.module.requests"/>
+    <import addon="script.module.resolveurl"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+             library="dramaqueen.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>drama</summary>
+    <summary lang="pl">Przeglądanie i odtwarzanie zawartości strony DramaQueen.</summary>
+    <description lang="pl">Wtyczka powstała w celach edukacyjnych. </description>
+    <disclaimer lang="en_GB">Wszelkie treści multimedialne są własnością Dramaqueen. Wtyczka tworzona za zgodą administratorów dramaqueen.pl.</disclaimer>
+    <license>GNUv3</license>
+    <platform>all</platform>
+	<assets>
+        <icon>icon.png</icon>
+        <fanart>fanart.jpg</fanart>
+        <banner></banner> <!-- optional -->
+    </assets>
+  </extension>
+</addon>
+
+<addon id="repository.lantash" name="lantash-repo" version="0.1" provider-name="lantash">
+	<extension point="xbmc.addon.repository" name="lantash-repo">
+	    <dir minversion="18.0" maxversion="18.9.0">
+			<info compressed="false">https://raw.githubusercontent.com/Lantash77/lantash-repo/main/leia/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/Lantash77/lantash-repo/main/leia/addons.xml.md5</checksum>
+			<datadir zip="true">https://github.com/Lantash77/lantash-repo/raw/main/leia/</datadir>
+		</dir>
+	    <dir minversion="18.9.0">
+			<info compressed="false">https://raw.githubusercontent.com/Lantash77/lantash-repo/main/matrix/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/Lantash77/lantash-repo/main/matrix/addons.xml.md5</checksum>
+			<datadir zip="true">https://github.com/Lantash77/lantash-repo/raw/main/matrix/</datadir>
+		</dir>
+	    <dir>
+			<info compressed="false">https://raw.githubusercontent.com/Lantash77/lantash-repo/main/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/Lantash77/lantash-repo/main/addons.xml.md5</checksum>
+			<datadir zip="true">https://github.com/Lantash77/lantash-repo/raw/main/</datadir>
+		</dir>
+		<dir>
+            <info compressed="false">https://raw.githubusercontent.com/Gujal00/smrzips/master/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/Gujal00/smrzips/master/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/Gujal00/smrzips/master/zips/</datadir>
+        </dir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Repozytorium wtyczek lantash</summary>
+		<description>Repozytorium zawiera wtyczki dla Kodi w wersji 18.8 i 19 </description>
+		<platform>all</platform>
+		<license>GNUv3</license>
+		<website></website>
+	</extension>
+
+</addon>
+</addons>
