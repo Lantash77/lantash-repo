@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="repository.lantash" name="lantash-repo" version="0.2" provider-name="lantash">
+<addon id="repository.lantash" name="lantash-repo" version="0.1" provider-name="lantash">
 	<extension point="xbmc.addon.repository" name="lantash-repo">
 	    <dir minversion="18.0" maxversion="18.9.0">
 			<info compressed="false">https://raw.githubusercontent.com/Lantash77/lantash-repo/main/v18/addons.xml</info>
