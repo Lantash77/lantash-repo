@@ -26,7 +26,7 @@
 
 <addon
   id="plugin.video.dramaqueen"
-  version="0.1.0"
+  version="0.1.1"
   name="Drama Queen"
   provider-name="Lantash">
   <requires>
@@ -43,9 +43,14 @@
     <summary>drama</summary>
     <summary lang="pl">Przeglądanie i odtwarzanie zawartości strony DramaQueen.</summary>
     <description lang="pl">Wtyczka powstała w celach edukacyjnych. </description>
-    <disclaimer lang="en_GB">Wszelkie treści multimedialne są własnością Dramaqueen. Wtyczka tworzona za zgodą administratorów dramaqueen.pl.</disclaimer>
+    <disclaimer lang="en_GB">Wszelkie treści multimedialne są własnością Dramaqueen.
+Wtyczka tworzona za zgodą administratorów dramaqueen.pl.</disclaimer>
     <license>GNUv3</license>
     <platform>all</platform>
+	<news>
+Changelog 0.1.1:
+Ostatnioa wersja pod Kodi 18.9
+</news>
   </extension>
 </addon>
 
