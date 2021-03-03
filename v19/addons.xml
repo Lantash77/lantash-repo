@@ -2,7 +2,7 @@
 <addons>
 <addon
   id="plugin.video.animeotaku"
-  version="0.1.0"
+  version="0.1.1"
   name="Anime Otaku"
   provider-name="Lantash">
   <requires>
@@ -30,7 +30,7 @@
 
 <addon
   id="plugin.video.dramaqueen"
-  version="0.1.2"
+  version="0.1.5"
   name="Drama Queen"
   provider-name="Lantash">
   <requires>
@@ -45,8 +45,11 @@
   <extension point="xbmc.addon.metadata">
     <summary>drama</summary>
     <summary lang="pl">Przeglądanie i odtwarzanie zawartości strony DramaQueen.</summary>
-    <description lang="pl">Wtyczka powstała w celach edukacyjnych. </description>
-    <disclaimer lang="en_GB">Wszelkie treści multimedialne są własnością Dramaqueen. Wtyczka tworzona za zgodą administratorów dramaqueen.pl.</disclaimer>
+    <description lang="pl">Wtyczka powstała w celach edukacyjnych.
+Mogą wystąpić błedy w trakcie korzystania.
+    </description>
+    <disclaimer lang="en_GB">Wszelkie treści multimedialne są własnością Dramaqueen.
+Wtyczka tworzona za zgodą administratorów dramaqueen.pl.</disclaimer>
     <license>GNUv3</license>
     <platform>all</platform>
 	<assets>
@@ -54,6 +57,11 @@
         <fanart>fanart.jpg</fanart>
         <banner></banner> <!-- optional -->
     </assets>
+	<news>
+Changelog 0.1.5:
+Update do Wersji Kodi 19
+Poprawiono listowanie gatunków.
+Poprawiono listowanie wyników wyszukiwania
   </extension>
 </addon>
 
