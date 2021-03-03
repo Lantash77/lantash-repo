@@ -2,7 +2,7 @@
 <addons>
 <addon
   id="plugin.video.animeotaku"
-  version="0.1.1"
+  version="0.1.2"
   name="Anime Otaku"
   provider-name="Lantash">
   <requires>
@@ -17,14 +17,31 @@
   <extension point="xbmc.addon.metadata">
     <summary>anime</summary>
 	<summary lang="pl">Przeglądanie i odtwarzanie zawartości stron anime.</summary>
-    <description lang="pl">Wtyczka powstała w celach edukacyjnych. Stworzona przez modyfikację dodatku Anime-IPTV stworzonego przez Huball. Testowana na Windows 10 i na RPI z OSMC. Niektóre jej składniki mogą nie działać lub działać nie poprawnie. Nie biorę odpowiedzialności za problemy związane z użytkowaniem tego dodatku. Some parts of this addon may not be legal in your country of residence - please check with your local laws before installing!</description>
+    <description lang="pl">Wtyczka powstała w celach edukacyjnych.
+Stworzona przez modyfikację dodatku Anime-IPTV stworzonego przez Huball.
+Testowana na Windows 10 i na RPI z OSMC.
+Niektóre jej składniki mogą nie działać lub działać nie poprawnie.
+Nie biorę odpowiedzialności za problemy związane z użytkowaniem tego dodatku.
+Some parts of this addon may not be legal in your country of residence - please check with your local laws before installing!</description>
     <license>GNUv3</license>
     <platform>all</platform>
-	<assets>
+    <assets>
         <icon>icon.png</icon>
         <fanart>fanart.jpg</fanart>
         <banner></banner> <!-- optional -->
     </assets>
+    <news>
+Changelog 0.1.0:
+- Wersja pod Kodi 19
+- Wbijam
+- Anime-Odcinki
+- Shinden.pl
+- StrefaDB.pl
+
+Changelog 0.1.1:
+- Poprawa listowania
+- Dodano opcję pobierania
+</news>
   </extension>
 </addon>
 
@@ -48,8 +65,7 @@
     <description lang="pl">Wtyczka powstała w celach edukacyjnych.
 Mogą wystąpić błedy w trakcie korzystania.
     </description>
-    <disclaimer lang="en_GB">Wszelkie treści multimedialne są własnością Dramaqueen.
-Wtyczka tworzona za zgodą administratorów dramaqueen.pl.</disclaimer>
+    <disclaimer lang="en_GB">Wszelkie treści multimedialne są własnością Dramaqueen. Wtyczka tworzona za zgodą administratorów dramaqueen.pl.</disclaimer>
     <license>GNUv3</license>
     <platform>all</platform>
 	<assets>
