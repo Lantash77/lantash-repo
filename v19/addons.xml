@@ -68,12 +68,12 @@ Mogą wystąpić błedy w trakcie korzystania.
     <disclaimer lang="en_GB">Wszelkie treści multimedialne są własnością Dramaqueen. Wtyczka tworzona za zgodą administratorów dramaqueen.pl.</disclaimer>
     <license>GNUv3</license>
     <platform>all</platform>
-	<assets>
+    <assets>
         <icon>icon.png</icon>
         <fanart>fanart.jpg</fanart>
         <banner></banner> <!-- optional -->
     </assets>
-	<news>
+    <news>
 Changelog 0.1.5:
 Update do Wersji Kodi 19
 Poprawiono listowanie gatunków.
