@@ -41,6 +41,10 @@ Changelog 0.1.0:
 Changelog 0.1.1:
 - Poprawa listowania
 - Dodano opcję pobierania
+
+Changelog 0.1.2
+- Simple scraper for wbijam.pl
+
 </news>
   </extension>
 </addon>
