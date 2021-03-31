@@ -37,7 +37,7 @@ mainLink = 'https://inne.wbijam.pl/'
 default_background = MEDIA + "fanart.jpg"
 fanart = MEDIA + 'fanart.jpg'
 nexticon = MEDIA + 'next.png'
-fanartAol = MEDIA + 'wbijam.jpg'
+fanartWb = MEDIA + 'wbijam.jpg'
 host = 'Wbijam'
 
 
@@ -56,7 +56,7 @@ def Pagewbijam(url):
         for item in data:
             name = item
                        
-            addon.addDir(str(name), url, mode='Browse_Titles', thumb=fanartAol, fanart=default_background)
+            addon.addDir(str(name), url, mode='Browse_Titles', thumb=fanartWb, fanart=default_background)
 
 def Browse_Titles():
 

@@ -111,15 +111,19 @@ def Wbijam(mode, url):
     if mode == "Pagewbijam":
         url = params['url']
         hostwbijam.Pagewbijam(url)
+        xbmcplugin.setContent(int(sys.argv[1]), 'movies')
         addon.endOfDir()
     elif mode == "Browse_Titles":
         hostwbijam.Browse_Titles()
+        xbmcplugin.setContent(int(sys.argv[1]), 'movies')
         addon.endOfDir()
     elif mode == "Browse_Seasons":
         hostwbijam.Browse_Seasons()
+        xbmcplugin.setContent(int(sys.argv[1]), 'movies')
         addon.endOfDir()
     elif mode == "List_Episodes":
         hostwbijam.List_Episodes()
+        xbmcplugin.setContent(int(sys.argv[1]), 'movies')
         addon.endOfDir()
     elif mode == "List_Links":
         hostwbijam.List_Links()
@@ -137,22 +141,28 @@ def AnimeOdcinki(mode, url):
     if mode == "AnimeOdcinki":
         url = params['url']
         hostanimeodcinki.PageAnimeOdcinki(url)
+        xbmcplugin.setContent(int(sys.argv[1]), 'movies')
         addon.endOfDir()
     elif mode == "AOAlfabetycznie":
         url = params['url']
         hostanimeodcinki.Alfabetyczna(url)
+        xbmcplugin.setContent(int(sys.argv[1]), 'movies')
         addon.endOfDir()
     elif mode == "AOListTitles":
         hostanimeodcinki.ListTitles()
+        xbmcplugin.setContent(int(sys.argv[1]), 'movies')
         addon.endOfDir()
     elif mode == "AOSearch":
         hostanimeodcinki.Search()
+        xbmcplugin.setContent(int(sys.argv[1]), 'movies')
         addon.endOfDir()
     elif mode == "AOGatunki":
-        hostanimeodcinki.Gatunki()    
+        hostanimeodcinki.Gatunki()
+        xbmcplugin.setContent(int(sys.argv[1]), 'movies')        
         addon.endOfDir()
     elif mode == "AOListEpisodes":
         hostanimeodcinki.ListEpisodes()
+        xbmcplugin.setContent(int(sys.argv[1]), 'movies')
         addon.endOfDir()
     elif mode == "AOListLinks":
         hostanimeodcinki.ListLinks()
@@ -171,21 +181,27 @@ def AnimeShinden(mode, url):
     if mode == "Shinden":
         
         hostanimeshinden.PageAnimeShinden()
+        xbmcplugin.setContent(int(sys.argv[1]), 'movies')
         addon.endOfDir()
     elif mode == "SHAlfabetycznie":
         hostanimeshinden.Alfabetyczna()
+        xbmcplugin.setContent(int(sys.argv[1]), 'movies')
         addon.endOfDir()
     elif mode == "SHListTitles":
         hostanimeshinden.ListTitles()
+        xbmcplugin.setContent(int(sys.argv[1]), 'movies')
         addon.endOfDir()
     elif mode == "SHSearch":
         hostanimeshinden.Search()
+        xbmcplugin.setContent(int(sys.argv[1]), 'movies')
         addon.endOfDir()
     elif mode == "SHGatunki":
-        hostanimeshinden.Gatunki()    
+        hostanimeshinden.Gatunki()
+        xbmcplugin.setContent(int(sys.argv[1]), 'movies')        
         addon.endOfDir()
     elif mode == "SHListEpisodes":
         hostanimeshinden.ListEpisodes()
+        xbmcplugin.setContent(int(sys.argv[1]), 'movies')
         addon.endOfDir()
     elif mode == "SHListLinks":
         hostanimeshinden.ListLinks()
@@ -199,15 +215,15 @@ def DragonBall(mode, url):
     from hosts import hostdragon
     if mode == "Dragonball":
         hostdragon.Pagedragon()
+        xbmcplugin.setContent(int(sys.argv[1]), 'movies')
         addon.endOfDir()
     if mode == "DBListTitles":
         hostdragon.ListTitles()
+        xbmcplugin.setContent(int(sys.argv[1]), 'movies')
         addon.endOfDir() 
     if mode == "DBListLinks":
         hostdragon.ListLinks()
-        addon.endOfDir()    
-    
-    
+            
     else:
         return
 

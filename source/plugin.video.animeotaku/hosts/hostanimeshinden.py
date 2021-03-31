@@ -132,8 +132,8 @@ def ListTitles():
         link = mainLink + re.sub('/series/', 'series/' ,parseDOM(item, 'a' , ret='href')[1])
         obraz = mainLink + re.sub('/res/', 'res/', parseDOM(item, 'a' , ret='href')[0])
         title = parseDOM(item, 'a')[1]
-        title = title.replace('<em>', '[I]')
-        title = title.replace('</em>', '[/I]')
+        title = title.replace('<em>', '')
+        title = title.replace('</em>', '')
 
         addon.addDir(str(title) , link, mode='SHListEpisodes', section='episodes',
                      thumb=str(obraz), fanart=custom_background, subdir=str(title))
@@ -180,8 +180,8 @@ def Search():
         link = mainLink + re.sub('/series/', 'series/', parseDOM(item, 'a', ret='href')[1])
         obraz = mainLink + re.sub('/res/', 'res/', parseDOM(item, 'a', ret='href')[0])
         title = parseDOM(item, 'a')[1]
-        title = title.replace('<em>', '[I]')
-        title = title.replace('</em>', '[/I]')
+        title = title.replace('<em>', '')
+        title = title.replace('</em>', '')
                 
         addon.addDir(str(title) , link, mode='SHListEpisodes', section='episodes',
                     thumb=str(obraz), fanart=custom_background, subdir=str(title))

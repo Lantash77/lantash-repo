@@ -22,6 +22,25 @@ def String2HTML(html):
 
     return html
 
+def ScrapJikan(title='',type=''):
+
+    Jikan = 'https://api.jikan.moe/v3/search/anime?q='
+    if type == 'serie':
+        typ = 'TV'
+    elif type == 'film':
+        typ = 'Movie'
+    url = Jikan + title
+    try:
+        result = requests.get(url).text
+        result = json.loads(result)['results']
+        for r in result:
+            if r['type'] == typ:
+                img = r['image_url']
+                break
+
+        return img
+    except:
+        return ''
         
 def Scrap(title, type):
 ### TMDB API SCRAPER ###
@@ -33,24 +52,25 @@ def Scrap(title, type):
     conf = json.loads(requests.get(TMDBAPICONF).text)['images']
     backdrop_base_url = conf['secure_base_url'] + conf['backdrop_sizes'][-1]
 
-    if type == 'drama':
-        
+    if type == 'serie':
+        queryURLPL = TMDBURL.format('search/tv') + TMDBAPI + titleENC + '&language=pl-PL'
         queryURL = TMDBURL.format('search/tv') + TMDBAPI + titleENC
     elif type == 'film':
-        
+        queryURLPL = TMDBURL.format('search/movie') + TMDBAPI + titleENC + '&language=pl-PL'
         queryURL = TMDBURL.format('search/movie') + TMDBAPI + titleENC
-    r = requests.get(queryURL).text
+    r = requests.get(queryURLPL).text
 
-    try:
+    if json.loads(r)['total_results'] == 0:
+        r = requests.get(queryURL).text
         if json.loads(r)['total_results'] == 0:
-            poster_link = ''
-            backdrop_link = ''            
+            backdrop_link = ''
+            poster_link = ScrapJikan(title, type)
         else:
             t = json.loads(r)['results'][0]
-    except:
-        poster_link = ''
-        backdrop_link = ''
-        
+
+    else:
+        t = json.loads(r)['results'][0]
+
     try:
         backdrop_link = backdrop_base_url + t['backdrop_path']
     except:
@@ -58,10 +78,8 @@ def Scrap(title, type):
     try:
         poster_link = backdrop_base_url + t['poster_path']
     except:
-        poster_link = ''
-        
-        
-        
+        poster_link = ScrapJikan(title, type)
 
     return(poster_link, backdrop_link)
+
 
