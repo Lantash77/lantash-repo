@@ -42,7 +42,22 @@ custom_background = MEDIA + "sunset.jpg"
 fanart = MEDIA + 'fanart.jpg'
 nexticon = MEDIA + 'next.png'
 searchicon = MEDIA + 'search.png'
-fanartDB = MEDIA + 'dragon.jpg'
+DBthumb = MEDIA + 'dbposter.jpg'
+DBZthumb = MEDIA + 'dbzposter.jpg'
+DBKAIthumb = MEDIA + 'dbkaiposter.jpg'
+DBGTthumb = MEDIA + 'dbgtposter.jpg'
+DBSUPERthumb = MEDIA +  'dbsuperposter.jpg'
+DBSUPERHEROthumb = MEDIA + 'dbsuperheroposter.jpg'
+DBZABRIDGthumb = MEDIA + 'dbzabridgposter.jpg'
+DBMOVIEthumb = MEDIA + 'dbmovieposter.jpg'
+DBAllfanart = MEDIA + 'dballfanart.jpg'
+DBfanart = MEDIA + 'dbfanart.jpg'
+DBZfanart = MEDIA + 'dbzfanart.jpg'
+DBKAIfanart = MEDIA + 'dbkaifanart.jpg'
+DBGTfanart = MEDIA + 'dbgtfanart.jpg'
+DBSUPERfanart = MEDIA + 'dbsuperfanart.jpg'
+DBSUPERHEROfanart = MEDIA + 'dbsuperherofanart.jpg'
+DBZABRIDGfanart = MEDIA + 'dbzabrifanart.jpg'
 host = 'DragonBall'
 
 #HTML HEADER
@@ -86,35 +101,36 @@ def Logowanie():
 def Pagedragon():
 
     addon.addDir("Filmy Kinowe", mainLink + 'filmy-kinowe.html',
-                 mode='DBListTitles', fanart=default_background, section='ListTitles',
-                 thumb=fanartDB)
+                 mode='DBListTitles', fanart=DBAllfanart, section='ListTitles',
+                 thumb=DBMOVIEthumb)
     addon.addDir("DragonBall", mainLink + 'odcinki/dragon-ball.html',
-                 mode='DBListTitles', fanart=default_background, section='ListTitles',
-                 thumb=fanartDB)
+                 mode='DBListTitles', fanart=DBfanart, section='ListTitles',
+                 thumb=DBthumb)
     addon.addDir("DragonBall Z", mainLink + 'odcinki/dragon-ball-z.html',
-                 mode='DBListTitles', fanart=default_background, section='ListTitles',
-                 thumb=fanartDB)
+                 mode='DBListTitles', fanart=DBZfanart, section='ListTitles',
+                 thumb=DBZthumb)
     addon.addDir("DragonBall KAI", mainLink + '/odcinki/dragon-ball-kai.html',
-                 mode='DBListTitles', fanart=default_background, section='ListTitles',
-                 thumb=fanartDB)
+                 mode='DBListTitles', fanart=DBKAIfanart, section='ListTitles',
+                 thumb=DBKAIthumb)
     addon.addDir("DragonBall GT", mainLink + '/odcinki/dragon-ball-gt.html',
-                 mode='DBListTitles', fanart=default_background, section='ListTitles',
-                 thumb=fanartDB)
+                 mode='DBListTitles', fanart=DBGTfanart, section='ListTitles',
+                 thumb=DBGTthumb)
     addon.addDir("DragonBall Super", mainLink + '/odcinki/dragon-ball-super.html',
-                 mode='DBListTitles', fanart=default_background, section='ListTitles',
-                 thumb=fanartDB)
+                 mode='DBListTitles', fanart=DBSUPERfanart, section='ListTitles',
+                 thumb=DBSUPERthumb)
     addon.addDir("DragonBall Super Heroes", mainLink + '/odcinki/dragon-ball-super-heroes.html',
-                 mode='DBListTitles', fanart=default_background, section='ListTitles',
-                 thumb=fanartDB)
+                 mode='DBListTitles', fanart=DBSUPERHEROfanart, section='ListTitles',
+                 thumb=DBSUPERHEROthumb)
     addon.addDir("DragonBall Z Abridged", mainLink + '/odcinki/dragon-ball-z-abridged.html',
-                 mode='DBListTitles', fanart=default_background, section='ListTitles',
-                 thumb=fanartDB)
+                 mode='DBListTitles', fanart=DBZABRIDGfanart, section='ListTitles',
+                 thumb=DBZABRIDGthumb)
 
 def ListTitles():
    
     url = params['url']
     section = params['section']
     name = params['name']
+    thumb = params['img']
     html = requests.get(url, timeout=10).text
     result = parseDOM(html, 'table', attrs={'id':'lista-odcinkow'})[0]
     
@@ -131,7 +147,7 @@ def ListTitles():
             title = title + '  ' + nazwa
         link = mainLink + re.sub('^/', '', parseDOM(link, 'a', ret='href')[0])
     
-        addon.addLink(title, link, mode='DBListLinks', fanart='', thumb='', 
+        addon.addLink(title, link, mode='DBListLinks', fanart=DBAllfanart, thumb=thumb, 
                       section='ListLinks', subdir=name)
 
 

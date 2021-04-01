@@ -15,7 +15,7 @@ my_addon_id = my_addon.getAddonInfo('id')
 
 setting = my_addon.getSetting
 PATH = my_addon.getAddonInfo('path')
-MEDIA = xbmc.translatePath('special://home/addons/' + my_addon_id + '/art/japan/')
+MEDIA = xbmc.translatePath('special://home/addons/' + my_addon_id + '/resources/media/')
 default_background = MEDIA + "fanart.jpg"
 
 iconSite = PATH + 'icon.png'
