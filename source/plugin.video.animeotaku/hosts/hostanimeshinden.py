@@ -104,7 +104,7 @@ def Logowanie():
 
 def Alfabetyczna():
 
-    name = params['name']
+#    name = params['name']
     url = params['url']
 
     html = requests.get(url, timeout=15).text
@@ -118,10 +118,11 @@ def Alfabetyczna():
         addon.addDir(str(i[0]) , url + str(i[1]), mode='SHListTitles', section=str(i[0]),
                          thumb=str(Letter[str(i[0])]), fanart=custom_background)
 
-def ListTitles():
+def ListTitles(url=''):
    
-    name = params['name']
-    url = params['url']
+#    name = params['name']
+    if url == '':
+        url = params['url']
     section = params['section']
     
     html = requests.get(url, timeout=15).text
@@ -134,9 +135,16 @@ def ListTitles():
         title = parseDOM(item, 'a')[1]
         title = title.replace('<em>', '')
         title = title.replace('</em>', '')
+        try:
+            plotsite = requests.get(link, timeout=10).text
+            plotdata = parseDOM(plotsite, 'div', attrs={'id':'description'})[0]
+            plot = CleanHTML(parseDOM(plotdata, 'p')[0])
+        except:
+            plot = ''        
 
         addon.addDir(str(title) , link, mode='SHListEpisodes', section='episodes',
-                     thumb=str(obraz), fanart=custom_background, subdir=str(title))
+                     thumb=str(obraz), fanart=custom_background, subdir=str(title),
+                     plot=str(plot))
     
     try:
         next = parseDOM(html, 'a' , attrs={'rel' : 'next'}, ret='href')[0]
@@ -172,41 +180,13 @@ def Search():
 
     elif section == 'nextpage':
         url = url
-        
-    html = requests.get(url, timeout=15).text
-    result = str(parseDOM(html, 'section', attrs={'class': 'anime-list box'})[0])
-    results = [item for item in parseDOM(result, 'ul', attrs={'class': 'div-row'}) if 'h3' in item]
-    for item in results:
-        link = mainLink + re.sub('/series/', 'series/', parseDOM(item, 'a', ret='href')[1])
-        obraz = mainLink + re.sub('/res/', 'res/', parseDOM(item, 'a', ret='href')[0])
-        title = parseDOM(item, 'a')[1]
-        title = title.replace('<em>', '')
-        title = title.replace('</em>', '')
-                
-        addon.addDir(str(title) , link, mode='SHListEpisodes', section='episodes',
-                    thumb=str(obraz), fanart=custom_background, subdir=str(title))
-    try:
-        next = parseDOM(html, 'a', attrs={'rel': 'next'}, ret='href')[0]
-        if len(next) > 0:
     
-            nextpage = mainLink + re.sub('/', '', next)
-            nextpage = CleanHTML(nextpage)
-            if '&r307=1' in nextpage:
-                nextpage = str(nextpage).replace('&r307=1', '')
-            elif 'r307=1' in nextpage:
-                nextpage = str(nextpage).replace('r307=1', '')
-            addon.addDir('[I]następna strona[/I]', str(nextpage), mode='SHListTitles', section='nextpage',
-                         thumb=str(nexticon), fanart=custom_background, )
-              
-    except:
-        pass
-    
-    
+    ListTitles(url)
+
     
 def ListEpisodes():
 
     section = params['section']
-    name = params['name']
     url = params['url'] + '/all-episodes'
     thumb = params['img']    
     subdir = params['subdir']
@@ -288,7 +268,6 @@ def ListLinks():
 def Gatunki():
     
     section = params['section']
-    name = params['name']
     url = params['url']
 
     if section == 'gatunki':
@@ -310,34 +289,9 @@ def Gatunki():
 
     elif section == 'nextpage':
         url = url
+    
+    ListTitles(url)
 
-    html = requests.get(url, timeout=15).text
-    result = str(parseDOM(html, 'section', attrs={'class': 'anime-list box'})[0])
-    results = [item for item in parseDOM(result, 'ul', attrs={'class': 'div-row'}) if 'h3' in item]
-    for item in results:
-        link = mainLink + re.sub('/series/', 'series/', parseDOM(item, 'a', ret='href')[1])
-        obraz = mainLink + re.sub('/res/', 'res/', parseDOM(item, 'a', ret='href')[0])
-        title = parseDOM(item, 'a')[1]
-        title = title.replace('<em>', '[I]')
-        title = title.replace('</em>', '[/I]')        
-
-        addon.addDir(str(title) , link, mode='SHListEpisodes', section='episodes',
-                     thumb=str(obraz), fanart=custom_background, subdir=str(title))
-    try:
-        next = parseDOM(html, 'a', attrs={'rel': 'next'}, ret='href')[0]
-        if len(next) > 0:
-
-            nextpage = mainLink + re.sub('/', '', next)
-            nextpage = CleanHTML(nextpage)
-            if '&r307=1' in nextpage:
-                nextpage = str(nextpage).replace('&r307=1', '')
-            elif 'r307=1' in nextpage:
-                nextpage = str(nextpage).replace('r307=1', '')
-            addon.addDir('[I]następna strona[/I]', str(nextpage), mode='SHListTitles', section='nextpage',
-                         thumb=str(nexticon), fanart=custom_background, )
-                        
-    except:
-        pass
    
 def ShindenGetVideoLink(url):
 
