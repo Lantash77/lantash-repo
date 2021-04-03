@@ -52,12 +52,7 @@ DBZABRIDGthumb = MEDIA + 'dbzabridgposter.jpg'
 DBMOVIEthumb = MEDIA + 'dbmovieposter.jpg'
 DBAllfanart = MEDIA + 'dballfanart.jpg'
 DBfanart = MEDIA + 'dbfanart.jpg'
-DBZfanart = MEDIA + 'dbzfanart.jpg'
-DBKAIfanart = MEDIA + 'dbkaifanart.jpg'
-DBGTfanart = MEDIA + 'dbgtfanart.jpg'
-DBSUPERfanart = MEDIA + 'dbsuperfanart.jpg'
-DBSUPERHEROfanart = MEDIA + 'dbsuperherofanart.jpg'
-DBZABRIDGfanart = MEDIA + 'dbzabrifanart.jpg'
+
 host = 'DragonBall'
 
 #HTML HEADER
@@ -88,8 +83,8 @@ def Logowanie():
         'accept-language': 'pl-PL,pl;q=0.9,en-GB;q=0.8,en;q=0.7,en-US;q=0.6',
     }
     data = {
-        'login': 'bikersoft',  # Getsetting('userdb')
-        'password': 'Kl@udia21',  # Getsetting('passdb')
+        'login': Getsetting('userdb'),
+        'password': Getsetting('passdb'),
         'signin': ''
     }
 
@@ -104,25 +99,25 @@ def Pagedragon():
                  mode='DBListTitles', fanart=DBAllfanart, section='ListTitles',
                  thumb=DBMOVIEthumb)
     addon.addDir("DragonBall", mainLink + 'odcinki/dragon-ball.html',
-                 mode='DBListTitles', fanart=DBfanart, section='ListTitles',
+                 mode='DBListTitles', fanart=DBAllfanart, section='ListTitles',
                  thumb=DBthumb)
     addon.addDir("DragonBall Z", mainLink + 'odcinki/dragon-ball-z.html',
-                 mode='DBListTitles', fanart=DBZfanart, section='ListTitles',
+                 mode='DBListTitles', fanart=DBAllfanart, section='ListTitles',
                  thumb=DBZthumb)
     addon.addDir("DragonBall KAI", mainLink + '/odcinki/dragon-ball-kai.html',
-                 mode='DBListTitles', fanart=DBKAIfanart, section='ListTitles',
+                 mode='DBListTitles', fanart=DBAllfanart, section='ListTitles',
                  thumb=DBKAIthumb)
     addon.addDir("DragonBall GT", mainLink + '/odcinki/dragon-ball-gt.html',
-                 mode='DBListTitles', fanart=DBGTfanart, section='ListTitles',
+                 mode='DBListTitles', fanart=DBAllfanart, section='ListTitles',
                  thumb=DBGTthumb)
     addon.addDir("DragonBall Super", mainLink + '/odcinki/dragon-ball-super.html',
-                 mode='DBListTitles', fanart=DBSUPERfanart, section='ListTitles',
+                 mode='DBListTitles', fanart=DBAllfanart, section='ListTitles',
                  thumb=DBSUPERthumb)
     addon.addDir("DragonBall Super Heroes", mainLink + '/odcinki/dragon-ball-super-heroes.html',
-                 mode='DBListTitles', fanart=DBSUPERHEROfanart, section='ListTitles',
+                 mode='DBListTitles', fanart=DBAllfanart, section='ListTitles',
                  thumb=DBSUPERHEROthumb)
     addon.addDir("DragonBall Z Abridged", mainLink + '/odcinki/dragon-ball-z-abridged.html',
-                 mode='DBListTitles', fanart=DBZABRIDGfanart, section='ListTitles',
+                 mode='DBListTitles', fanart=DBAllfanart, section='ListTitles',
                  thumb=DBZABRIDGthumb)
 
 def ListTitles():

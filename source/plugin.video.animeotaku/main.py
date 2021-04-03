@@ -8,8 +8,6 @@ import xbmcgui
 import xbmcplugin
 from resources.libs import addon_tools as addon
 
-
-
 my_addon = xbmcaddon.Addon()
 my_addon_id = my_addon.getAddonInfo('id')
 
@@ -24,40 +22,14 @@ iconOdcinki = MEDIA + 'animeodcinki.jpg'
 iconShinden = MEDIA + 'animeshinden.jpg'
 iconAnimezone = MEDIA + 'animezone.jpg'
 iconstrefadb = MEDIA + 'strefadb.jpg'
+iconsettings = MEDIA + 'settings.png'
 
+Odcinkifanart = MEDIA + 'aodcfanart.jpg'
+DBfanart = MEDIA + 'dbfanart.jpg'
 
-icnoAnimecentrum = MEDIA + 'animecentrum.jpg'
-iconAnime4fun = MEDIA + 'anime4fun.jpg'
-iconDiff = MEDIA + 'diffanime.jpg'
-iconstrefadb = MEDIA + 'strefadb.jpg'
-iconstrefadballs = MEDIA + 'Dragon_Balls_.png'
-iconkresk = MEDIA + 'kreskoweczki.jpg'
-
-iconAnimejoy = MEDIA + 'animejoy.jpg'
-iconkresk = MEDIA + 'kreskoweczki.jpg'
-iconsenpai = MEDIA + 'senpai.jpg'
-iconFavs = MEDIA + 'ulubione.jpg'
-fanartSite = MEDIA + 'fanart.jpg'
-fanartIPTV = MEDIA + 'fanart.jpg'
-fanartAnime4fun = MEDIA + 'fanart.jpg'
-fanartAol = MEDIA + 'fanart.jpg'
-fanartdragon = MEDIA + 'dragon.jpg'
-#nexticon = MEDIA + '/art/next.png'
 base_link = ''
 
 global cookie
-#Odkomentować przed wrzuceniem
-setting = xbmcaddon.Addon().getSetting
-SiteName = 'AnimeIPTV'
-SiteTag = 'AnimeIPTV'
-mainSite1 = 'http://www.inne.wbijam.pl/'
-mainSite2 = 'https://anime-odcinki.pl/'
-mainSite3 = 'https://shinden.pl/'
-mainSite4 = 'https://www.animezone.pl/'
-mainSite5 = 'https://strefadb.pl/'
-mainSite6 = 'https://animeon.pl/'
-mainSite7 = 'http://www.kreskoweczki.pl'
-
 
 
 def MainMenu():
@@ -71,7 +43,7 @@ def MainMenu():
     if setting('AnimeOdcinki') == 'true':
         addon.addDir('[COLOR=%s]Anime Odcinki[/COLOR]' % 'blue', 
                      'https://anime-odcinki.pl/', mode='AnimeOdcinki',
-                     fanart=default_background, thumb=iconOdcinki, isFolder=True)
+                     fanart=Odcinkifanart, thumb=iconOdcinki, isFolder=True)
 ###Shinden.pl###
     if setting('Shinden') == 'true':
         addon.addDir('[COLOR=%s]Shinden.pl[/COLOR]' % 'blue', 
@@ -81,24 +53,10 @@ def MainMenu():
     if setting('Dragonball') == 'true':
         addon.addDir('[COLOR=%s]StrefaDB.pl[/COLOR]' % 'blue', 
                      'https://strefadb.pl/', mode='Dragonball',
-                     fanart=default_background, thumb=iconstrefadb, isFolder=True)                    
-###AnimeZone.pl###
-    if setting('AnimeZone') == 'true':
-        addon.addDir('[COLOR=%s]Animezone.pl[/COLOR]' % 'blue', 
-                   'https://www.animezone.pl/', mode='AnimeZone',
-                    fanart=default_background, thumb=iconAnimezone, isFolder=True)
-###AnimeOn.pl###
-    if setting('AnimeOn') == 'true':
-        addon.addDir('[COLOR=%s]Animeon.pl[/COLOR]' % 'blue', 
-                     'https://animeon.pl/', mode='Animeon',
-                     fanart=default_background, thumb=iconstrefadb, isFolder=True)
-###Kreskoweczki.pl###
-    if setting('Kreskoweczki') == 'true':
-        addon.addDir('[COLOR=%s]Kreskóweczki[/COLOR]' % 'blue', 
-                     'http://www.kreskoweczki.pl', mode='Animeon',
-                     fanart=default_background, thumb=iconkresk, isFolder=True)
+                     fanart=DBfanart, thumb=iconstrefadb, isFolder=True)                    
 ###Ustawienia###
-    addon.addDir('Ustawienia', '', 'Settings',fanart=default_background, isFolder=True)
+    addon.addDir('Ustawienia', '', 'Settings',
+                 fanart=default_background, thumb=iconsettings, isFolder=True)
 
 ###############################################################################
 ###############################################################################
@@ -178,8 +136,7 @@ def AnimeOdcinki(mode, url):
 
 def AnimeShinden(mode, url):
     from hosts import hostanimeshinden
-    if mode == "Shinden":
-        
+    if mode == "Shinden":        
         hostanimeshinden.PageAnimeShinden()
         xbmcplugin.setContent(int(sys.argv[1]), 'movies')
         addon.endOfDir()
@@ -210,7 +167,6 @@ def AnimeShinden(mode, url):
     else:    
         return
 
-
 def DragonBall(mode, url):
     from hosts import hostdragon
     if mode == "Dragonball":
@@ -240,8 +196,7 @@ def PathCheck():
             exit()
     else:
         return
-            
-    
+  
     
 ############################################################################################################
 #=########################################################################################################=#
@@ -259,10 +214,6 @@ try:
     mode = params['mode']
 except:
     mode = None
-
-
-
-
 
 ###############################################################################################################
 #=###########################################################################################################=#
@@ -300,7 +251,6 @@ def mode_check(mode='', url=''):
         Wbijam(mode, url)
 
 
-
 # ANIME-ODCINKI
     elif (mode == 'AnimeOdcinki'):
         AnimeOdcinki(mode=mode, url=url)
@@ -317,8 +267,7 @@ def mode_check(mode='', url=''):
     elif (mode == 'AOListLinks'):        
         AnimeOdcinki(mode, url)   
 
-# ANIME-SHINDEN
-        
+# ANIME-SHINDEN        
     elif (mode == 'Shinden'):
         AnimeShinden(mode=mode, url=url)
     elif (mode == 'SHAlfabetycznie'):
