@@ -2,7 +2,7 @@
 <addons>
 <addon
   id="plugin.video.animeotaku"
-  version="0.1.6"
+  version="0.1.7"
   name="Anime Otaku"
   provider-name="Lantash">
   <requires>
@@ -59,6 +59,8 @@ Changelog 0.1.5
 - Shinden - dodano opisy
 - Shinden - skrócenie kodu
 
+Changelog 0.1.7
+- Missing provider fix
 </news>
   </extension>
 </addon>
