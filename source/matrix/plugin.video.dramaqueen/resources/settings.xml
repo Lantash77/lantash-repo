@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="Logowanie">
+        <setting id="user"  type="text" label="Login" default="" />
+        <setting id="pass"  type="text" label="Hasło" option="hidden"  default="" />
+		<setting type="sep" />
+		<setting id="reset_db" type="action" label="[COLOR red]Czyszczenie bazy scrapera[/COLOR]" enable="true" action="RunPlugin(plugin://plugin.video.dramaqueen/?mode=7)"/>
+    </category>
+</settings>
