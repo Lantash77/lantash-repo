@@ -93,19 +93,20 @@ def PlayFromHost(url, mode, title):
     
     if 'google' in url:
         url = url.replace('preview', 'view')
-    
+#DQ Player    
     try:
-        if ('youtube' in url):
-                li = xbmcgui.ListItem(title, path=url)
-                li.setInfo(type='video')
-                li.setProperty('IsPlayable', 'true')
-                xbmcplugin.setResolvedUrl(handle=int(sys.argv[1]), succeeded=True, listitem=li)
-            
+        if 'https://dramaqueen.pl/player.php?url=https' in url:
+
+            pattern = r'https://(.+?)url='
+            videolink = re.sub(pattern, '', url)
+            li = xbmcgui.ListItem(title, path=str(videolink))
+            xbmcplugin.setResolvedUrl(handle=int(sys.argv[1]), succeeded=True, listitem=li)
+#Send to resolver           
         else:
             try:
                 stream_url = resolveurl.resolve(url)
                 xbmc.log('DramaQueen.pl | wynik z resolve  : %s' % stream_url, xbmc.LOGINFO)
-                
+
                 li = xbmcgui.ListItem(title, path=str(stream_url))
                 xbmcplugin.setResolvedUrl(handle=int(sys.argv[1]), succeeded=True, listitem=li)
                 

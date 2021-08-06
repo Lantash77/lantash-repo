@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon
   id="plugin.video.dramaqueen"
-  version="0.1.7"
+  version="0.1.8"
   name="Drama Queen"
   provider-name="Lantash">
   <requires>
@@ -22,6 +22,9 @@ Mogą wystąpić błedy w trakcie korzystania.
     <disclaimer lang="en_GB">Wszelkie treści multimedialne są własnością Dramaqueen. Wtyczka tworzona za zgodą administratorów dramaqueen.pl.</disclaimer>
     <license>GNUv3</license>
     <platform>all</platform>
+	<website>http://lantash77.github.io</website>
+	    <source>https://github.com/Lantash77/lantash-repo/tree/main/source/matrix/plugin.video.dramaqueen</source>
+
     <assets>
         <icon>icon.png</icon>
         <fanart>fanart.jpg</fanart>
@@ -30,7 +33,9 @@ Mogą wystąpić błedy w trakcie korzystania.
     <news>
 
 	
-	
+Changelog 0.1.8
+DQ Player fix
+
 Changelog 0.1.7
 Dodano opcje czyszczenia danych scrapera
 Fix logowania

@@ -301,7 +301,7 @@ def WyswietlanieLinkow():
         rEL = requests.get(url, headers=headersget, timeout=15).text
         LoginCheck(rEL)
         
-        results = [item for item in parseDOM(rEL, 'section') if 'https://www.dramaqueen.pl/player.html' in item]
+        results = [item for item in parseDOM(rEL, 'section', attrs={'class': 'av_toggle_section'})]
         avDlinks = [parseDOM(item, 'a', ret='href')for item in results][index - 1]
         avDplayers = [parseDOM(item, 'button')for item in results][index - 1]
         
