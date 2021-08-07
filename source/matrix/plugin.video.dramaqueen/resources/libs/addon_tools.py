@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 import sys
+import re
 import urllib.request, urllib.parse, urllib.error
 import xbmc
 import xbmcgui
@@ -89,27 +90,27 @@ def get_params():
 
 def PlayFromHost(url, mode, title):
 
-    import resolveurl
+    
     
     if 'google' in url:
         url = url.replace('preview', 'view')
 #DQ Player    
     try:
-        if 'https://dramaqueen.pl/player.php?url=https' in url:
+        if 'https://dramaqueen.pl/player.php' in url:
 
             pattern = r'https://(.+?)url='
             videolink = re.sub(pattern, '', url)
+            
             li = xbmcgui.ListItem(title, path=str(videolink))
             xbmcplugin.setResolvedUrl(handle=int(sys.argv[1]), succeeded=True, listitem=li)
 #Send to resolver           
         else:
+            import resolveurl
             try:
                 stream_url = resolveurl.resolve(url)
                 xbmc.log('DramaQueen.pl | wynik z resolve  : %s' % stream_url, xbmc.LOGINFO)
-
                 li = xbmcgui.ListItem(title, path=str(stream_url))
                 xbmcplugin.setResolvedUrl(handle=int(sys.argv[1]), succeeded=True, listitem=li)
-                
             except:
                 exit()
                 
