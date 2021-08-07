@@ -277,11 +277,11 @@ def ListEpisodes():
     incorrection =  '[COLOR=red][I]  korekta[/COLOR][/I]'
 
     for item in episodes:
-        if 'tłumaczenie' in item:
-            addon.addLink(str(inprogress), url, mode=3, fanart=(str(fanart)), 
+        if item.__contains__('tłumaczenie'):
+            addon.addLink(str(inprogress), url, mode=8, fanart=(str(fanart)), 
                           plot=(str(plot)), thumb=str(thumb))
         elif 'korekta' in item:
-            addon.addLink(str(incorrection), url, mode=3, fanart=(str(fanart)), 
+            addon.addLink(str(incorrection), url, mode=8, fanart=(str(fanart)), 
                           plot=(str(plot)), thumb=str(thumb))
         else:
             addon.addLink(str(item), url, mode=3, fanart=(str(fanart)), 
@@ -296,30 +296,26 @@ def WyswietlanieLinkow():
     url = params['url']
     name = params['name']
     
+    html = requests.get(url, headers=headersget, timeout=15).text
+    LoginCheck(html)
+    results = [item for item in parseDOM(html, 'section', attrs={'class': 'av_toggle_section'})]
+    
     if name.startswith('Odcinek '):
-        index = int(re.findall('\d+', name)[0])
-        rEL = requests.get(url, headers=headersget, timeout=15).text
-        LoginCheck(rEL)
-        
-        results = [item for item in parseDOM(rEL, 'section', attrs={'class': 'av_toggle_section'})]
-        avDlinks = [parseDOM(item, 'a', ret='href')for item in results][index - 1]
-        avDplayers = [parseDOM(item, 'button')for item in results][index - 1]
-        
-        addon.SourceSelect(players=avDplayers, links=avDlinks, title=name)        
+        index = int(re.findall('\d+', name)[0])        
+        avlinks = [parseDOM(item, 'a', ret='href')for item in results][index - 1]
+        avplayers = [parseDOM(item, 'button')for item in results][index - 1]        
+              
     elif 'tłumaczeni' in name:
         pass
     elif 'korekta' in name:
         pass
-    else:
-        rML = requests.get(url, headers=headersget, timeout=15).text
-        LoginCheck(rML)
+    else:        
         
-        results2 = [item for item in parseDOM(rML, 'section', attrs={'class': 'av_toggle_section'})]
-        avMlinks = [parseDOM(item, 'a', ret='href') for item in results2][0]
-        avMplayers = [parseDOM(item, 'button') for item in results2][0]
-        
-        addon.SourceSelect(players=avMplayers, links=avMlinks, title=name)  
-
+        avlinks = [parseDOM(item, 'a', ret='href') for item in results][0]
+        avplayers = [parseDOM(item, 'button') for item in results][0]        
+         
+    addon.SourceSelect(players=avplayers, links=avlinks, title=name)
+    
 def Szukaj():
 
     url = params['url']
@@ -482,7 +478,12 @@ elif mode == 6:
 elif mode == 7:
     from resources.libs.dqscraper import delete_table
     delete_table()
-    
+
+# Brak linku - monit
+elif mode == 8:
+    dialog = xbmcgui.Dialog()
+    dialog.notification('dramaqueen.pl ', '[COLOR=red]Brak odcinka.[/COLOR]', xbmcgui.NOTIFICATION_INFO, 5000)
+   
 #elif mode == 7:
 #    KategorieLista()
 #    xbmcplugin.setContent(int(sys.argv[1]), 'movies')
