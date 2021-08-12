@@ -34,6 +34,7 @@ Nie biorę odpowiedzialności za problemy związane z użytkowaniem tego dodatku
         <banner></banner> <!-- optional -->
     </assets>
     <news>
+
 Changelog 0.1.10
 - Wbijam.pl scraper
 - czyszczenie danych
@@ -161,5 +162,33 @@ Poprawiono listowanie wyników wyszukiwania
                 </assets>
 	</extension>
 
+</addon>
+
+<addon id="service.subtitles.animesub" name="Animesub.info" version="0.0.1" provider-name="Lantash">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+		<import addon="script.module.requests"/>
+    </requires>
+    <extension point="xbmc.subtitle.module" library="service.py"/>
+    <extension point="xbmc.addon.metadata">
+		<summary lang="en">Animesub.info</summary>
+		<description lang="en">Search and Download subtitles from animesub.info.</description>
+		<summary lang="pl">Animesub.info</summary>
+		<description lang="pl">Szukaj i pobieraj napisy z serwisu animesub.info. Wtyczka powstała w celach edukacyjnych. Port pod Kodi Matrix</description>
+		<source></source>
+		<language/>
+		<email/>
+		<forum></forum>
+		<website/>
+		<assets>
+        <icon>icon.png</icon>
+        <banner></banner> <!-- optional -->
+		</assets>
+	 <news>
+- 0.0.1
+Python 3 - port
+</news>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    </extension>
 </addon>
 </addons>
