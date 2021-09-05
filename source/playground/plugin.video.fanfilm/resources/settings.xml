@@ -86,10 +86,28 @@
         <setting id="provider.zaluknij" type="bool" label="Zaluknij" default="true"/>
         <setting label="English" type="lsep"/>
         <setting type="sep"/>
-        <setting id="provider.apimdb" type="bool" label="apimdb" default="true"/>
+        <setting id="provider.123moviesfree" type="bool" label="123moviesfree" default="true"/>
+        <setting id="provider.123movieshubz" type="bool" label="123movieshubz" default="true"/>
+        <setting id="provider.123123movies" type="bool" label="123123movies" default="true"/>
+        <setting id="provider.azmovie" type="bool" label="azmovie" default="true"/>
+        <setting id="provider.cmovieshd" type="bool" label="cmovieshd" default="true"/>
+        <setting id="provider.extramovies" type="bool" label="extramovies" default="true"/>
+        <setting id="provider.fmovies" type="bool" label="fmovies" default="true"/>
+        <setting id="provider.fmoviesio" type="bool" label="fmoviesio" default="true"/>
+        <setting id="provider.freefmovies" type="bool" label="freefmovies" default="true"/>
+        <setting id="provider.freeputlockers" type="bool" label="freeputlockers" default="true"/>
         <setting id="provider.gowatchseries" type="bool" label="gowatchseries" default="true"/>
-        <setting id="provider.tunemovie" type="bool" label="TUNEMOVIE" default="true"/>
-        <setting id="provider.vidsrc" type="bool" label="VIDSRC" default="true"/>
+        <setting id="provider.hdmto" type="bool" label="hdmto" default="true"/>
+        <setting id="provider.hdpopcorns" type="bool" label="hdpopcorns" default="true"/>
+        <setting id="provider.iwatch" type="bool" label="iwatch" default="true"/>
+        <setting id="provider.movies123" type="bool" label="movies123" default="true"/>
+        <setting id="provider.myhdpopcorn" type="bool" label="myhdpopcorn" default="true"/>
+        <setting id="provider.putlocker" type="bool" label="PUTLOCKER" default="true"/>
+		<setting id="provider.putlockers" type="bool" label="PUTLOCKER" default="true"/>
+        <setting id="provider.seriesonline" type="bool" label="SERIESONLINE" default="true"/>
+        <setting id="provider.solarmoviefree" type="bool" label="SOLARMOVIEFREE" default="true"/>
+        <setting id="provider.timewatch" type="bool" label="TIMEWATCH" default="true"/>
+        <setting id="provider.vdonip" type="bool" label="VDONIP" default="true"/>
     </category>
     <category label="32346">
         <setting type="sep"/>

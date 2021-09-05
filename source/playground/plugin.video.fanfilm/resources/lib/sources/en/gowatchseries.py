@@ -7,7 +7,7 @@
 #  .##.....#.##.......##......##..###.......#.##......##...##..########.##.......##......##...##........##
 #  .##.....#.##.......##......##...##.##....#.##....#.##....##.##.....#.##.......##......##....##.##....##
 #  ..#######.##.......#######.##....#..######..######.##.....#.##.....#.##.......#######.##.....#..######.
-#  Lantash
+
 '''
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,11 +27,10 @@ import json
 import re
 import urllib
 
-
+import urlparse
 from ptw.libraries import cleantitle
 from ptw.libraries import client
-from ptw.libraries import source_utils, log_utils
-from urllib.parse import urlencode, quote_plus, parse_qs, urljoin, urlparse
+from ptw.libraries import source_utils
 
 
 class source:
@@ -39,43 +38,47 @@ class source:
         self.priority = 1
         self.language = ['en']
         self.domains = ['gowatchseries.io', 'gowatchseries.co']
-        self.base_link = 'https://www5.gowatchseries.bz'
+        self.base_link = 'https://ww5.gowatchseries.co'
         self.search_link = '/ajax-search.html?keyword=%s&id=-1'
-#        self.search_link2 = '/search.html?keyword=%s'
+        self.search_link2 = '/search.html?keyword=%s'
 
     def movie(self, imdb, title, localtitle, aliases, year):
         try:
-            url = {'imdb': imdb, 'title': title, 'year': year}
-            url = urlencode(url)
+            url = {
+                'imdb': imdb,
+                'title': title,
+                'year': year}
+            url = urllib.urlencode(url)
             return url
         except:
             return
 
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
-        
         try:
-            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
-            url = urlencode(url)
+            url = {
+                'imdb': imdb,
+                'tvdb': tvdb,
+                'tvshowtitle': tvshowtitle,
+                'year': year}
+            url = urllib.urlencode(url)
             return url
         except:
             return
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
-        
         try:
             if url == None:
                 return
 
-            url = parse_qs(url)
+            url = urlparse.parse_qs(url)
             url = dict([(i, url[i][0]) if url[i] else (i, '') for i in url])
             url['title'], url['premiered'], url['season'], url['episode'] = title, premiered, season, episode
-            url = urlencode(url)
+            url = urllib.urlencode(url)
             return url
         except:
             return
 
     def sources(self, url, hostDict, hostprDict):
-      
         try:
             sources = []
 
@@ -83,8 +86,8 @@ class source:
                 return sources
 
             if not str(url).startswith('http'):
-                
-                data = parse_qs(url)
+
+                data = urlparse.parse_qs(url)
                 data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
                 title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
@@ -93,30 +96,24 @@ class source:
                 if 'episode' in data:
                     episode = data['episode']
                 year = data['year']
+
                 r = client.request(self.base_link, output='extended', timeout='10')
-                
                 cookie = r[4];
                 headers = r[3];
-                result = r[0]                
-                headers.update({'Cookie': cookie})
-                
-                query = urljoin(self.base_link, self.search_link % quote_plus(cleantitle.getsearch(title)))
-                query2 = urljoin(self.base_link, self.search_link % quote_plus(title).lower())
-                r = client.request(query, headers=headers, XHR=True)              
-                
-                if len(r) < 20:
-                    r = client.request(query2, headers=headers, XHR=True)               
+                result = r[0]
+                headers['Cookie'] = cookie
+
+                query = urlparse.urljoin(self.base_link, self.search_link % urllib.quote_plus(cleantitle.getsearch(title)))
+                r = client.request(query, headers=headers, XHR=True)
                 r = json.loads(r)['content']
-                r = zip(client.parseDOM( r, 'a', ret='href'), client.parseDOM(r, 'a'))
-                
+                r = zip(client.parseDOM(r, 'a', ret='href'), client.parseDOM(r, 'a'))
+
                 if 'tvshowtitle' in data:
-                    cltitle = cleantitle.get(title + 'season' + season)                    
-                    cltitle2 = cleantitle.get(title + 'season%02d' % int(season))                    
+                    cltitle = cleantitle.get(title + 'season' + season)
+                    cltitle2 = cleantitle.get(title + 'season%02d' % int(season))
                     r = [i for i in r if cltitle == cleantitle.get(i[1]) or cltitle2 == cleantitle.get(i[1])]
-                    
                     vurl = '%s%s-episode-%s' % (self.base_link, str(r[0][0]).replace('/info', ''), episode)
                     vurl2 = None
-                    
                 else:
                     cltitle = cleantitle.getsearch(title)
                     cltitle2 = cleantitle.getsearch('%s (%s)' % (title, year))
@@ -167,7 +164,6 @@ class source:
 
             return sources
         except:
-            log_utils.log('gowatchseries1 - Exception', 1)
             return sources
 
     def resolve(self, url):

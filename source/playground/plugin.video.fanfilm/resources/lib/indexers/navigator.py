@@ -343,7 +343,7 @@ class navigator:
 
     def addDirectoryItem(self, name, query, thumb, icon, context=None, queue=False, isAction=True, isFolder=True):
         try:
-            name = control.lang(name)
+            name = control.lang(name).encode('utf-8')
         except:
             pass
         url = '%s?action=%s' % (sysaddon, query) if isAction == True else query
@@ -353,7 +353,7 @@ class navigator:
         if queue == True:
             cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
         if not context == None:
-            cm.append((control.lang(context[0]), 'RunPlugin(%s?action=%s)' % (sysaddon, context[1])))
+            cm.append((control.lang(context[0]).encode('utf-8'), 'RunPlugin(%s?action=%s)' % (sysaddon, context[1])))
         item = control.item(label=name)
         item.addContextMenuItems(cm)
         item.setArt({
