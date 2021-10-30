@@ -17,7 +17,6 @@ from resources.libs import cache
 from resources.libs import addon_tools as addon
 from resources.libs import dqscraper
 
-
 my_addon = xbmcaddon.Addon()
 my_addon_id = my_addon.getAddonInfo('id')
 
@@ -208,9 +207,9 @@ def ListTitles():
     html = requests.get(url, headers=headersget, timeout=15).text
     
     html = CleanHTML(html)
-    
+
     result = parseDOM(html, 'div', attrs={'id': 'av_section_1'})[0]
-    results = re.findall('flex_column av_one_fourth(.+?)</div></div></div>', result)
+    results = re.findall('flex_column '+ r'.+?'+'av_one_fourth(.+?)</div></div></div>', result)
 
     titles = re.findall('><p>(.+?)</p>', result)
     linki = [item for item in parseDOM(results, 'a', ret='href')]
@@ -218,7 +217,7 @@ def ListTitles():
     obrazy = parseDOM(results, 'img', ret='src')
     
     threads = []
-    
+        
     for item in zip(linki, titles, obrazy, Plot):
 
         title, poster, plot, banner, fanart, genre, year, thread = dqscraper.scraper_check(item[1], item[0], item[2])
@@ -261,7 +260,7 @@ def ListEpisodes():
     
     rE = str.replace(rE, '&#8211;', '-')
     rE = rE.replace('&nbsp;', ' ')
-    result = parseDOM(rE, 'div', attrs={'class': 'container'})[1]
+    result = parseDOM(rE, 'div', attrs={'class': 'togglecontainer '+ r'.+?'})[0]
     results = re.findall('av_toggle_section(.+?)<span', result)
     episodes = [item for item in parseDOM(results, 'p')]
     
@@ -271,7 +270,7 @@ def ListEpisodes():
     else:
         plot = CleanHTML(parseDOM(plot, 'p')[0])
 
-    fanart = re.findall('background-image: url\((.+?)\);', rE)[1]
+    fanart = ''#re.findall('background-image: url\((.+?)\);', rE)[1]
     
     inprogress = '[COLOR=red][I]  w tłumaczeniu[/COLOR][/I]'
     incorrection =  '[COLOR=red][I]  korekta[/COLOR][/I]'
@@ -298,7 +297,7 @@ def WyswietlanieLinkow():
     
     html = requests.get(url, headers=headersget, timeout=15).text
     LoginCheck(html)
-    results = [item for item in parseDOM(html, 'section', attrs={'class': 'av_toggle_section'})]
+    results = [item for item in parseDOM(html, 'section', attrs={'class': 'av_toggle_section ' +r'.+?'})]
     
     if name.startswith('Odcinek '):
         index = int(re.findall('\d+', name)[0])        
