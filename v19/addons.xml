@@ -72,7 +72,7 @@ Changelog 0.1.0:
 
 <addon
   id="plugin.video.dramaqueen"
-  version="0.1.13"
+  version="0.1.15"
   name="Drama Queen"
   provider-name="Lantash">
   <requires>
@@ -102,26 +102,21 @@ Mogą wystąpić błedy w trakcie korzystania.
         <banner></banner> <!-- optional -->
     </assets>
     <news>
-Changelog 0.1.13
-- fix
+Changelog
 
-Changelog 0.1.11
+0.1.15
+Fix - update strony
+wyszukiwanie - dodana historia
+wyłączony scraper - prace w toku
+DQ Player - nie działa
+
+0.1.11
 DQ Player fix
 Brakująca odcinki - fix
 
-Changelog 0.1.7
+0.1.7
 Dodano opcje czyszczenia danych scrapera
 Fix logowania
-
-Fix do wyszukiwania
-Changelog 0.1.6
-Dodano scraper
-Fix do wyszukiwania
-
-Changelog 0.1.5:
-Update do Wersji Kodi 19
-Poprawiono listowanie gatunków.
-Poprawiono listowanie wyników wyszukiwania
 
 
     </news>
