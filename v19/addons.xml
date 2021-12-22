@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
+<addon id="plugin.audio.openFM"
+       name="Open FM"
+       version="0.0.1"
+       provider-name="Lantash">
+	   <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+        <import addon="script.module.requests"/>
+    </requires>
+  <extension point="xbmc.python.pluginsource"
+            library="default.py">
+        <provides>audio</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Otwórz się na muzykę z OPEN.FM</summary>
+    <description>Fork wtyczki pajretX.
+        Stream radia ze strony open.fm</description>
+    <platform>all</platform>
+    <website>http://lantash77.github.io</website>
+    <assets>
+        <icon>icon.png</icon>
+    </assets>
+  </extension>
+</addon>
+
 <addon
   id="plugin.video.animeotaku"
   version="0.1.10"
@@ -27,13 +51,14 @@ Nie biorę odpowiedzialności za problemy związane z użytkowaniem tego dodatku
     <platform>all</platform>
 	<website>http://lantash77.github.io</website>
 
-    <source>https://github.com/Lantash77/lantash-repo/tree/main/source/plugin.video.animeotaku</source>
+    <source>https://github.com/Lantash77/lantash-repo/tree/main/source/matrix/plugin.video.animeotaku</source>
     <assets>
         <icon>icon.png</icon>
         <fanart>fanart.jpg</fanart>
         <banner></banner> <!-- optional -->
     </assets>
     <news>
+
 Changelog 0.1.10
 - Wbijam.pl scraper
 - czyszczenie danych
@@ -70,57 +95,47 @@ Changelog 0.1.0:
   </extension>
 </addon>
 
-<addon
-  id="plugin.video.dramaqueen"
-  version="0.1.15"
-  name="Drama Queen"
-  provider-name="Lantash">
-  <requires>
-    <import addon="xbmc.python" version="3.0.0"/>
-    <import addon="script.module.requests"/>
-    <import addon="script.module.resolveurl"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource"
+<addon id="plugin.video.dramaqueen" version="0.1.16" name="Drama Queen" provider-name="Lantash">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+        <import addon="script.module.requests"/>
+        <import addon="script.module.resolveurl"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
              library="dramaqueen.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>drama</summary>
-    <summary lang="pl">Przeglądanie i odtwarzanie zawartości strony DramaQueen.</summary>
-    <description lang="pl">Wtyczka powstała w celach edukacyjnych.
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>drama</summary>
+        <summary lang="pl">Przeglądanie i odtwarzanie zawartości strony DramaQueen.</summary>
+        <description lang="pl">Wtyczka powstała w celach edukacyjnych.
 Mogą wystąpić błedy w trakcie korzystania.
-    </description>
-    <disclaimer lang="en_GB">Wszelkie treści multimedialne są własnością Dramaqueen. Wtyczka tworzona za zgodą administratorów dramaqueen.pl.</disclaimer>
-    <license>GNUv3</license>
-    <platform>all</platform>
-	<website>http://lantash77.github.io</website>
-	    <source>https://github.com/Lantash77/lantash-repo/tree/main/source/matrix/plugin.video.dramaqueen</source>
-
-    <assets>
-        <icon>icon.png</icon>
-        <fanart>fanart.jpg</fanart>
-        <banner></banner> <!-- optional -->
-    </assets>
-    <news>
-Changelog
-
+        </description>
+        <disclaimer lang="en_GB">Wszelkie treści multimedialne są własnością Dramaqueen. Wtyczka tworzona za zgodą administratorów dramaqueen.pl.</disclaimer>
+        <license>GNUv3</license>
+        <platform>all</platform>
+        <website>http://lantash77.github.io</website>
+        <source>https://github.com/Lantash77/lantash-repo/tree/main/source/matrix/plugin.video.dramaqueen</source>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+            <banner></banner> <!-- optional -->
+        </assets>
+        <news>
+Changelog:
 0.1.15
-Fix - update strony
-wyszukiwanie - dodana historia
-wyłączony scraper - prace w toku
-DQ Player - nie działa
-
+- Fix - update strony
+- wyszukiwanie - dodana historia
+- wyłączony scraper - prace w toku
+- DQ Player - nie działa
 0.1.11
-DQ Player fix
-Brakująca odcinki - fix
-
+- DQ Player fix
+- Brakująca odcinki - fix
 0.1.7
-Dodano opcje czyszczenia danych scrapera
-Fix logowania
-
-
-    </news>
-  </extension>
+- Dodano opcje czyszczenia danych scrapera
+- Fix logowania
+        </news>
+    </extension>
 </addon>
 
 <addon id="repository.lantash" name="lantash-repo" version="0.1" provider-name="lantash">
@@ -159,5 +174,33 @@ Fix logowania
                 </assets>
 	</extension>
 
+</addon>
+
+<addon id="service.subtitles.animesub" name="Animesub.info" version="0.0.1" provider-name="Lantash">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+		<import addon="script.module.requests"/>
+    </requires>
+    <extension point="xbmc.subtitle.module" library="service.py"/>
+    <extension point="xbmc.addon.metadata">
+		<summary lang="en">Animesub.info</summary>
+		<description lang="en">Search and Download subtitles from animesub.info.</description>
+		<summary lang="pl">Animesub.info</summary>
+		<description lang="pl">Szukaj i pobieraj napisy z serwisu animesub.info. Wtyczka powstała w celach edukacyjnych. Port pod Kodi Matrix</description>
+		<source></source>
+		<language/>
+		<email/>
+		<forum></forum>
+		<website/>
+		<assets>
+        <icon>icon.png</icon>
+        <banner></banner> <!-- optional -->
+		</assets>
+	 <news>
+- 0.0.1
+Python 3 - port
+</news>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    </extension>
 </addon>
 </addons>
