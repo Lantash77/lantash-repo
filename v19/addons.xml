@@ -95,19 +95,16 @@ Changelog 0.1.0:
   </extension>
 </addon>
 
-<addon id="plugin.video.dramaqueen" version="0.1.17" name="DramaQueen" provider-name="Lantash">
+<addon id="plugin.video.dramaqueen" version="0.1.16" name="Drama Queen" provider-name="Lantash">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.requests"/>
         <import addon="script.module.resolveurl"/>
-        <import addon="inputstream.adaptive"/>
-        <import addon="script.module.inputstreamhelper"/>
     </requires>
     <extension point="xbmc.python.pluginsource"
              library="dramaqueen.py">
         <provides>video</provides>
     </extension>
-    <extension library="serverHTTP.py" point="xbmc.service"/>
     <extension point="xbmc.addon.metadata">
         <summary>drama</summary>
         <summary lang="pl">Przeglądanie i odtwarzanie zawartości strony DramaQueen.</summary>
@@ -125,19 +122,18 @@ Mogą wystąpić błedy w trakcie korzystania.
             <banner></banner> <!-- optional -->
         </assets>
         <news>
-            Changelog:
-            0.1.17
-            - Dodana obsługa playera testowego
-            0.1.16
-            - poprawki po zmianach na stronie
-            0.1.15
-            - Fix - update strony
-            - wyszukiwanie - dodana historia
-            - wyłączony scraper - prace w toku
-            - DQ Player - nie działa
-            0.1.11
-            - DQ Player fix
-            - Brakujące odcinki - fix
+Changelog:
+0.1.15
+- Fix - update strony
+- wyszukiwanie - dodana historia
+- wyłączony scraper - prace w toku
+- DQ Player - nie działa
+0.1.11
+- DQ Player fix
+- Brakująca odcinki - fix
+0.1.7
+- Dodano opcje czyszczenia danych scrapera
+- Fix logowania
         </news>
     </extension>
 </addon>
