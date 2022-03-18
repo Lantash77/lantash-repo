@@ -26,7 +26,7 @@
 
 <addon
   id="plugin.video.animeotaku"
-  version="0.1.10"
+  version="0.1.11"
   name="Anime Otaku"
   provider-name="Lantash">
   <requires>
@@ -41,51 +41,54 @@
   <extension point="xbmc.addon.metadata">
     <summary>anime</summary>
 	<summary lang="pl">Przeglądanie i odtwarzanie zawartości stron anime.</summary>
-    <description lang="pl">Wtyczka powstała w celach edukacyjnych.
-Stworzona przez modyfikację dodatku Anime-IPTV stworzonego przez Huball.
-Testowana na Windows 10, RPI z OSMC, Android.
-Niektóre jej składniki mogą nie działać lub działać nie poprawnie.
-Nie biorę odpowiedzialności za problemy związane z użytkowaniem tego dodatku.
-</description>
+    <description lang="pl">Wtyczka do oglądania Anime ze stron wbijam.pl, animeshinden.pl, anime-odcinki.pl.&#xA;
+Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatku Anime-IPTV stworzonego przez Huball.
+    </description>
+      <disclaimer lang="en_GB">Testowana na Windows 10, RPI z OSMC, Android.
+          Niektóre jej składniki mogą nie działać lub działać nie poprawnie.
+          Nie biorę odpowiedzialności za problemy związane z użytkowaniem tego dodatku.</disclaimer>
     <license>GNUv3</license>
     <platform>all</platform>
 	<website>http://lantash77.github.io</website>
 
-    <source>https://github.com/Lantash77/lantash-repo/tree/main/source/matrix/plugin.video.animeotaku</source>
+    <source>https://github.com/Lantash77/lantash-repo/tree/main/source/plugin.video.animeotaku</source>
     <assets>
         <icon>icon.png</icon>
         <fanart>fanart.jpg</fanart>
         <banner></banner> <!-- optional -->
     </assets>
     <news>
-
-Changelog 0.1.10
+Changelog
+0.0.11
+- Historia wyszukiwania
+-
+0.1.10
 - Wbijam.pl scraper
 - czyszczenie danych
 - fix ustawień
 
-Changelog 0.1.9
+0.1.9
 - Missing provider fix
 
-Changelog 0.1.5
+0.1.5
 - Shinden - dodano opisy
 - Shinden - skrócenie kodu
 
-Changelog 0.1.4
+0.1.4
 - code fix
 - scraper update for wbijam
 
-Changelog 0.1.3
+0.1.3
 - download fix
 
-Changelog 0.1.2
+0.1.2
 - Simple scraper for wbijam.pl
 
-Changelog 0.1.1:
+0.1.1:
 - Poprawa listowania
 - Dodano opcję pobierania
 
-Changelog 0.1.0:
+0.1.0:
 - Wersja pod Kodi 19
 - Wbijam
 - Anime-Odcinki
