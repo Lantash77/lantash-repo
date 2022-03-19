@@ -51,7 +51,7 @@ Mogą wystąpić błedy w trakcie korzystania.
 
 <addon
   id="plugin.video.animeotaku"
-  version="0.1.11.21"
+  version="0.1.11.23"
   name="Anime Otaku"
   provider-name="Lantash">
   <requires>
