@@ -62,7 +62,7 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.dramaqueen" version="0.1.21.0" name="DramaQueen" provider-name="Lantash">
+<addon id="plugin.video.dramaqueen" version="0.1.22.0" name="DramaQueen" provider-name="Lantash">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.requests"/>
@@ -93,7 +93,9 @@ Mogą wystąpić błedy w trakcie korzystania.
         </assets>
         <news>
             Changelog:
-            0.1.21
+            0.1.22
+            - Poprawka 'Player testowy'
+            - Fix odcinków typu 'spin off'
             - Fix niezgodności linków z tytułem
             0.1.20
             - Player fix
