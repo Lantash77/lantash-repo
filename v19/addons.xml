@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
+<addon id="service.subtitles.animesub" name="Animesub.info" version="0.0.2" provider-name="Lantash">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+		<import addon="script.module.requests"/>
+    </requires>
+    <extension point="xbmc.subtitle.module" library="service.py"/>
+    <extension point="xbmc.addon.metadata">
+		<summary lang="en">Animesub.info</summary>
+		<description lang="en">Search and Download subtitles from animesub.info.</description>
+		<summary lang="pl">Animesub.info</summary>
+		<description lang="pl">Szukaj i pobieraj napisy z serwisu animesub.info. Wtyczka powstała w celach edukacyjnych. Port pod Kodi Matrix</description>
+		<source></source>
+		<language/>
+		<email/>
+		<forum></forum>
+		<website/>
+		<assets>
+        <icon>icon.png</icon>
+        <banner></banner> <!-- optional -->
+		</assets>
+	 <news>
+- 0.0.1
+Python 3 - port
+</news>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    </extension>
+</addon>
+
 <addon id="repository.lantash" name="lantash-repo" version="0.1" provider-name="lantash">
 	<extension point="xbmc.addon.repository" name="lantash-repo">
 	    <dir minversion="18.0" maxversion="18.9.0">
@@ -62,6 +90,87 @@
   </extension>
 </addon>
 
+<addon
+  id="plugin.video.animeotaku"
+  version="0.1.14"
+  name="Anime Otaku"
+  provider-name="Lantash">
+  <requires>
+  	<import addon="xbmc.python" version="3.0.0"/>
+  	<import addon="script.module.requests"/>
+	<import addon="script.module.resolveurl"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+             library="main.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>anime</summary>
+	<summary lang="pl">Przeglądanie i odtwarzanie zawartości stron anime.</summary>
+    <description lang="pl">Wtyczka do oglądania Anime ze stron wbijam.pl, shinden.pl, anime-odcinki.pl.&#xA;
+Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatku Anime-IPTV stworzonego przez Huball.
+    </description>
+      <disclaimer lang="pl_PL">Testowana na Windows 10, RPI z OSMC, Android.
+          Niektóre jej składniki mogą nie działać lub działać nie poprawnie.
+          Nie biorę odpowiedzialności za problemy związane z użytkowaniem tego dodatku.</disclaimer>
+    <license>GNUv3</license>
+    <platform>all</platform>
+	<website>http://lantash77.github.io</website>
+
+    <source>https://github.com/Lantash77/lantash-repo/tree/main/source/plugin.video.animeotaku</source>
+    <assets>
+        <icon>icon.png</icon>
+        <fanart>fanart.jpg</fanart>
+        <banner></banner> <!-- optional -->
+    </assets>
+    <news>
+Changelog
+0.0.14
+- Dodany host frixysubs.pl
+- Reorganizacja ustawień (K19 format)
+- Menu hostów - dodano opcję kolorów
+- Anime-odcinki - fix posterów
+- Pobieranie:
+  - Opcja pobierania w menu kontekstowym
+  - Okno decyzji zostało wyłączone (opcjonalnie w ustawieniach)
+- hosty wymagające logowania:
+  - włączenie wymusza wprowadzenie danych logowania
+0.0.12
+- Poprawione wyświetlanie playerów Anime-Odcinki
+0.0.11
+- Historia wyszukiwania
+-
+0.1.10
+- Wbijam.pl scraper
+- czyszczenie danych
+- fix ustawień
+0.1.9
+- Missing provider fix
+0.1.5
+- Shinden - dodano opisy
+- Shinden - skrócenie kodu
+0.1.4
+- code fix
+- scraper update for wbijam
+0.1.3
+- download fix
+0.1.2
+- Simple scraper for wbijam.pl
+
+0.1.1:
+- Poprawa listowania
+- Dodano opcję pobierania
+
+0.1.0:
+- Wersja pod Kodi 19
+- Wbijam
+- Anime-Odcinki
+- Shinden.pl
+- StrefaDB.pl
+</news>
+  </extension>
+</addon>
+
 <addon id="plugin.video.dramaqueen" version="0.1.23.0" name="DramaQueen" provider-name="Lantash">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
@@ -114,110 +223,6 @@
             - DQ Player fix
             - Brakujące odcinki - fix
         </news>
-    </extension>
-</addon>
-
-<addon
-  id="plugin.video.animeotaku"
-  version="0.1.12.1"
-  name="Anime Otaku"
-  provider-name="Lantash">
-  <requires>
-  	<import addon="xbmc.python" version="3.0.0"/>
-  	<import addon="script.module.requests"/>
-	<import addon="script.module.resolveurl"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource"
-             library="main.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>anime</summary>
-	<summary lang="pl">Przeglądanie i odtwarzanie zawartości stron anime.</summary>
-    <description lang="pl">Wtyczka do oglądania Anime ze stron wbijam.pl, animeshinden.pl, anime-odcinki.pl.&#xA;
-Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatku Anime-IPTV stworzonego przez Huball.
-    </description>
-      <disclaimer lang="en_GB">Testowana na Windows 10, RPI z OSMC, Android.
-          Niektóre jej składniki mogą nie działać lub działać nie poprawnie.
-          Nie biorę odpowiedzialności za problemy związane z użytkowaniem tego dodatku.</disclaimer>
-    <license>GNUv3</license>
-    <platform>all</platform>
-	<website>http://lantash77.github.io</website>
-
-    <source>https://github.com/Lantash77/lantash-repo/tree/main/source/plugin.video.animeotaku</source>
-    <assets>
-        <icon>icon.png</icon>
-        <fanart>fanart.jpg</fanart>
-        <banner></banner> <!-- optional -->
-    </assets>
-    <news>
-Changelog
-0.0.12
-- Poprawione wyświetlanie playerów Anime-Odcinki
-0.0.11
-- Historia wyszukiwania
--
-0.1.10
-- Wbijam.pl scraper
-- czyszczenie danych
-- fix ustawień
-
-0.1.9
-- Missing provider fix
-
-0.1.5
-- Shinden - dodano opisy
-- Shinden - skrócenie kodu
-
-0.1.4
-- code fix
-- scraper update for wbijam
-
-0.1.3
-- download fix
-
-0.1.2
-- Simple scraper for wbijam.pl
-
-0.1.1:
-- Poprawa listowania
-- Dodano opcję pobierania
-
-0.1.0:
-- Wersja pod Kodi 19
-- Wbijam
-- Anime-Odcinki
-- Shinden.pl
-- StrefaDB.pl
-</news>
-  </extension>
-</addon>
-
-<addon id="service.subtitles.animesub" name="Animesub.info" version="0.0.2" provider-name="Lantash">
-    <requires>
-        <import addon="xbmc.python" version="3.0.0"/>
-		<import addon="script.module.requests"/>
-    </requires>
-    <extension point="xbmc.subtitle.module" library="service.py"/>
-    <extension point="xbmc.addon.metadata">
-		<summary lang="en">Animesub.info</summary>
-		<description lang="en">Search and Download subtitles from animesub.info.</description>
-		<summary lang="pl">Animesub.info</summary>
-		<description lang="pl">Szukaj i pobieraj napisy z serwisu animesub.info. Wtyczka powstała w celach edukacyjnych. Port pod Kodi Matrix</description>
-		<source></source>
-		<language/>
-		<email/>
-		<forum></forum>
-		<website/>
-		<assets>
-        <icon>icon.png</icon>
-        <banner></banner> <!-- optional -->
-		</assets>
-	 <news>
-- 0.0.1
-Python 3 - port
-</news>
-		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
     </extension>
 </addon>
 </addons>
