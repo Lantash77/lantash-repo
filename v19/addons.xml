@@ -28,39 +28,6 @@ Python 3 - port
     </extension>
 </addon>
 
-<addon id="plugin.video.fajnadrama" version="0.0.1" name="FajnaDrama" provider-name="Lantash">
-    <requires>
-        <import addon="xbmc.python" version="3.0.0"/>
-        <import addon="script.module.requests"/>
-        <import addon="script.module.resolveurl"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource"
-             library="main.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary>drama</summary>
-        <summary lang="pl">Przeglądanie i odtwarzanie zawartości strony FajnaDrama.</summary>
-        <description lang="pl">Wtyczka powstała w celach edukacyjnych.[CR]Do użytku prywatnego</description>
-        <disclaimer lang="pl">To nie jest oficjalny dodatek, nie jest wspierany ani popierany przez autorów serwisu.![CR]  Wszelkie treści multimedialne są własnością FajnaDrama.pl. </disclaimer>
-        <license>GNUv3</license>
-        <platform>all</platform>
-        <website>http://lantash77.github.io</website>
-        <!--source>https://github.com/Lantash77/lantash-repo/tree/main/source/matrix/plugin.video.fajnadrama</source-->
-        <assets>
-            <icon>resources/media/icon.png</icon>
-            <fanart>resources/media/fanart.jpg</fanart>
-            <banner></banner> <!-- optional -->
-        </assets>
-        <news>Changelog:[CR]0.0.1
-[CR]&#8226; Wyszukiwanie + historia
-[CR]&#8226; Gatunki
-[CR]&#8226; Lista Alfabetyczna
-[CR]&#8226; Czyszczenie cache
-        </news>
-    </extension>
-</addon>
-
 <addon id="plugin.video.dramaqueen" version="0.1.23.0" name="DramaQueen" provider-name="Lantash">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
@@ -238,6 +205,39 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
 - StrefaDB.pl
 </news>
   </extension>
+</addon>
+
+<addon id="plugin.video.fajnadrama" version="0.0.1.1" name="FajnaDrama" provider-name="Lantash">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+        <import addon="script.module.requests"/>
+        <import addon="script.module.resolveurl"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+             library="main.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>drama</summary>
+        <summary lang="pl">Przeglądanie i odtwarzanie zawartości strony FajnaDrama.</summary>
+        <description lang="pl">Wtyczka powstała w celach edukacyjnych.[CR]Do użytku prywatnego</description>
+        <disclaimer lang="pl">To nie jest oficjalny dodatek, nie jest wspierany ani popierany przez autorów serwisu.![CR]  Wszelkie treści multimedialne są własnością FajnaDrama.pl. </disclaimer>
+        <license>GNUv3</license>
+        <platform>all</platform>
+        <website>http://lantash77.github.io</website>
+        <!--source>https://github.com/Lantash77/lantash-repo/tree/main/source/matrix/plugin.video.fajnadrama</source-->
+        <assets>
+            <icon>resources/media/icon.png</icon>
+            <fanart>resources/media/fanart.jpg</fanart>
+            <banner></banner> <!-- optional -->
+        </assets>
+        <news>Changelog:[CR]0.0.1
+[CR]&#8226; Wyszukiwanie + historia
+[CR]&#8226; Gatunki
+[CR]&#8226; Lista Alfabetyczna
+[CR]&#8226; Czyszczenie cache
+        </news>
+    </extension>
 </addon>
 
 <addon id="plugin.audio.openFM"
