@@ -28,88 +28,37 @@ Python 3 - port
     </extension>
 </addon>
 
-<addon
-  id="plugin.video.animeotaku"
-  version="0.1.15.1"
-  name="Anime Otaku"
-  provider-name="Lantash">
-  <requires>
-  	<import addon="xbmc.python" version="3.0.0"/>
-  	<import addon="script.module.requests"/>
-	<import addon="script.module.resolveurl"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource"
+<addon id="plugin.video.fajnadrama" version="0.0.1" name="FajnaDrama" provider-name="Lantash">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+        <import addon="script.module.requests"/>
+        <import addon="script.module.resolveurl"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
              library="main.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>anime</summary>
-	<summary lang="pl">Przeglądanie i odtwarzanie zawartości stron anime.</summary>
-    <description lang="pl">Wtyczka do oglądania Anime ze stron wbijam.pl, shinden.pl, anime-odcinki.pl.&#xA;
-Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatku Anime-IPTV stworzonego przez Huball.
-    </description>
-      <disclaimer lang="pl_PL">Testowana na Windows 10, RPI z OSMC, Android.
-          Niektóre jej składniki mogą nie działać lub działać nie poprawnie.
-          Nie biorę odpowiedzialności za problemy związane z użytkowaniem tego dodatku.</disclaimer>
-    <license>GNUv3</license>
-    <platform>all</platform>
-	<website>http://lantash77.github.io</website>
-
-    <source>https://github.com/Lantash77/lantash-repo/tree/main/source/plugin.video.animeotaku</source>
-    <assets>
-        <icon>icon.png</icon>
-        <fanart>fanart.jpg</fanart>
-        <banner></banner> <!-- optional -->
-    </assets>
-    <news>
-0.0.15
-- Dodany host frixysubs.pl
-- Anime-odcinki fix wyświetlania playerów
-- Anime-odcinki - fix posterów
-- Ograniczenie ilości listowanych odtwarzaczy:
-  - sprawdzenie obsługi hosta odtwarzacza w resolveurl
-  - przechodzi do odtwarzania jeżeli tylko jeden host dostępny
-- Reorganizacja ustawień (K19 format)
-- Menu hostów - dodano opcję kolorów
-- Pobieranie:
-  - Opcja pobierania w menu kontekstowym
-  - Okno decyzji zostało wyłączone (opcjonalnie w ustawieniach)
-- hosty wymagające logowania:
-  - włączenie wymusza wprowadzenie danych logowania
-0.0.12
-- Poprawione wyświetlanie playerów Anime-Odcinki
-0.0.11
-- Historia wyszukiwania
--
-0.1.10
-- Wbijam.pl scraper
-- czyszczenie danych
-- fix ustawień
-0.1.9
-- Missing provider fix
-0.1.5
-- Shinden - dodano opisy
-- Shinden - skrócenie kodu
-0.1.4
-- code fix
-- scraper update for wbijam
-0.1.3
-- download fix
-0.1.2
-- Simple scraper for wbijam.pl
-
-0.1.1:
-- Poprawa listowania
-- Dodano opcję pobierania
-
-0.1.0:
-- Wersja pod Kodi 19
-- Wbijam
-- Anime-Odcinki
-- Shinden.pl
-- StrefaDB.pl
-</news>
-  </extension>
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>drama</summary>
+        <summary lang="pl">Przeglądanie i odtwarzanie zawartości strony FajnaDrama.</summary>
+        <description lang="pl">Wtyczka powstała w celach edukacyjnych.[CR]Do użytku prywatnego</description>
+        <disclaimer lang="pl">To nie jest oficjalny dodatek, nie jest wspierany ani popierany przez autorów serwisu.![CR]  Wszelkie treści multimedialne są własnością FajnaDrama.pl. </disclaimer>
+        <license>GNUv3</license>
+        <platform>all</platform>
+        <website>http://lantash77.github.io</website>
+        <!--source>https://github.com/Lantash77/lantash-repo/tree/main/source/matrix/plugin.video.fajnadrama</source-->
+        <assets>
+            <icon>resources/media/icon.png</icon>
+            <fanart>resources/media/fanart.jpg</fanart>
+            <banner></banner> <!-- optional -->
+        </assets>
+        <news>Changelog:[CR]0.0.1
+[CR]&#8226; Wyszukiwanie + historia
+[CR]&#8226; Gatunki
+[CR]&#8226; Lista Alfabetyczna
+[CR]&#8226; Czyszczenie cache
+        </news>
+    </extension>
 </addon>
 
 <addon id="plugin.video.dramaqueen" version="0.1.23.0" name="DramaQueen" provider-name="Lantash">
@@ -167,30 +116,6 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
     </extension>
 </addon>
 
-<addon id="plugin.audio.openFM"
-       name="Open FM"
-       version="0.0.1"
-       provider-name="Lantash">
-	   <requires>
-        <import addon="xbmc.python" version="3.0.0"/>
-        <import addon="script.module.requests"/>
-    </requires>
-  <extension point="xbmc.python.pluginsource"
-            library="default.py">
-        <provides>audio</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Otwórz się na muzykę z OPEN.FM</summary>
-    <description>Fork wtyczki pajretX.
-        Stream radia ze strony open.fm</description>
-    <platform>all</platform>
-    <website>http://lantash77.github.io</website>
-    <assets>
-        <icon>icon.png</icon>
-    </assets>
-  </extension>
-</addon>
-
 <addon id="repository.lantash" name="lantash-repo" version="0.1" provider-name="lantash">
 	<extension point="xbmc.addon.repository" name="lantash-repo">
 	    <dir minversion="18.0" maxversion="18.9.0">
@@ -227,5 +152,115 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
                 </assets>
 	</extension>
 
+</addon>
+
+<addon
+  id="plugin.video.animeotaku"
+  version="0.1.16.0-alpha"
+  name="Anime Otaku"
+  provider-name="Lantash">
+  <requires>
+  	<import addon="xbmc.python" version="3.0.0"/>
+  	<import addon="script.module.requests"/>
+	<import addon="script.module.resolveurl"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+             library="main.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>anime</summary>
+	<summary lang="pl">Przeglądanie i odtwarzanie zawartości stron anime.</summary>
+    <description lang="pl">Wtyczka do oglądania Anime ze stron wbijam.pl, shinden.pl, anime-odcinki.pl.&#xA;
+Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatku Anime-IPTV stworzonego przez Huball.
+    </description>
+      <disclaimer lang="pl_PL">Testowana na Windows 10, RPI z OSMC, Android.
+          Niektóre jej składniki mogą nie działać lub działać nie poprawnie.
+          Nie biorę odpowiedzialności za problemy związane z użytkowaniem tego dodatku.</disclaimer>
+    <license>GNUv3</license>
+    <platform>all</platform>
+	<website>http://lantash77.github.io</website>
+
+    <source>https://github.com/Lantash77/lantash-repo/tree/main/source/plugin.video.animeotaku</source>
+    <assets>
+        <icon>icon.png</icon>
+        <fanart>fanart.jpg</fanart>
+        <banner></banner> <!-- optional -->
+    </assets>
+    <news>
+0.0.16
+- Dodany host desu-online.pl
+0.0.15
+- Dodany host frixysubs.pl
+- Anime-odcinki fix wyświetlania playerów
+- Anime-odcinki - fix posterów
+- Ograniczenie ilości listowanych odtwarzaczy:
+  - sprawdzenie obsługi hosta odtwarzacza w resolveurl
+  - przechodzi do odtwarzania jeżeli tylko jeden host dostępny
+- Reorganizacja ustawień (K19 format)
+- Menu hostów - dodano opcję kolorów
+- Pobieranie:
+  - Opcja pobierania w menu kontekstowym
+  - Okno decyzji zostało wyłączone (opcjonalnie w ustawieniach)
+- hosty wymagające logowania:
+  - włączenie wymusza wprowadzenie danych logowania
+0.0.12
+- Poprawione wyświetlanie playerów Anime-Odcinki
+0.0.11
+- Historia wyszukiwania
+-
+0.1.10
+- Wbijam.pl scraper
+- czyszczenie danych
+- fix ustawień
+0.1.9
+- Missing provider fix
+0.1.5
+- Shinden - dodano opisy
+- Shinden - skrócenie kodu
+0.1.4
+- code fix
+- scraper update for wbijam
+0.1.3
+- download fix
+0.1.2
+- Simple scraper for wbijam.pl
+
+0.1.1:
+- Poprawa listowania
+- Dodano opcję pobierania
+
+0.1.0:
+- Wersja pod Kodi 19
+- Wbijam
+- Anime-Odcinki
+- Shinden.pl
+- StrefaDB.pl
+</news>
+  </extension>
+</addon>
+
+<addon id="plugin.audio.openFM"
+       name="Open FM"
+       version="0.0.1"
+       provider-name="Lantash">
+	   <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+        <import addon="script.module.requests"/>
+    </requires>
+  <extension point="xbmc.python.pluginsource"
+            library="default.py">
+        <provides>audio</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Otwórz się na muzykę z OPEN.FM</summary>
+    <description>Fork wtyczki pajretX.
+        Stream radia ze strony open.fm</description>
+    <platform>all</platform>
+    <website>http://lantash77.github.io</website>
+    <assets>
+        <icon>icon.png</icon>
+    </assets>
+  </extension>
 </addon>
 </addons>
