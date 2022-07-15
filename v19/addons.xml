@@ -126,7 +126,7 @@ Python 3 - port
     </extension>
 </addon>
 
-<addon id="plugin.video.dramaqueen" version="0.1.24.0" name="DramaQueen" provider-name="Lantash">
+<addon id="plugin.video.dramaqueen" version="0.1.24.1" name="DramaQueen" provider-name="Lantash">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.requests"/>
@@ -155,8 +155,8 @@ Python 3 - port
         </assets>
         <news>
             Changelog:
-			0.1.24
-			- DQPlayer fix
+	0.1.24
+	- DQPlayer fix
             0.1.23
             - Wybór jakości playera testowego w ustawieniach
               SD, 720, MAX lub okno wybory przed rozpoczęciem
