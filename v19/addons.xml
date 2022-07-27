@@ -212,7 +212,7 @@ Python 3 - port
     </extension>
 </addon>
 
-<addon id="plugin.video.dramaqueen" version="0.1.25.0" name="DramaQueen" provider-name="Lantash">
+<addon id="plugin.video.dramaqueen" version="0.1.25.1" name="DramaQueen" provider-name="Lantash">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.requests"/>
