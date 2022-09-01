@@ -129,7 +129,7 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
 
 </addon>
 
-<addon id="plugin.video.dramaqueen" version="0.2.2" name="DramaQueen" provider-name="Lantash">
+<addon id="plugin.video.dramaqueen" version="0.2.3" name="DramaQueen" provider-name="Lantash">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.requests"/>
@@ -149,7 +149,7 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
         <description lang="pl">Wtyczka powstała w celach edukacyjnych.</description>
         <disclaimer lang="en_GB">Wszelkie treści multimedialne są własnością Dramaqueen. Wtyczka tworzona za zgodą administratorów dramaqueen.pl.</disclaimer>
         <license>GNUv3</license>
-        <platform>linux android</platform>
+        <platform>windows linux android</platform>
         <website>http://lantash77.github.io</website>
         <source>https://github.com/Lantash77/lantash-repo/tree/main/source/matrix/plugin.video.dramaqueen</source>
         <assets>
@@ -157,8 +157,19 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
             <fanart>fanart.jpg</fanart>
             <banner></banner> <!-- optional -->
         </assets>
-        <news>Changelog:
-        </news>
+        <news>Changelog:[CR]
+0.2.3
+- Dodano możliwość przyspieszenia odtwarzania
+  alt+LEFT wolniej
+  alt+RIGHT szybciej
+  możliwość ustawienia własnych klawiszy
+- Dodano funkcję czyszczenia pamięci podręcznej
+- Poprawa szybkości działania
+- Pełne opisy i grafiki na listach
+- Poprawki wyszukiwania tytułów
+- Poprawki wyboru gatunków
+
+</news>
     </extension>
 </addon>
 
