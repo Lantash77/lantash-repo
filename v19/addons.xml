@@ -86,7 +86,7 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
   </extension>
 </addon>
 
-<addon id="repository.lantash" name="lantash-repo" version="0.1" provider-name="lantash">
+<addon id="repository.lantash" name="lantash-repo" version="0.1.1" provider-name="lantash">
 	<extension point="xbmc.addon.repository" name="lantash-repo">
 	    <dir minversion="18.0" maxversion="18.9.0">
 			<info compressed="false">https://raw.githubusercontent.com/Lantash77/lantash-repo/main/v18/addons.xml</info>
@@ -108,11 +108,16 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
             <checksum>https://raw.githubusercontent.com/Gujal00/smrzips/master/addons.xml.md5</checksum>
             <datadir zip="true">https://raw.githubusercontent.com/Gujal00/smrzips/master/zips/</datadir>
         </dir>
+		<dir>
+			<info compressed="false">https://raw.githubusercontent.com/znedw/kodi.repository/master/zips/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/znedw/kodi.repository/master/zips/addons.xml.md5</checksum>
+			<datadir zip="true">https://raw.githubusercontent.com/znedw/kodi.repository/master/zips/</datadir>
+		</dir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Repozytorium wtyczek lantash</summary>
 		<description>Repozytorium zawiera wtyczki dla Kodi w wersji 18.8 i 19 </description>
-		<platform>all</platform>
+		<platform>linux android</platform>
 		<license>GNUv3</license>
 		<website></website>
                 <assets>
@@ -124,13 +129,14 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
 
 </addon>
 
-<addon id="plugin.video.dramaqueen" version="0.2.0.0" name="DramaQueen" provider-name="Lantash">
+<addon id="plugin.video.dramaqueen" version="0.2.2" name="DramaQueen" provider-name="Lantash">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.requests"/>
         <import addon="script.module.resolveurl"/>
         <import addon="inputstream.adaptive"/>
         <import addon="script.module.inputstreamhelper"/>
+		<import addon="service.defaultplaybackspeed.matrix"/>
     </requires>
     <extension point="xbmc.python.pluginsource"
              library="dramaqueen.py">
@@ -143,7 +149,7 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
         <description lang="pl">Wtyczka powstała w celach edukacyjnych.</description>
         <disclaimer lang="en_GB">Wszelkie treści multimedialne są własnością Dramaqueen. Wtyczka tworzona za zgodą administratorów dramaqueen.pl.</disclaimer>
         <license>GNUv3</license>
-        <platform>all</platform>
+        <platform>linux android</platform>
         <website>http://lantash77.github.io</website>
         <source>https://github.com/Lantash77/lantash-repo/tree/main/source/matrix/plugin.video.dramaqueen</source>
         <assets>
@@ -151,32 +157,7 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
             <fanart>fanart.jpg</fanart>
             <banner></banner> <!-- optional -->
         </assets>
-        <news>
-            Changelog:
-	0.1.24
-	- DQPlayer fix
-            0.1.23
-            - Wybór jakości playera testowego w ustawieniach
-              SD, 720, MAX lub okno wybory przed rozpoczęciem
-            - Brakujące informacje o video w playerze testowym
-            0.1.22
-            - Poprawka 'Player testowy'
-            - Fix odcinków typu 'spin off'
-            - Fix niezgodności linków z tytułem
-            0.1.20
-            - Player fix
-            0.1.18
-            - Dodana obsługa playera testowego
-            0.1.16
-            - poprawki po zmianach na stronie
-            0.1.15
-            - Fix - update strony
-            - wyszukiwanie - dodana historia
-            - wyłączony scraper - prace w toku
-            - DQ Player - nie działa
-            0.1.11
-            - DQ Player fix
-            - Brakujące odcinki - fix
+        <news>Changelog:
         </news>
     </extension>
 </addon>
