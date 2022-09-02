@@ -136,7 +136,7 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
         <import addon="script.module.resolveurl"/>
         <import addon="inputstream.adaptive"/>
         <import addon="script.module.inputstreamhelper"/>
-		<import addon="service.defaultplaybackspeed.matrix"/>
+	<import addon="service.defaultplaybackspeed.matrix"/>
     </requires>
     <extension point="xbmc.python.pluginsource"
              library="dramaqueen.py">
@@ -157,7 +157,7 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
             <fanart>fanart.jpg</fanart>
             <banner></banner> <!-- optional -->
         </assets>
-        <news>Changelog:[CR]
+        <news>Changelog:
 0.2.3
 - Dodano możliwość przyspieszenia odtwarzania
   alt+LEFT wolniej
@@ -168,7 +168,6 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
 - Pełne opisy i grafiki na listach
 - Poprawki wyszukiwania tytułów
 - Poprawki wyboru gatunków
-
 </news>
     </extension>
 </addon>
