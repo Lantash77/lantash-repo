@@ -129,7 +129,7 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
 
 </addon>
 
-<addon id="plugin.video.dramaqueen" version="0.2.3" name="DramaQueen" provider-name="Lantash">
+<addon id="plugin.video.dramaqueen" version="0.2.4" name="DramaQueen" provider-name="Lantash">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.requests"/>
@@ -149,7 +149,7 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
         <description lang="pl">Wtyczka powstała w celach edukacyjnych.</description>
         <disclaimer lang="en_GB">Wszelkie treści multimedialne są własnością Dramaqueen. Wtyczka tworzona za zgodą administratorów dramaqueen.pl.</disclaimer>
         <license>GNUv3</license>
-        <platform>windows linux android</platform>
+        <platform>windows android linux</platform>
         <website>http://lantash77.github.io</website>
         <source>https://github.com/Lantash77/lantash-repo/tree/main/source/matrix/plugin.video.dramaqueen</source>
         <assets>
