@@ -225,7 +225,7 @@ Python 3 - port
     </extension>
 </addon>
 
-<addon id="plugin.video.fajnadrama" version="0.0.1.3" name="FajnaDrama" provider-name="Lantash">
+<addon id="plugin.video.fajnadrama" version="0.0.1.4" name="FajnaDrama" provider-name="Lantash">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.requests"/>
@@ -245,8 +245,8 @@ Python 3 - port
         <website>http://lantash77.github.io</website>
         <!--source>https://github.com/Lantash77/lantash-repo/tree/main/source/matrix/plugin.video.fajnadrama</source-->
         <assets>
-            <icon>resources/media/icon.png</icon>
-            <fanart>resources/media/fanart.jpg</fanart>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
             <banner></banner> <!-- optional -->
         </assets>
         <news>Changelog:
