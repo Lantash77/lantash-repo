@@ -86,7 +86,7 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
   </extension>
 </addon>
 
-<addon id="repository.lantash" name="lantash-repo" version="0.1.2" provider-name="lantash">
+<addon id="repository.lantash" name="lantash-repo" version="0.1.3" provider-name="lantash">
 	<extension point="xbmc.addon.repository" name="lantash-repo">
 	    	<dir minversion="18.0" maxversion="18.9.0">
 			<info compressed="false">https://raw.githubusercontent.com/Lantash77/lantash-repo/main/v18/addons.xml</info>
