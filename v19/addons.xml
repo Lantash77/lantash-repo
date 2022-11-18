@@ -176,7 +176,7 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
   </extension>
 </addon>
 
-<addon id="plugin.video.dramaqueen" version="0.2.5.1" name="DramaQueen" provider-name="Lantash">
+<addon id="plugin.video.dramaqueen" version="0.2.6" name="DramaQueen" provider-name="Lantash">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.requests"/>
@@ -205,6 +205,8 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
             <banner></banner> <!-- optional -->
         </assets>
         <news>Changelog:
+0.2.6
+- Fix logowania
 0.2.5
 - Dodano możliwość przyspieszenia odtwarzania
   alt+LEFT wolniej
