@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.video.dramaqueen" version="0.2.6" name="DramaQueen" provider-name="Lantash">
+<addon id="plugin.video.dramaqueen" version="0.2.7.1" name="DramaQueen" provider-name="Lantash">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.requests"/>
         <import addon="script.module.resolveurl"/>
         <import addon="inputstream.adaptive"/>
         <import addon="script.module.inputstreamhelper"/>
-	<import addon="service.defaultplaybackspeed.matrix"/>
+	    <import addon="service.defaultplaybackspeed.matrix"/>
+        <import addon="script.module.addon.signals"/>
+        <import addon="service.upnext"/>
     </requires>
     <extension point="xbmc.python.pluginsource"
              library="dramaqueen.py">
@@ -29,6 +31,10 @@
             <banner></banner> <!-- optional -->
         </assets>
         <news>Changelog:
+0.2.7
+- Dodano funkcję "Odtwarzaj kolejny" dla dram
+  pod koniec odcinka (napisy) pojawia się okienko z propozycją kolejnego
+  możliwość zmiany ustawień czasu i rodzaju okienka
 0.2.6
 - Fix logowania
 0.2.5
