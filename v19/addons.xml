@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.video.dramaqueen" version="0.2.7.1" name="DramaQueen" provider-name="Lantash">
+<addon id="plugin.video.dramaqueen" version="0.2.7.2" name="DramaQueen" provider-name="Lantash">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.requests"/>
