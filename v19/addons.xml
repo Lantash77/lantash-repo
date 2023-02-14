@@ -53,7 +53,7 @@
 
 <addon
   id="plugin.video.animeotaku"
-  version="0.1.17.2"
+  version="0.1.18.0"
   name="Anime Otaku"
   provider-name="Lantash">
   <requires>
@@ -85,9 +85,18 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
         <banner></banner> <!-- optional -->
     </assets>
     <news>
-0.0.17
+0.1.18
+- Dodany host animezone.pl
+  wymaga logowania
+- fix anime-odcinki
+  listowanie alfabetyczne
+  poster ładowany z cache po listowaniu odcinków
+- poprawka desu obsługa błędu strony
+- poprawka frixysubs obsługa błedu strony
+- poprawki kodu
+0.1.17
 - Dodany host desu-online.pl
-0.0.15
+0.1.15
 - Dodany host frixysubs.pl
 - Anime-odcinki fix wyświetlania playerów
 - Anime-odcinki - fix posterów
@@ -101,9 +110,9 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
   - Okno decyzji zostało wyłączone (opcjonalnie w ustawieniach)
 - hosty wymagające logowania:
   - włączenie wymusza wprowadzenie danych logowania
-0.0.12
+0.1.12
 - Poprawione wyświetlanie playerów Anime-Odcinki
-0.0.11
+0.1.11
 - Historia wyszukiwania
 -
 0.1.10
