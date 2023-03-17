@@ -1,46 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.video.fajnadrama" version="0.0.1.4" name="FajnaDrama" provider-name="Lantash">
-    <requires>
-        <import addon="xbmc.python" version="3.0.0"/>
-        <import addon="script.module.requests"/>
-        <import addon="script.module.resolveurl"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource"
-             library="main.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary>drama</summary>
-        <summary lang="pl">Przeglądanie i odtwarzanie zawartości strony FajnaDrama.</summary>
-        <description lang="pl">Wtyczka powstała w celach edukacyjnych.[CR]Do użytku prywatnego</description>
-        <disclaimer lang="pl">To nie jest oficjalny dodatek, nie jest wspierany ani popierany przez autorów serwisu.![CR]  Wszelkie treści multimedialne są własnością FajnaDrama.pl. </disclaimer>
-        <license>GNUv3</license>
-        <platform>all</platform>
-        <website>http://lantash77.github.io</website>
-        <!--source>https://github.com/Lantash77/lantash-repo/tree/main/source/matrix/plugin.video.fajnadrama</source-->
-        <assets>
-            <icon>icon.png</icon>
-            <fanart>fanart.jpg</fanart>
-            <banner></banner> <!-- optional -->
-        </assets>
-        <news>Changelog:
-[CR]0.0.1.3
-&#8226; paging fix
-[CR]0.0.1.2
-[CR]&#8226; King's Avatar fix
-[CR]0.0.1
-[CR]&#8226; Wyszukiwanie + historia
-[CR]&#8226; Gatunki
-[CR]&#8226; Lista Alfabetyczna
-[CR]&#8226; Czyszczenie cache
-        </news>
-    </extension>
-</addon>
-
 <addon
   id="plugin.video.animeotaku"
-  version="0.1.18.1"
+  version="0.1.19.0"
   name="Anime Otaku"
   provider-name="Lantash">
   <requires>
@@ -55,7 +17,7 @@
   <extension point="xbmc.addon.metadata">
     <summary>anime</summary>
 	<summary lang="pl">Przeglądanie i odtwarzanie zawartości stron anime.</summary>
-    <description lang="pl">Wtyczka do oglądania Anime ze stron wbijam.pl, shinden.pl, anime-odcinki.pl.&#xA;
+    <description lang="pl">Wtyczka do oglądania Anime ze stron wbijam.pl, shinden.pl, animezone.pl.&#xA;
 Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatku Anime-IPTV stworzonego przez Huball.
     </description>
       <disclaimer lang="pl_PL">Testowana na Windows 10, RPI z OSMC, Android.
@@ -72,6 +34,10 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
         <banner></banner> <!-- optional -->
     </assets>
     <news>
+0.1.19
+- wyłączenie hosta anime-odcinki
+- wbijam.pl - postery, grafiki z TMDB
+- drobne fixy
 0.1.18
 - Dodany host animezone.pl
   wymaga logowania
@@ -131,34 +97,6 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
 - StrefaDB.pl
 </news>
   </extension>
-</addon>
-
-<addon id="service.subtitles.animesub" name="Animesub.info" version="0.0.2" provider-name="Lantash">
-    <requires>
-        <import addon="xbmc.python" version="3.0.0"/>
-		<import addon="script.module.requests"/>
-    </requires>
-    <extension point="xbmc.subtitle.module" library="service.py"/>
-    <extension point="xbmc.addon.metadata">
-		<summary lang="en">Animesub.info</summary>
-		<description lang="en">Search and Download subtitles from animesub.info.</description>
-		<summary lang="pl">Animesub.info</summary>
-		<description lang="pl">Szukaj i pobieraj napisy z serwisu animesub.info. Wtyczka powstała w celach edukacyjnych. Port pod Kodi Matrix</description>
-		<source></source>
-		<language/>
-		<email/>
-		<forum></forum>
-		<website/>
-		<assets>
-        <icon>icon.png</icon>
-        <banner></banner> <!-- optional -->
-		</assets>
-	 <news>
-- 0.0.1
-Python 3 - port
-</news>
-		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-    </extension>
 </addon>
 
 <addon id="plugin.audio.openFM"
@@ -236,6 +174,34 @@ Python 3 - port
     </extension>
 </addon>
 
+<addon id="service.subtitles.animesub" name="Animesub.info" version="0.0.2" provider-name="Lantash">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+		<import addon="script.module.requests"/>
+    </requires>
+    <extension point="xbmc.subtitle.module" library="service.py"/>
+    <extension point="xbmc.addon.metadata">
+		<summary lang="en">Animesub.info</summary>
+		<description lang="en">Search and Download subtitles from animesub.info.</description>
+		<summary lang="pl">Animesub.info</summary>
+		<description lang="pl">Szukaj i pobieraj napisy z serwisu animesub.info. Wtyczka powstała w celach edukacyjnych. Port pod Kodi Matrix</description>
+		<source></source>
+		<language/>
+		<email/>
+		<forum></forum>
+		<website/>
+		<assets>
+        <icon>icon.png</icon>
+        <banner></banner> <!-- optional -->
+		</assets>
+	 <news>
+- 0.0.1
+Python 3 - port
+</news>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    </extension>
+</addon>
+
 <addon id="repository.lantash" name="lantash-repo" version="0.1.3" provider-name="lantash">
 	<extension point="xbmc.addon.repository" name="lantash-repo">
 	    	<dir minversion="18.0" maxversion="18.9.0">
@@ -277,5 +243,43 @@ Python 3 - port
                 </assets>
 	</extension>
 
+</addon>
+
+<addon id="plugin.video.fajnadrama" version="0.0.1.4" name="FajnaDrama" provider-name="Lantash">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+        <import addon="script.module.requests"/>
+        <import addon="script.module.resolveurl"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+             library="main.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>drama</summary>
+        <summary lang="pl">Przeglądanie i odtwarzanie zawartości strony FajnaDrama.</summary>
+        <description lang="pl">Wtyczka powstała w celach edukacyjnych.[CR]Do użytku prywatnego</description>
+        <disclaimer lang="pl">To nie jest oficjalny dodatek, nie jest wspierany ani popierany przez autorów serwisu.![CR]  Wszelkie treści multimedialne są własnością FajnaDrama.pl. </disclaimer>
+        <license>GNUv3</license>
+        <platform>all</platform>
+        <website>http://lantash77.github.io</website>
+        <!--source>https://github.com/Lantash77/lantash-repo/tree/main/source/matrix/plugin.video.fajnadrama</source-->
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+            <banner></banner> <!-- optional -->
+        </assets>
+        <news>Changelog:
+[CR]0.0.1.3
+&#8226; paging fix
+[CR]0.0.1.2
+[CR]&#8226; King's Avatar fix
+[CR]0.0.1
+[CR]&#8226; Wyszukiwanie + historia
+[CR]&#8226; Gatunki
+[CR]&#8226; Lista Alfabetyczna
+[CR]&#8226; Czyszczenie cache
+        </news>
+    </extension>
 </addon>
 </addons>
