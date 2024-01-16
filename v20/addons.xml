@@ -68,12 +68,13 @@ Python 3 - port
 
 <addon
   id="plugin.video.animeotaku"
-  version="0.1.23.5"
+  version="0.1.24.1"
   name="Anime Otaku"
   provider-name="Lantash">
   <requires>
   	<import addon="xbmc.python" version="3.0.0"/>
   	<import addon="script.module.requests"/>
+    <import addon="script.module.pysocks"/>
 	<import addon="script.module.resolveurl"/>
   </requires>
   <extension point="xbmc.python.pluginsource"
@@ -102,7 +103,7 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
     <news>
 0.1.23
 - lista sezonów i kalendarz dla Animezone
-- reaktywacja anime-odcinki - soon
+- reaktywacja anime-odcinki
 0.1.21
 - strefaDB - obsługa VIP
 0.1.20
