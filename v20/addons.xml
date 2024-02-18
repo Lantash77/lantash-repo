@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.video.dramaqueen" version="0.2.8.0" name="DramaQueen" provider-name="Lantash">
+<addon id="plugin.video.dramaqueen" version="0.2.8.1" name="DramaQueen" provider-name="Lantash">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.requests"/>
@@ -55,32 +55,28 @@
     </extension>
 </addon>
 
-<addon id="service.subtitles.animesub" name="Animesub.info" version="0.0.2" provider-name="Lantash">
-    <requires>
+<addon id="plugin.audio.openFM"
+       name="Open FM"
+       version="0.0.2"
+       provider-name="Lantash">
+	   <requires>
         <import addon="xbmc.python" version="3.0.0"/>
-		<import addon="script.module.requests"/>
+        <import addon="script.module.requests"/>
     </requires>
-    <extension point="xbmc.subtitle.module" library="service.py"/>
-    <extension point="xbmc.addon.metadata">
-		<summary lang="en">Animesub.info</summary>
-		<description lang="en">Search and Download subtitles from animesub.info.</description>
-		<summary lang="pl">Animesub.info</summary>
-		<description lang="pl">Szukaj i pobieraj napisy z serwisu animesub.info. Wtyczka powstała w celach edukacyjnych. Port pod Kodi Matrix</description>
-		<source></source>
-		<language/>
-		<email/>
-		<forum></forum>
-		<website/>
-		<assets>
+  <extension point="xbmc.python.pluginsource"
+            library="default.py">
+        <provides>audio</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Otwórz się na muzykę z OPEN.FM</summary>
+    <description>Fork wtyczki pajretX.
+        Stream radia ze strony open.fm</description>
+    <platform>all</platform>
+    <website>http://lantash77.github.io</website>
+    <assets>
         <icon>icon.png</icon>
-        <banner></banner> <!-- optional -->
-		</assets>
-	 <news>
-- 0.0.1
-Python 3 - port
-</news>
-		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-    </extension>
+    </assets>
+  </extension>
 </addon>
 
 <addon id="plugin.video.fajnadrama" version="0.0.1.4" name="FajnaDrama" provider-name="Lantash">
@@ -121,42 +117,32 @@ Python 3 - port
     </extension>
 </addon>
 
-<addon id="repository.lantash" name="lantash-repo" version="0.1.5" provider-name="lantash">
-	<extension point="xbmc.addon.repository" name="lantash-repo">
-	    <dir minversion="19.9">
-			<info compressed="false">https://raw.githubusercontent.com/Lantash77/lantash-repo/main/v20/addons.xml</info>
-			<checksum>https://raw.githubusercontent.com/Lantash77/lantash-repo/main/v20/addons.xml.md5</checksum>
-			<datadir zip="true">https://github.com/Lantash77/lantash-repo/raw/main/v20/</datadir>
-		</dir>
-	    	<dir>
-			<info compressed="false">https://raw.githubusercontent.com/Lantash77/lantash-repo/main/addons.xml</info>
-			<checksum>https://raw.githubusercontent.com/Lantash77/lantash-repo/main/addons.xml.md5</checksum>
-			<datadir zip="true">https://github.com/Lantash77/lantash-repo/raw/main/</datadir>
-		</dir>
-		<dir>
-            		<info compressed="false">https://raw.githubusercontent.com/Gujal00/smrzips/master/addons.xml</info>
-            		<checksum>https://raw.githubusercontent.com/Gujal00/smrzips/master/addons.xml.md5</checksum>
-            		<datadir zip="true">https://raw.githubusercontent.com/Gujal00/smrzips/master/zips/</datadir>
-        	</dir>
-		<dir>
-			<info compressed="false">https://raw.githubusercontent.com/znedw/kodi.repository/master/zips/addons.xml</info>
-			<checksum>https://raw.githubusercontent.com/znedw/kodi.repository/master/zips/addons.xml.md5</checksum>
-			<datadir zip="true">https://raw.githubusercontent.com/znedw/kodi.repository/master/zips/</datadir>
-		</dir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Repozytorium wtyczek lantash</summary>
-		<description>Repozytorium zawiera wtyczki dla Kodi w wersji 20</description>
-		<platform>all</platform>
-		<license>GNUv3</license>
-		<website></website>
-                <assets>
-                   <icon>icon.png</icon>
-                   <fanart>fanart.jpg</fanart>
-                   <banner></banner> <!-- optional -->
-                </assets>
-	</extension>
-
+<addon id="service.subtitles.animesub" name="Animesub.info" version="0.0.2" provider-name="Lantash">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+		<import addon="script.module.requests"/>
+    </requires>
+    <extension point="xbmc.subtitle.module" library="service.py"/>
+    <extension point="xbmc.addon.metadata">
+		<summary lang="en">Animesub.info</summary>
+		<description lang="en">Search and Download subtitles from animesub.info.</description>
+		<summary lang="pl">Animesub.info</summary>
+		<description lang="pl">Szukaj i pobieraj napisy z serwisu animesub.info. Wtyczka powstała w celach edukacyjnych. Port pod Kodi Matrix</description>
+		<source></source>
+		<language/>
+		<email/>
+		<forum></forum>
+		<website/>
+		<assets>
+        <icon>icon.png</icon>
+        <banner></banner> <!-- optional -->
+		</assets>
+	 <news>
+- 0.0.1
+Python 3 - port
+</news>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    </extension>
 </addon>
 
 <addon
@@ -269,27 +255,41 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
   </extension>
 </addon>
 
-<addon id="plugin.audio.openFM"
-       name="Open FM"
-       version="0.0.2"
-       provider-name="Lantash">
-	   <requires>
-        <import addon="xbmc.python" version="3.0.0"/>
-        <import addon="script.module.requests"/>
-    </requires>
-  <extension point="xbmc.python.pluginsource"
-            library="default.py">
-        <provides>audio</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Otwórz się na muzykę z OPEN.FM</summary>
-    <description>Fork wtyczki pajretX.
-        Stream radia ze strony open.fm</description>
-    <platform>all</platform>
-    <website>http://lantash77.github.io</website>
-    <assets>
-        <icon>icon.png</icon>
-    </assets>
-  </extension>
+<addon id="repository.lantash" name="lantash-repo" version="0.1.5" provider-name="lantash">
+	<extension point="xbmc.addon.repository" name="lantash-repo">
+	    <dir minversion="19.9">
+			<info compressed="false">https://raw.githubusercontent.com/Lantash77/lantash-repo/main/v20/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/Lantash77/lantash-repo/main/v20/addons.xml.md5</checksum>
+			<datadir zip="true">https://github.com/Lantash77/lantash-repo/raw/main/v20/</datadir>
+		</dir>
+	    	<dir>
+			<info compressed="false">https://raw.githubusercontent.com/Lantash77/lantash-repo/main/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/Lantash77/lantash-repo/main/addons.xml.md5</checksum>
+			<datadir zip="true">https://github.com/Lantash77/lantash-repo/raw/main/</datadir>
+		</dir>
+		<dir>
+            		<info compressed="false">https://raw.githubusercontent.com/Gujal00/smrzips/master/addons.xml</info>
+            		<checksum>https://raw.githubusercontent.com/Gujal00/smrzips/master/addons.xml.md5</checksum>
+            		<datadir zip="true">https://raw.githubusercontent.com/Gujal00/smrzips/master/zips/</datadir>
+        	</dir>
+		<dir>
+			<info compressed="false">https://raw.githubusercontent.com/znedw/kodi.repository/master/zips/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/znedw/kodi.repository/master/zips/addons.xml.md5</checksum>
+			<datadir zip="true">https://raw.githubusercontent.com/znedw/kodi.repository/master/zips/</datadir>
+		</dir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Repozytorium wtyczek lantash</summary>
+		<description>Repozytorium zawiera wtyczki dla Kodi w wersji 20</description>
+		<platform>all</platform>
+		<license>GNUv3</license>
+		<website></website>
+                <assets>
+                   <icon>icon.png</icon>
+                   <fanart>fanart.jpg</fanart>
+                   <banner></banner> <!-- optional -->
+                </assets>
+	</extension>
+
 </addon>
 </addons>
