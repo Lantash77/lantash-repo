@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.video.dramaqueen" version="0.2.8.2" name="DramaQueen" provider-name="Lantash">
+<addon id="plugin.video.dramaqueen" version="0.2.9.0" name="DramaQueen" provider-name="Lantash">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.requests"/>
@@ -31,6 +31,8 @@
             <banner></banner> <!-- optional -->
         </assets>
         <news>Changelog:
+0.2.9
+- poprawa czyszczenia cache
 0.2.8
 - Zakończenie wsparcia dla K19
 - Przygotowania do obsługi K21
