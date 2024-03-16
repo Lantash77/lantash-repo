@@ -54,7 +54,7 @@ Python 3 - port
 
 <addon
   id="plugin.video.animeotaku"
-  version="0.1.25.1"
+  version="0.1.25.2"
   name="Anime Otaku"
   provider-name="Lantash">
   <requires>
