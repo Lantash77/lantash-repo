@@ -187,7 +187,7 @@ Python 3 - port
 
 <addon
   id="plugin.video.animeotaku"
-  version="0.1.26.0"
+  version="0.1.27.0"
   name="Anime Otaku"
   provider-name="Lantash">
   <requires>
@@ -220,6 +220,8 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
         <banner></banner> <!-- optional -->
     </assets>
     <news>
+0.1.27
+- strefaDB fix DB Daima
 0.1.26
 - fix shinden
 - wyłączenie wbijam.pl
