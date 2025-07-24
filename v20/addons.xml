@@ -18,7 +18,7 @@
   <extension point="xbmc.addon.metadata">
     <summary>anime</summary>
 	<summary lang="pl">Przeglądanie i odtwarzanie zawartości stron anime.</summary>
-    <description lang="pl">Wtyczka do oglądania Anime ze stron Anim-Odcinki, shinden, desu, Frixysubs.&#xA;
+    <description lang="pl">Wtyczka do oglądania Anime ze stron Anime-Odcinki, Shinden, Desu, Frixysubs.&#xA;
 Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatku Anime-IPTV stworzonego przez Huball.
     </description>
       <disclaimer lang="pl_PL">Testowana na Windows 11, RPI z OSMC, Android.
