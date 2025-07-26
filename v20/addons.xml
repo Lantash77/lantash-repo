@@ -2,7 +2,7 @@
 <addons>
 <addon
   id="plugin.video.animeotaku"
-  version="0.1.28.0"
+  version="0.1.29.0"
   name="Anime Otaku"
   provider-name="Lantash">
   <requires>
@@ -35,9 +35,15 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
         <banner></banner> <!-- optional -->
     </assets>
     <news>
+0.1.29
+- Shinden.pl fix
+- migracja kodu Shinden do K21+
+- fix listy gatunków
+- oznaczone 2 częściowe odcinki
+- pobierane meta z TMDB (częściowe)
 0.1.28
 - Anime-Odcinki fix
-- migracja kodu Anime-Odcinki do K21
+- migracja kodu Anime-Odcinki do K21+
 - dodane menu Sezony i Studio
 - poprawki w paginacjach list
 - poprawki ustawień
