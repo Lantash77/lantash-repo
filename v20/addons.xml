@@ -2,7 +2,7 @@
 <addons>
 <addon
   id="plugin.video.animeotaku"
-  version="0.1.29.0"
+  version="0.1.30.0"
   name="Anime Otaku"
   provider-name="Lantash">
   <requires>
