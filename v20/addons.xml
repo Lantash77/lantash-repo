@@ -105,7 +105,7 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
 
 <addon id="plugin.audio.openFM"
        name="Open FM"
-       version="0.0.3"
+       version="0.0.4"
        provider-name="Lantash">
 	   <requires>
         <import addon="xbmc.python" version="3.0.0"/>
