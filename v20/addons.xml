@@ -2,13 +2,14 @@
 <addons>
 <addon
   id="plugin.video.animeotaku"
-  version="0.1.31.0"
+  version="0.1.32.0"
   name="Anime Otaku"
   provider-name="Lantash">
   <requires>
   	<import addon="xbmc.python" version="3.0.0"/>
   	<import addon="script.module.requests"/>
     <import addon="script.module.pysocks"/>
+      <import addon="script.module.pycryptodome"/>
 	<import addon="script.module.resolveurl"/>
   </requires>
   <extension point="xbmc.python.pluginsource"
@@ -35,6 +36,11 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
         <banner></banner> <!-- optional -->
     </assets>
     <news>
+0.1.32
+- Anime-odcinki fix
+- przepisano funkcje na pycryptodome
+- odłączenie starych funcji crypto
+- wyłączenie Animezone - brak większości linków na stronie
 0.1.29
 - Shinden.pl fix
 - migracja kodu Shinden do K21+
