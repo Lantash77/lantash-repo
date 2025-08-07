@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<addon id="plugin.video.kpl-addons-dev-mega" name="KPL-Addons test plugin MEGA" version="0.0.1" provider-name="kpl-addons">
+
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+        <import addon="script.module.requests" />
+        <import addon="script.module.pycryptodome"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="resources/lib/main.py">
+        <provides>video</provides>
+    </extension>
+    <extension library="resources/lib/serverHTTP.py" point="xbmc.service"/>
+    <extension point="xbmc.addon.metadata">
+        <description>Testowy Addon do wszelakich eksperymentów</description>
+        <disclaimer></disclaimer>
+        <summary>KPL-Addons TEST</summary>
+        <language>pl</language>
+        <platform>all</platform>
+        <license>GNUv3</license>
+        <website></website>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+        </assets>
+    </extension>
+</addon>
