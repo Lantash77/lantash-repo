@@ -11,7 +11,7 @@ my_addon = xbmcaddon.Addon()
 addonInfo = xbmcaddon.Addon().getAddonInfo
 GetSetting = my_addon.getSetting
 SetSetting = my_addon.setSetting
-dataPath = xbmcvfs.translatePath(addonInfo('profile')) or r'D:\drop\python_drop'#r'/home/lantash/drop'#
+dataPath = xbmcvfs.translatePath(addonInfo('profile'))# or r'D:\drop\python_drop'#r'/home/lantash/drop'#
 params = dict(parse_qsl(sys.argv[2].replace("?", "")))
 #import sys
 #sys.path.append("C:\Program Files\JetBrains\PyCharm 2022.2.2\debug-eggs\pydevd-pycharm.egg")
