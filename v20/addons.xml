@@ -88,7 +88,7 @@
 
 <addon
   id="plugin.video.animeotaku"
-  version="0.1.35.0"
+  version="0.1.36.0"
   name="Anime Otaku"
   provider-name="Lantash">
   <requires>
@@ -123,6 +123,9 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
         <banner></banner> <!-- optional -->
     </assets>
     <news>
+0.1.35
+- rollback wsparcie PY3.8 kodi na windows
+- Desu fix
 0.1.33
 - migracja kodu frixysubs i desu do K21+
 - frixysubs dodatkowe źródła
