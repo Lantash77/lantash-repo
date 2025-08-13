@@ -88,7 +88,7 @@
 
 <addon
   id="plugin.video.animeotaku"
-  version="0.1.38.0"
+  version="0.1.40.0"
   name="Anime Otaku"
   provider-name="Lantash">
   <requires>
@@ -123,6 +123,9 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
         <banner></banner> <!-- optional -->
     </assets>
     <news>
+0.1.40
+- Anime-odcinki fix
+- poprawki resolvera Shinden (przyspieszenie wyświetlania listy linków)
 0.1.37
 - rollback wsparcie PY3.8 kodi na windows
 - Desu fix
