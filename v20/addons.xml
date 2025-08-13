@@ -88,7 +88,7 @@
 
 <addon
   id="plugin.video.animeotaku"
-  version="0.1.40.0"
+  version="0.1.41.0"
   name="Anime Otaku"
   provider-name="Lantash">
   <requires>
@@ -107,7 +107,8 @@
     <summary>anime</summary>
 	<summary lang="pl">Przeglądanie i odtwarzanie zawartości stron anime.</summary>
     <description lang="pl">Wtyczka do oglądania Anime ze stron Anime-Odcinki, Shinden, Desu, Frixysubs.&#xA;
-Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatku Anime-IPTV stworzonego przez Huball.
+Wtyczka powstała w celach edukacyjnych.&#xA;
+Stworzona przez modyfikację dodatku Anime-IPTV stworzonego przez Huball.
     </description>
       <disclaimer lang="pl_PL">Testowana na Windows 11, RPI z OSMC, Android.
           Niektóre jej składniki mogą nie działać lub działać nie poprawnie.
@@ -123,6 +124,8 @@ Wtyczka powstała w celach edukacyjnych.&#xA;Stworzona przez modyfikację dodatk
         <banner></banner> <!-- optional -->
     </assets>
     <news>
+0.1.41
+- poprawka wydajności routera
 0.1.40
 - Anime-odcinki fix
 - poprawki resolvera Shinden (przyspieszenie wyświetlania listy linków)
