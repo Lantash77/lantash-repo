@@ -246,7 +246,7 @@ Stworzona przez modyfikację dodatku Anime-IPTV stworzonego przez Huball.
 
 </addon>
 
-<addon id="plugin.video.drama-online" version="0.0.1.3" name="Drama-Online" provider-name="Lantash">
+<addon id="plugin.video.drama-online" version="0.0.1.4" name="Drama-Online" provider-name="Lantash">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.requests"/>
@@ -274,9 +274,9 @@ Stworzona przez modyfikację dodatku Anime-IPTV stworzonego przez Huball.
             <banner></banner> <!-- optional -->
         </assets>
         <news>Changelog:
-0.1.3
+0.1.4
 - linki mega.nz dodane
-  znany problem
+  znany problem:
   przeskok do przodu i wznowienie odtwarzania może wywalić player
 - linki vk.com i ok.ru odtwarzane przez ISA
 - dodano proxy do obsługi linków mega.nz
