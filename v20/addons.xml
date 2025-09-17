@@ -2,7 +2,7 @@
 <addons>
 <addon
   id="plugin.video.animeotaku"
-  version="0.1.41.0"
+  version="0.1.43.0"
   name="Anime Otaku"
   provider-name="Lantash">
   <requires>
@@ -38,6 +38,8 @@ Stworzona przez modyfikację dodatku Anime-IPTV stworzonego przez Huball.
         <banner></banner> <!-- optional -->
     </assets>
     <news>
+0.1.43
+shinden fix
 0.1.41
 - poprawka wydajności routera
 0.1.40
