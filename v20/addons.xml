@@ -86,37 +86,6 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.drama-online" version="0.0.1.7" name="Drama-Online" provider-name="Lantash">
-    <requires>
-        <import addon="xbmc.python" version="3.0.0"/>
-
-    </requires>
-    <extension point="xbmc.python.pluginsource"
-             library="main.py">
-        <provides>video</provides>
-    </extension>
-
-    <extension point="xbmc.addon.metadata">
-        <summary>drama</summary>
-        <summary lang="pl">Przeglądanie i odtwarzanie zawartości strony Drama-Online.</summary>
-        <description lang="pl">Wtyczka powstała w celach edukacyjnych.</description>
-        <disclaimer lang="pl">To nie jest oficjalny dodatek!  Wszelkie treści multimedialne są własnością Drama-Online. Wtyczka wymaga aktywnego konta w serwisie</disclaimer>
-        <license>GNUv3</license>
-        <platform>all</platform>
-        <website>http://lantash77.github.io</website>
-        <assets>
-            <icon>icon.png</icon>
-            <fanart>fanart.jpg</fanart>
-            <banner></banner> <!-- optional -->
-        </assets>
-        <news>Changelog:
-0.1.7
-- R.I.P
-
-        </news>
-    </extension>
-</addon>
-
 <addon
   id="plugin.video.animeotaku"
   version="0.1.46.0"
