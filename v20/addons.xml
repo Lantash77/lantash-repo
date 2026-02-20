@@ -1,5 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
+<addon id="plugin.video.dramaqueen" version="0.2.9.6" name="DramaQueen" provider-name="Lantash">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+        <import addon="script.module.requests"/>
+        <import addon="script.module.resolveurl"/>
+        <import addon="inputstream.adaptive"/>
+        <import addon="script.module.inputstreamhelper"/>
+	    <import addon="service.defaultplaybackspeed.matrix"/>
+        <import addon="script.module.addon.signals"/>
+        <import addon="service.upnext"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+             library="dramaqueen.py">
+        <provides>video</provides>
+    </extension>
+    <extension library="serverHTTP.py" point="xbmc.service"/>
+    <extension point="xbmc.addon.metadata">
+        <summary>drama</summary>
+        <summary lang="pl">Przeglądanie i odtwarzanie zawartości strony DramaQueen.</summary>
+        <description lang="pl">Wtyczka powstała w celach edukacyjnych.</description>
+        <disclaimer lang="en_GB">Wszelkie treści multimedialne są własnością Dramaqueen. Wtyczka tworzona za zgodą administratorów dramaqueen.pl.</disclaimer>
+        <license>GNUv3</license>
+        <platform>windows android linux</platform>
+        <website>http://lantash77.github.io</website>
+        <source>https://github.com/Lantash77/lantash-repo/tree/main/source/matrix/plugin.video.dramaqueen</source>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+            <banner></banner> <!-- optional -->
+        </assets>
+        <news>Changelog:
+0.2.9
+- poprawa czyszczenia cache
+0.2.8
+- Zakończenie wsparcia dla K19
+- Przygotowania do obsługi K21
+- Tymczasowo wyłączono funkcję "Odtwarzaj kolejny" z powodu błędów
+0.2.7
+- Dodano funkcję "Odtwarzaj kolejny" dla dram
+  pod koniec odcinka (napisy) pojawia się okienko z propozycją kolejnego
+  możliwość zmiany ustawień czasu i rodzaju okienka
+0.2.6
+- Fix logowania
+0.2.5
+- Dodano możliwość przyspieszenia odtwarzania
+  alt+LEFT wolniej
+  alt+RIGHT szybciej
+  możliwość ustawienia własnych klawiszy
+- Dodano funkcję czyszczenia pamięci podręcznej
+- Poprawa szybkości działania
+- Pełne opisy i grafiki na listach
+- Poprawki wyszukiwania tytułów
+- Poprawki wyboru gatunków
+</news>
+    </extension>
+</addon>
+
 <addon id="plugin.audio.openFM"
        name="Open FM"
        version="0.0.5"
@@ -194,62 +251,5 @@ shinden fix
                 </assets>
 	</extension>
 
-</addon>
-
-<addon id="plugin.video.dramaqueen" version="0.2.9.5" name="DramaQueen" provider-name="Lantash">
-    <requires>
-        <import addon="xbmc.python" version="3.0.0"/>
-        <import addon="script.module.requests"/>
-        <import addon="script.module.resolveurl"/>
-        <import addon="inputstream.adaptive"/>
-        <import addon="script.module.inputstreamhelper"/>
-	    <import addon="service.defaultplaybackspeed.matrix"/>
-        <import addon="script.module.addon.signals"/>
-        <import addon="service.upnext"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource"
-             library="dramaqueen.py">
-        <provides>video</provides>
-    </extension>
-    <extension library="serverHTTP.py" point="xbmc.service"/>
-    <extension point="xbmc.addon.metadata">
-        <summary>drama</summary>
-        <summary lang="pl">Przeglądanie i odtwarzanie zawartości strony DramaQueen.</summary>
-        <description lang="pl">Wtyczka powstała w celach edukacyjnych.</description>
-        <disclaimer lang="en_GB">Wszelkie treści multimedialne są własnością Dramaqueen. Wtyczka tworzona za zgodą administratorów dramaqueen.pl.</disclaimer>
-        <license>GNUv3</license>
-        <platform>windows android linux</platform>
-        <website>http://lantash77.github.io</website>
-        <source>https://github.com/Lantash77/lantash-repo/tree/main/source/matrix/plugin.video.dramaqueen</source>
-        <assets>
-            <icon>icon.png</icon>
-            <fanart>fanart.jpg</fanart>
-            <banner></banner> <!-- optional -->
-        </assets>
-        <news>Changelog:
-0.2.9
-- poprawa czyszczenia cache
-0.2.8
-- Zakończenie wsparcia dla K19
-- Przygotowania do obsługi K21
-- Tymczasowo wyłączono funkcję "Odtwarzaj kolejny" z powodu błędów
-0.2.7
-- Dodano funkcję "Odtwarzaj kolejny" dla dram
-  pod koniec odcinka (napisy) pojawia się okienko z propozycją kolejnego
-  możliwość zmiany ustawień czasu i rodzaju okienka
-0.2.6
-- Fix logowania
-0.2.5
-- Dodano możliwość przyspieszenia odtwarzania
-  alt+LEFT wolniej
-  alt+RIGHT szybciej
-  możliwość ustawienia własnych klawiszy
-- Dodano funkcję czyszczenia pamięci podręcznej
-- Poprawa szybkości działania
-- Pełne opisy i grafiki na listach
-- Poprawki wyszukiwania tytułów
-- Poprawki wyboru gatunków
-</news>
-    </extension>
 </addon>
 </addons>
